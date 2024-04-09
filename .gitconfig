@@ -1,0 +1,24 @@
+[init]
+	defaultBranch = main
+[alias]
+        d = diff
+        co = checkout
+        cm = commit
+        br = branch
+        ba = branch -a
+        a = add
+        l = log
+        rs = restore
+        cl = clone
+        st = status
+        pl = pull
+        ps = push
+	pu = push -u origin HEAD
+        sh = stash
+        sw = switch
+	sc = switch -c
+        ds = diff --staged
+        sm = submodule
+[user]
+	name = Yuta Muro
+	email = muro.yuta24@fixer.co.jp

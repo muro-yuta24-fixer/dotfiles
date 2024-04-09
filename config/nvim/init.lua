@@ -1,0 +1,7 @@
+require("muro-yuta24-fixer.base")
+require("muro-yuta24-fixer.shell")
+require("muro-yuta24-fixer.maps")
+require("muro-yuta24-fixer.plugins")
+require("muro-yuta24-fixer.autocmd")
+require("muro-yuta24-fixer.command")
+require("muro-yuta24-fixer.clipboard")

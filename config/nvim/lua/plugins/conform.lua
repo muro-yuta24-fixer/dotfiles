@@ -21,6 +21,7 @@ return {
       typescriptreact = js_formatters,
       svelte = js_formatters,
       astro = js_formatters,
+      vue = js_formatters,
 
       json = { "jq" },
       toml = { "taplo" },

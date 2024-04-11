@@ -11,6 +11,7 @@ local ensure_installed = {
   "html",
   "cssls",
   "tsserver",
+  "volar",
   "svelte",
   "astro",
   "tailwindcss",
@@ -61,11 +62,38 @@ return {
         })
       end,
 
+      ["volar"] = function()
+        lspconfig["volar"].setup({
+          capabilities = cmp_capabilities,
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+        })
+      end,
+
       ["tsserver"] = function()
+        local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
         lspconfig["tsserver"].setup({
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vue_typescript_plugin,
+                languages = { "javascript", "typescript", "vue" },
+              },
+            },
+          },
           capabilities = cmp_capabilities,
           root_dir = lspconfig.util.root_pattern("package.json"),
           single_file_support = false,
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "vue",
+          },
         })
       end,
 

@@ -1,3 +1,5 @@
+local mason_icons = require("utils.icons").mason
+
 local ensure_installed = {
   "clangd",
 
@@ -36,7 +38,11 @@ return {
   },
   lazy = false,
   config = function()
-    require("mason").setup()
+    require("mason").setup({
+      ui = {
+        icons = mason_icons,
+      },
+    })
 
     require("mason-lspconfig").setup({
       ensure_installed = ensure_installed,

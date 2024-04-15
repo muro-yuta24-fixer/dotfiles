@@ -1,14 +1,17 @@
 return {
   "akinsho/git-conflict.nvim",
-  cmd = {
-    "GitConflictChooseOurs",
-    "GitConflictChooseTheirs",
-    "GitConflictChooseBoth",
-    "GitConflictChooseNone",
-    "GitConflictNextConflict",
-    "GitConflictPrevConflict",
-    "GitConflictListQf",
-  },
+  -- cmd = {
+  --   "GitConflictRefresh",
+  --   "GitConflictChooseOurs",
+  --   "GitConflictChooseTheirs",
+  --   "GitConflictChooseBoth",
+  --   "GitConflictChooseBase",
+  --   "GitConflictChooseNone",
+  --   "GitConflictNextConflict",
+  --   "GitConflictPrevConflict",
+  --   "GitConflictListQf",
+  -- },
+  event = "VeryLazy",
   version = "*",
   opts = {},
   config = function(_, opts)

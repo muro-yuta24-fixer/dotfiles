@@ -32,3 +32,6 @@
 	ff = only
 [core]
 	editor = nvim
+
+[ghq]
+    root = "~/Development"

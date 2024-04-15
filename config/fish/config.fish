@@ -121,6 +121,4 @@ end
 
 alias pyvenv goto_venv
 
-# pyenv init - | source
-
-starship init fish | source
+source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.fish

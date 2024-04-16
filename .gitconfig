@@ -19,6 +19,7 @@
 	sc = switch -c
     ds = diff --staged
     sm = submodule
+    cc = cz c
 [user]
 	name = muro-yuta24-fixer
 	email = muro.yuta24@fixer.co.jp

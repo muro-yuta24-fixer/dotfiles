@@ -23,10 +23,8 @@
 	name = muro-yuta24-fixer
 	email = muro.yuta24@fixer.co.jp
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [pull]
 	ff = only

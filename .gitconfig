@@ -7,7 +7,7 @@
     br = branch
     ba = branch -a
     a = add
-    l = log --online
+    l = log --oneline
     ll = log
     rs = restore
     cl = clone

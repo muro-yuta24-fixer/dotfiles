@@ -1,5 +1,5 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [alias]
     do = "!git status --short | peco | awk '{print $2}' | xargs git diff"
     d = diff
@@ -19,25 +19,26 @@
     fh = fetch
     pl = pull
     ps = push
-	pu = push -u origin HEAD
+    pu = push -u origin HEAD
     sh = stash
     sw = switch
-	sc = switch -c
+    sc = switch -c
     ds = diff --staged
     sm = submodule
     cc = cz c
     rb = rebase
+    rbc = rebase --continue
 [user]
-	name = muro-yuta24-fixer
-	email = muro.yuta24@fixer.co.jp
+    name = muro-yuta24-fixer
+    email = muro.yuta24@fixer.co.jp
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+    helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+    helper = !/usr/bin/gh auth git-credential
 [pull]
-	ff = only
+    ff = only
 [core]
-	editor = nvim
+    editor = nvim
 
 [ghq]
     root = "~/Development"

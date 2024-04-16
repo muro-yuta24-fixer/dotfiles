@@ -1,17 +1,22 @@
 [init]
 	defaultBranch = main
 [alias]
+    do = "!git status --short | peco | awk '{print $2}' | xargs git diff"
     d = diff
-    co = checkout
+    ch = checkout
     cm = commit
     br = branch
     ba = branch -a
+    bo = "!git branch | peco | xargs git switch"
+    ao = "!git status --short | peco | awk '{print $2}' | xargs git add"
     a = add
     l = log --oneline
     ll = log
+    co = "!git log --oneline | peco | awk '{print $1}' | xargs git checkout"
     rs = restore
     cl = clone
     st = status
+    fh = fetch
     pl = pull
     ps = push
 	pu = push -u origin HEAD
@@ -21,6 +26,7 @@
     ds = diff --staged
     sm = submodule
     cc = cz c
+    rb = rebase
 [user]
 	name = muro-yuta24-fixer
 	email = muro.yuta24@fixer.co.jp

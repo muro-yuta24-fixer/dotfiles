@@ -19,3 +19,18 @@ brew install node yarn deno rye rustup-init gdb gcc
 
 # GitHub Authentication
 sudo apt install -y gh wslu
+
+for file in ".bashrc .gitconfig"; do
+    if [ -e "$HOME/$file" ]; then
+        rm "$HOME/$file"
+    fi
+    ln -s "$HOME/dotfiles/$file" "$HOME/$file"
+done
+
+for dir in $(ls "$HOME/dotfiles/config"); do
+    if [ -e "$HOME/.config/$dir" ]; then
+        rm -rf "$HOME/.config/$dir"
+    fi
+    ln -s "$HOME/dotfiles/config/$dir" "$HOME/.config/$file"
+done
+

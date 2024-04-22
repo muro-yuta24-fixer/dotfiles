@@ -56,6 +56,7 @@ return {
     cmp.setup.filetype("gitcommit", {
       sources = cmp.config.sources({
         { name = "git" },
+        { name = "gitmoji" },
       }, {
         { name = "buffer" },
       }),

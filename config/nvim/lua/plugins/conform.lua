@@ -15,6 +15,7 @@ return {
 
       html = js_formatters,
       css = js_formatters,
+      scss = js_formatters,
       javascript = js_formatters,
       javascriptreact = js_formatters,
       typescript = js_formatters,

@@ -2,40 +2,32 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# TokyoNight Color Palette
-set -l foreground c8d3f5
-set -l selection 2d3f76
-set -l comment 636da6
-set -l red ff757f
-set -l orange ff966c
-set -l yellow ffc777
-set -l green c3e88d
-set -l purple fca7ea
-set -l cyan 86e1fc
-set -l pink c099ff
+# (Github Light) Colors for Fish shell
+set -l comment 57606a
 
-# Syntax Highlighting Colors
-set -g fish_color_normal $foreground
-set -g fish_color_command $cyan
-set -g fish_color_keyword $pink
-set -g fish_color_quote $yellow
-set -g fish_color_redirection $foreground
-set -g fish_color_end $orange
-set -g fish_color_error $red
-set -g fish_color_param $purple
-set -g fish_color_comment $comment
-set -g fish_color_selection --background=$selection
-set -g fish_color_search_match --background=$selection
-set -g fish_color_operator $green
-set -g fish_color_escape $pink
-set -g fish_color_autosuggestion $comment
+# Shell highlight groups
+# (https://fishshell.com/docs/current/interactive.html#variables-color)
 
-# Completion Pager Colors
-set -g fish_pager_color_progress $comment
-set -g fish_pager_color_prefix $cyan
-set -g fish_pager_color_completion $foreground
-set -g fish_pager_color_description $comment
-set -g fish_pager_color_selected_background --background=$selection
+set -g fish_color_normal brwhite # Default text
+set -g fish_color_command brwhite # 'cd', 'ls', 'echo'
+# set -g fish_color_keyword red  # 'if'   NOTE: default = $fish_color_command
+set -g fish_color_quote green # "foo" in 'echo "foo"'
+# set -g fish_color_redirection magenta  # '>/dev/null'   NOTE: default = magenta
+# set -g fish_color_end blue  # ; in 'cmd1; cmd2'   NOTE: default = blue
+# set -g fish_color_error red  # incomplete / non-existent commands   NOTE: default = red
+set -g fish_color_param blue # xvf in 'tar xvf', --all in 'ls --all'
+set -g fish_color_comment $comment # '# a comment' # Question: Where does default come from if not set?
+# set -g fish_color_selection --background=$selection # Run 'fish_vi_key_bindings', type some text, <Esc> then 'v' to select text
+set -g fish_color_operator red # * in 'ls ./*'
+# set -g fish_color_escape cyan  # ? in 'echo ?' NOTE: default = cyan
+set -g fish_color_autosuggestion $comment # Appended virtual text, e.g. 'cd  ' displaying 'cd ~/some/path'
+# set -g fish_color_search_match --background=red   # TODO: How to trigger?
+
+set -g fish_pager_color_completion $fish_color_param # List of suggested items for 'ls <Tab>'
+set -g fish_pager_color_description green # (command) in list of commands for 'c<Tab>'
+set -g fish_pager_color_prefix red --underline # Leading 'c' in list of completions for 'c<Tab>'
+set -g fish_pager_color_progress brwhite # '.and nn more rows' for 'c<Tab>'
+set -g fish_pager_color_selected_background --background=$selection # Cursor when <Tab>ing through 'ls <Tab>'
 
 # Alias settings
 if type eza >/dev/null 2>&1

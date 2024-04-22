@@ -14,7 +14,7 @@ return {
     telescope.setup({
       extensions = {
         file_browser = {
-          -- theme = "ivy",
+          theme = "dropdown",
           hijack_netrw = false,
           initial_mode = "normal",
         },

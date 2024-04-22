@@ -1,15 +1,10 @@
 [init]
     defaultBranch = main
 [alias]
-    a  = "!git status --short | peco | awk '{print $2}' | xargs git add"
-    al = add .
-    d  = "!git status --short | peco | awk '{print $2}' | xargs git diff"
-    rs = "!git status --short | peco | awk '{print $2}' | xargs git restore"
     sw = "!git branch | peco | xargs git switch"
     co = "!git log --oneline | peco | awk '{print $1}' | xargs git checkout"
     br = branch
     ba = branch -a
-    l = log --oneline
     cl = clone
     st = status
     fh = fetch
@@ -20,7 +15,7 @@
     sc = switch -c
     ds = diff --staged
     sm = submodule
-    cc = cz c
+    cm = commit
     rb = rebase
     rbc = rebase --continue
 [user]

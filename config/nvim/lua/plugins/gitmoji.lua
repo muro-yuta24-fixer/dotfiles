@@ -4,5 +4,5 @@ return {
     "hrsh7th/nvim-cmp",
   },
   opts = {},
-  ft = "gitcommit",
+  ft = { "gitcommit", "NeogitCommitMessage" },
 }

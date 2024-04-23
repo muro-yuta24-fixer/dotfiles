@@ -10,7 +10,11 @@ return {
     { "hrsh7th/cmp-nvim-lsp-document-symbol", event = "CmdlineEnter" },
     {
       "saadparwaiz1/cmp_luasnip",
-      dependencies = "L3MON4D3/LuaSnip",
+      dependencies = {
+        "L3MON4D3/LuaSnip",
+        version = "v2",
+        build = "make install_jsregexp",
+      },
       event = "InsertEnter",
     },
     { "onsails/lspkind-nvim" },
@@ -53,7 +57,7 @@ return {
       }),
     })
 
-    cmp.setup.filetype("gitcommit", {
+    cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
       sources = cmp.config.sources({
         { name = "git" },
         { name = "gitmoji" },

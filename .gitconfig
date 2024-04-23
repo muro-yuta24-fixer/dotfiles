@@ -1,8 +1,16 @@
 [init]
     defaultBranch = main
 [alias]
-    sw = "!git branch | peco | xargs git switch"
+    ; sw = "!git branch | peco | xargs git switch"
+    sw = switch
     co = "!git log --oneline | peco | awk '{print $1}' | xargs git checkout"
+    ao = "!git status --short | peco | awk '{print $2}' | xargs git add"
+    do = "!git status --short | peco | awk '{print $2}' | xargs git diff"
+    a = add
+    al = add --all
+    r = restore
+    rs = restore --staged
+    l = log --oneline
     br = branch
     ba = branch -a
     cl = clone

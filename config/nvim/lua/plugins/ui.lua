@@ -7,7 +7,6 @@ return {
     priority = 1000,
     opts = {
       options = {
-        dim_inactive = false,
         styles = {
           comments = "italic",
           functions = "italic,bold",
@@ -145,5 +144,132 @@ return {
     "b0o/incline.nvim",
     event = "VeryLazy",
     config = true,
+  },
+  {
+    "andersevenrud/nvim_context_vt",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "m-demare/hlargs.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    main = "ibl",
+    opts = {},
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          -- background_colour = "#2e3440",
+          timeout = 1000,
+        },
+      },
+      "smjonas/inc-rename.nvim",
+    },
+    opts = {
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = true, -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
+    },
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
+    opts = { "*" },
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = {
+      "NvimTreeToggle",
+      "NvimTreeFocus",
+      "NvimTreeFindFile",
+      "NvimTreeCollapse",
+    },
+    keys = {
+      { "<C-f>", "<cmd>NvimTreeToggle<cr>", desc = "Open file tree" },
+    },
+    opts = {
+      filters = {
+        dotfiles = true,
+      },
+    },
+    config = function(_, opts)
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      require("nvim-tree").setup(opts)
+    end,
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    event = "VeryLazy",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+      "kevinhwang91/nvim-hlslens",
+    },
+    config = function()
+      require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+      require("scrollbar.handlers.search").setup()
+      require("scrollbar").setup()
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      triggers_blacklist = {
+        n = { "d", "y" },
+      },
+    },
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = "BufRead",
+    opts = {
+      providers = {
+        "lsp",
+        "treesitter",
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    opts = {},
   },
 }

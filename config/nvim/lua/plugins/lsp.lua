@@ -26,6 +26,9 @@ local ensure_installed = {
   "taplo",
 }
 
+local builtins = require("conform-selector.builtins")
+local js_formatters = builtins.javascript.formatters()
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -238,6 +241,18 @@ return {
     },
   },
   {
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    keys = {
+      {
+        "<leader>rn",
+        ":IncRename " .. vim.fn.expand("<cword>"),
+        desc = "Rename symbol",
+      },
+    },
+    config = true,
+  },
+  {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {
@@ -266,5 +281,101 @@ return {
       },
       use_diagnostics_signs = true,
     },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    opts = {
+      ensure_installed = {
+        -- Formatters
+        "stylua",
+        "clang-format",
+        "rustywind",
+
+        "black",
+        "isort",
+
+        "jq",
+        "yamlfmt",
+
+        "biome",
+
+        -- Linters
+        "flake8",
+        "yamllint",
+      },
+      auto_update = true,
+      run_on_start = true,
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    event = "VeryLazy",
+    opts = {
+      formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+
+        lua = { "stylua" },
+
+        python = { "black", "isort" },
+
+        html = js_formatters,
+        css = js_formatters,
+        scss = js_formatters,
+        javascript = js_formatters,
+        javascriptreact = js_formatters,
+        typescript = js_formatters,
+        typescriptreact = js_formatters,
+        svelte = js_formatters,
+        astro = js_formatters,
+        vue = js_formatters,
+
+        json = { "jq" },
+        jsonc = { "jq" },
+        toml = { "taplo" },
+        yaml = { "yamlfmt" },
+
+        fish = { "fish_indent" },
+        sh = { "beautysh" },
+      },
+      format_on_save = {
+        timeout_ms = 10000,
+        lsp_fallback = true,
+      },
+    },
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    ft = { "rust" },
+  },
+  {
+    "folke/neodev.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
+    ft = { "lua" },
+    opts = {},
+    config = function(_, opts)
+      require("neodev").setup(opts)
+
+      require("lspconfig").lua_ls.setup({
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+          },
+        },
+      })
+    end,
+  },
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    opts = {},
   },
 }

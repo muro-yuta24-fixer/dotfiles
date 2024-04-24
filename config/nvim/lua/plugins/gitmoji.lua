@@ -3,6 +3,11 @@ return {
   dependencies = {
     "hrsh7th/nvim-cmp",
   },
-  opts = {},
+  opts = {
+    filetypes = { "gitcommit", "NeogitCommitMessage" },
+    completion = {
+      append_space = true,
+    },
+  },
   ft = { "gitcommit", "NeogitCommitMessage" },
 }

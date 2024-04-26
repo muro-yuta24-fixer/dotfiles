@@ -1,6 +1,5 @@
 return {
   {
-
     "hrsh7th/nvim-cmp",
     event = { "LspAttach", "InsertEnter", "CmdlineEnter" },
     dependencies = {
@@ -58,6 +57,7 @@ return {
           { name = "luasnip" },
         }, {
           { name = "buffer" },
+          { name = "path" },
         }),
       })
 

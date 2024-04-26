@@ -26,6 +26,7 @@
     cm = commit
     rb = rebase
     rbc = rebase --continue
+	d = diff
 [user]
     name = muro-yuta24-fixer
     email = muro.yuta24@fixer.co.jp

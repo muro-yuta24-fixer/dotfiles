@@ -9,24 +9,17 @@ return {
       options = {
         styles = {
           comments = "italic",
-          functions = "italic,bold",
           types = "bold",
+          functions = "bold,italic",
         },
         inverse = {
           visual = true,
-        },
-        darken = {
-          floats = true,
-          sidebars = {
-            enabled = true,
-            list = { "qf", "help", "NvimTree" },
-          },
         },
       },
     },
     config = function(_, opts)
       require("nightfox").setup(opts)
-      vim.cmd("colorscheme nightfox")
+      vim.cmd("colorscheme carbonfox")
     end,
   },
   {
@@ -169,7 +162,7 @@ return {
       {
         "rcarriga/nvim-notify",
         opts = {
-          -- background_colour = "#2e3440",
+          -- background_colour = "#30363d",
           timeout = 1000,
         },
       },

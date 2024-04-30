@@ -2,7 +2,7 @@ local icons = require("utils.icons")
 
 return {
   {
-    "EdenEast/nightfox.nvim",
+    "projekt0n/github-nvim-theme",
     lazy = false,
     priority = 1000,
     opts = {
@@ -12,14 +12,11 @@ return {
           types = "bold",
           functions = "bold,italic",
         },
-        inverse = {
-          visual = true,
-        },
       },
     },
     config = function(_, opts)
-      require("nightfox").setup(opts)
-      vim.cmd("colorscheme carbonfox")
+      require("github-theme").setup(opts)
+      vim.cmd("colorscheme github_light")
     end,
   },
   {

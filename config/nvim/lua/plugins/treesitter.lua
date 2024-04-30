@@ -28,10 +28,32 @@ return {
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope.nvim",
     },
+    cmd = {
+      "AerialToggle",
+      "AerialOpen",
+      "AerialOpenAll",
+      "AerialClose",
+      "AerialCloseAll",
+      "AerialNext",
+      "AerialPrev",
+      "AerialGo",
+      "AerialInfo",
+      "AerialNavToggle",
+      "AerialNavOpen",
+      "AerialNavClose",
+    },
     keys = {
       { "<leader>ar", "<cmd>Telescope aerial<cr>", desc = "Telescope aerial" },
+      { "<C-r>", "<cmd>AerialOpen<cr>", desc = "Open aerial window" },
     },
-    opts = {},
+    opts = {
+      layout = {
+        max_width = { 80, 0.4 },
+        min_width = 10,
+        placement = "edge",
+      },
+      attach_mode = "window",
+    },
     config = function(_, opts)
       require("aerial").setup(opts)
       require("telescope").load_extension("aerial")

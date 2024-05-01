@@ -17,7 +17,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-      enable = true,
+      enable = false,
       mode = "topline",
     },
   },

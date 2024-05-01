@@ -224,7 +224,6 @@ return {
       "kevinhwang91/nvim-hlslens",
     },
     config = function()
-      require("gitsigns").setup()
       require("scrollbar.handlers.gitsigns").setup()
       require("scrollbar.handlers.search").setup()
       require("scrollbar").setup()

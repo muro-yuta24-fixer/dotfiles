@@ -5,6 +5,12 @@ return {
     config = true,
   },
   {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
     "windwp/nvim-ts-autotag",
     ft = {
       "html",

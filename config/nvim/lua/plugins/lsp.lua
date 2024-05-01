@@ -34,37 +34,31 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- LSP Installer
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason.nvim",
+        opts = {
+          ui = {
+            icons = mason_icons,
+          },
+        },
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          ensure_installed = ensure_installed,
+          automatic_installation = false,
+        },
+      },
 
       -- Completion from LSP
       "hrsh7th/cmp-nvim-lsp",
     },
     lazy = false,
     config = function()
-      require("mason").setup({
-        ui = {
-          icons = mason_icons,
-        },
-      })
-
-      require("mason-lspconfig").setup({
-        ensure_installed = ensure_installed,
-        automatic_installation = false,
-      })
-
       local lspconfig = require("lspconfig")
-
       local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       require("mason-lspconfig").setup_handlers({
-
-        function(server_name) -- default handler (optional)
-          lspconfig[server_name].setup({
-            capabilities = cmp_capabilities,
-          })
-        end,
-
         ["denols"] = function()
           lspconfig["denols"].setup({
             capabilities = cmp_capabilities,
@@ -110,6 +104,12 @@ return {
         ["clangd"] = function()
           cmp_capabilities.offsetEncoding = "utf-8"
           lspconfig["clangd"].setup({
+            capabilities = cmp_capabilities,
+          })
+        end,
+
+        function(server_name) -- default handler (optional)
+          lspconfig[server_name].setup({
             capabilities = cmp_capabilities,
           })
         end,

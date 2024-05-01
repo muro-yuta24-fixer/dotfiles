@@ -1,13 +1,16 @@
 return {
   {
-
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
+    dependencies = {
+      "RRethy/nvim-treesitter-endwise",
+    },
     main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = "all",
       highlight = { enable = true },
+      endwise = { enable = true },
     },
   },
   {

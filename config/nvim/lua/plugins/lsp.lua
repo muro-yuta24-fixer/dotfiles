@@ -117,6 +117,11 @@ return {
     end,
   },
   {
+    "antosha417/nvim-lsp-file-operations",
+    requires = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     dependencies = {

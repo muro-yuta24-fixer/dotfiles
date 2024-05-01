@@ -2,21 +2,21 @@ local icons = require("utils.icons")
 
 return {
   {
-    "projekt0n/github-nvim-theme",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      options = {
-        styles = {
-          comments = "italic",
-          types = "bold",
-          functions = "bold,italic",
-        },
+      style = "storm",
+      light_style = "day",
+      styles = {
+        comments = { italic = true },
+        types = { bold = true },
+        functions = { bold = true, italic = true },
       },
     },
     config = function(_, opts)
-      require("github-theme").setup(opts)
-      vim.cmd("colorscheme github_light")
+      require("tokyonight").setup(opts)
+      vim.cmd("colorscheme tokyonight")
     end,
   },
   {

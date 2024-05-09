@@ -1,6 +1,6 @@
 if vim.fn.has("wsl") then
   local clip_executable = "/mnt/c/Windows/System32/clip.exe"
-  local powershell_executable = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+  local powershell_executable = "/mnt/c/Program Files/PowerShell/7/pwsh.exe"
 
   vim.g.clipboard = {
     name = "WslClipboard",

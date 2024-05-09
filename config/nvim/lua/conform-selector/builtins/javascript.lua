@@ -27,6 +27,19 @@ local tailwind_rc_files = {
   "tailwind.config.ts",
 }
 
+local stylelint_rc_files = {
+  "stylelint.config.js",
+  ".stylelintrc.js",
+  "stylelint.config.mjs",
+  ".stylelintrc.mjs",
+  "stylelint.config.cjs",
+  ".stylelintrc.cjs",
+  ".stylelintrc.json",
+  ".stylelintrc.yaml",
+  ".stylelintrc.yml",
+  ".stylelintrc",
+}
+
 M.formatters = function()
   local formatters = {}
 
@@ -39,6 +52,10 @@ M.formatters = function()
 
   if rc_file_exists(tailwind_rc_files) then
     table.insert(formatters, "rustywind")
+  end
+
+  if rc_file_exists(stylelint_rc_files) then
+    table.insert(formatters, "stylelint")
   end
 
   return formatters

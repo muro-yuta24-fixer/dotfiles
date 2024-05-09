@@ -1,6 +1,0 @@
-vim.api.nvim_create_user_command("T", function(opts)
-  -- vim.cmd("split | wincmd j | resize 20")
-  vim.cmd("tabedit %")
-  vim.cmd("tabprevious")
-  vim.cmd("terminal " .. opts.args)
-end, { nargs = "*" })

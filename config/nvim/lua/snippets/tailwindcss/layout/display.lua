@@ -1,0 +1,25 @@
+local snippet = require("snippets.utils").snippet
+
+return {
+  snippet("block", "display: block;"),
+  snippet("inline-block", "display: inline-block;"),
+  snippet("inline", "display: inline;"),
+  snippet("flex", "display: flex;"),
+  snippet("inline-flex", "display: inline-flex;"),
+  snippet("table", "display: table;"),
+  snippet("inline-table", "display: inline-table;"),
+  snippet("table-caption", "display: table-caption;"),
+  snippet("table-cell", "display: table-cell;"),
+  snippet("table-column", "display: table-column;"),
+  snippet("table-column-group", "display: table-column-group;"),
+  snippet("table-footer-group", "display: table-footer-group;"),
+  snippet("table-header-group", "display: table-header-group;"),
+  snippet("table-row-group", "display: table-row-group;"),
+  snippet("table-row", "display: table-row;"),
+  snippet("flow-root", "display: flow-root"),
+  snippet("grid", "display: grid"),
+  snippet("inline-grid", "display: inline-grid"),
+  snippet("contents", "display: contents;"),
+  snippet("list-item", "display: list-item;"),
+  snippet("hidden", "display: none;"),
+}

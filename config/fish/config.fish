@@ -2,17 +2,19 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# TokyoNight Color Palette
-set -l foreground c0caf5
-set -l selection 2e3c64
-set -l comment 565f89
-set -l red f7768e
-set -l orange ff9e64
-set -l yellow e0af68
-set -l green 9ece6a
-set -l purple 9d7cd8
-set -l cyan 7dcfff
-set -l pink bb9af7
+# Nightfox Color Palette
+# Style: duskfox
+# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/duskfox/duskfox.fish
+set -l foreground e0def4
+set -l selection 433c59
+set -l comment 817c9c
+set -l red eb6f92
+set -l orange ea9a97
+set -l yellow f6c177
+set -l green a3be8c
+set -l purple c4a7e7
+set -l cyan 9ccfd8
+set -l pink eb98c3
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
@@ -35,7 +37,6 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
-set -g fish_pager_color_selected_background --background=$selection
 
 # Alias settings
 if type eza >/dev/null 2>&1

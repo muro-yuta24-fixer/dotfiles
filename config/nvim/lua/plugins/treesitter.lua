@@ -1,16 +1,77 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
--- Customize Treesitter
-
----@type LazySpec
 return {
-  "nvim-treesitter/nvim-treesitter",
-  opts = function(_, opts)
-    -- add more things to the ensure_installed table protecting against community packs modifying it
-    opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-      "lua",
-      "vim",
-      -- add more arguments for adding more treesitter parsers
-    })
-  end,
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    lazy = false,
+    dependencies = {
+      "RRethy/nvim-treesitter-endwise",
+      "nvim-treesitter/nvim-treesitter-context",
+      "stevearc/aerial.nvim",
+    },
+    main = "nvim-treesitter.configs",
+    opts = {
+      ensure_installed = "all",
+      highlight = { enable = true },
+      endwise = { enable = true },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      enable = false,
+      mode = "topline",
+    },
+  },
+  {
+    "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = {
+      "AerialToggle",
+      "AerialOpen",
+      "AerialOpenAll",
+      "AerialClose",
+      "AerialCloseAll",
+      "AerialNext",
+      "AerialPrev",
+      "AerialGo",
+      "AerialInfo",
+      "AerialNavToggle",
+      "AerialNavOpen",
+      "AerialNavClose",
+    },
+    keys = {
+      { "<leader>ar", "<cmd>Telescope aerial<cr>", desc = "Telescope aerial" },
+      { "<C-r>", "<cmd>AerialOpen<cr>", desc = "Open aerial window" },
+    },
+    opts = {
+      layout = {
+        max_width = { 80, 0.4 },
+        min_width = 10,
+        placement = "edge",
+      },
+      attach_mode = "window",
+    },
+  },
+  {
+    "yioneko/nvim-yati",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    version = "*",
+    main = "nvim-treesitter.configs",
+    opts = {
+      yati = {
+        enable = true,
+        -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
+        default_lazy = true,
+
+        default_fallback = "asis",
+      },
+      indent = {
+        enable = false, -- disable builtin indent module
+      },
+    },
+  },
 }

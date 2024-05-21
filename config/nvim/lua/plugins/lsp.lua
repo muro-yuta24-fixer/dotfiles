@@ -286,7 +286,7 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
 
-        cs = { "csharpier" },
+        -- cs = { "csharpier" },
 
         lua = { "stylua" },
 

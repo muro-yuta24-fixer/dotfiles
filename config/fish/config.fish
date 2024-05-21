@@ -3,18 +3,18 @@ if status is-interactive
 end
 
 # Nightfox Color Palette
-# Style: duskfox
-# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/duskfox/duskfox.fish
-set -l foreground e0def4
-set -l selection 433c59
-set -l comment 817c9c
-set -l red eb6f92
-set -l orange ea9a97
-set -l yellow f6c177
-set -l green a3be8c
-set -l purple c4a7e7
-set -l cyan 9ccfd8
-set -l pink eb98c3
+# Style: nightfox
+# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nightfox/nightfox.fish
+set -l foreground cdcecf
+set -l selection 2b3b51
+set -l comment 738091
+set -l red c94f6d
+set -l orange f4a261
+set -l yellow dbc074
+set -l green 81b29a
+set -l purple 9d79d6
+set -l cyan 63cdcf
+set -l pink d67ad2
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
@@ -122,4 +122,4 @@ end
 
 alias pyvenv goto_venv
 
-source /opt/asdf-vm/asdf.fish
+# source /opt/asdf-vm/asdf.fish

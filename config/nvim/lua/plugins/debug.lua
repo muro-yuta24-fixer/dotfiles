@@ -7,6 +7,37 @@ local ensure_installed = {
   "python",
 }
 
+local dap_keys = {
+  {
+    "<F6>",
+    function()
+      require("dap").continue()
+    end,
+    desc = "Continue debug",
+  },
+  {
+    "<F9>",
+    function()
+      require("dap").toggle_breakpoint()
+    end,
+    desc = "Toggle breakpoint",
+  },
+  {
+    "<F10>",
+    function()
+      require("dap").step_over()
+    end,
+    desc = "Step over",
+  },
+  {
+    "<F11>",
+    function()
+      require("dap").step_into()
+    end,
+    desc = "Step into",
+  },
+}
+
 return {
   {
     "mfussenegger/nvim-dap",
@@ -14,36 +45,7 @@ return {
       "mfussenegger/nvim-dap-python",
       "jay-babu/mason-nvim-dap.nvim",
     },
-    keys = {
-      {
-        "<F6>",
-        function()
-          require("dap").continue()
-        end,
-        desc = "Continue debug",
-      },
-      {
-        "<F9>",
-        function()
-          require("dap").toggle_breakpoint()
-        end,
-        desc = "Toggle breakpoint",
-      },
-      {
-        "<F10>",
-        function()
-          require("dap").step_over()
-        end,
-        desc = "Step over",
-      },
-      {
-        "<F11>",
-        function()
-          require("dap").step_into()
-        end,
-        desc = "Step into",
-      },
-    },
+    keys = dap_keys,
     config = function()
       local dap = require("dap")
       local mason_dap = require("mason-nvim-dap")

@@ -6,7 +6,6 @@ return {
     dependencies = {
       "RRethy/nvim-treesitter-endwise",
       "nvim-treesitter/nvim-treesitter-context",
-      "stevearc/aerial.nvim",
     },
     main = "nvim-treesitter.configs",
     opts = {
@@ -25,6 +24,7 @@ return {
   {
     "stevearc/aerial.nvim",
     dependencies = {
+      "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope.nvim",
     },
@@ -43,7 +43,7 @@ return {
       "AerialNavClose",
     },
     keys = {
-      { "<leader>ar", "<cmd>Telescope aerial<cr>", desc = "Telescope aerial" },
+      { ";s", "<cmd>Telescope aerial<cr>", desc = "Telescope aerial" },
       { "<C-r>", "<cmd>AerialOpen<cr>", desc = "Open aerial window" },
     },
     opts = {
@@ -54,6 +54,10 @@ return {
       },
       attach_mode = "window",
     },
+    init = function()
+      local telescope = require("telescope")
+      telescope.load_extension("software-licenses")
+    end,
   },
   {
     "yioneko/nvim-yati",

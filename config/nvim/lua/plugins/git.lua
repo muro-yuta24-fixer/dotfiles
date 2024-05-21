@@ -17,13 +17,26 @@ return {
     dependencies = {
       "hrsh7th/nvim-cmp",
     },
+    ft = { "gitcommit", "octo", "NeogitCommitMessage" },
     opts = {
-      filetypes = { "gitcommit", "NeogitCommitMessage" },
+      filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
       completion = {
         append_space = true,
       },
     },
-    ft = { "gitcommit", "NeogitCommitMessage" },
+    config = function(_, opts)
+      local cmp = require("cmp")
+
+      cmp.setup.filetype({ "gitcommit", "octo", "NeogitCommitMessage" }, {
+        sources = cmp.config.sources({
+          { name = "gitmoji" },
+        }, {
+          { name = "buffer" },
+        }),
+      })
+
+      require("gitmoji").setup(opts)
+    end,
   },
   {
     "akinsho/git-conflict.nvim",

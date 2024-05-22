@@ -148,9 +148,8 @@ return {
     config = true,
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
+    "shellRaining/hlchunk.nvim",
+    event = "UIEnter",
     opts = {},
   },
   {
@@ -165,12 +164,11 @@ return {
           timeout = 1000,
         },
       },
-      "smjonas/inc-rename.nvim",
     },
     opts = {
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -220,7 +218,7 @@ return {
   },
   {
     "petertriho/nvim-scrollbar",
-    event = "VeryLazy",
+    event = "UIEnter",
     dependencies = {
       "lewis6991/gitsigns.nvim",
       "kevinhwang91/nvim-hlslens",

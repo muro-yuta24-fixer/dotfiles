@@ -5,11 +5,12 @@ local ensure_installed = {
   "cppdbg",
   "codelldb",
   "python",
+  "netcoredbg",
 }
 
 local dap_keys = {
   {
-    "<F6>",
+    "<F7>",
     function()
       require("dap").continue()
     end,
@@ -40,6 +41,18 @@ local dap_keys = {
 
 return {
   {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    opts = {
+      ensure_installed = ensure_installed,
+      handlers = {
+        function(config)
+          require("mason-nvim-dap").default_setup(config)
+        end,
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-dap",
     dependencies = {
       "mfussenegger/nvim-dap-python",
@@ -49,15 +62,6 @@ return {
     config = function()
       local dap = require("dap")
       local mason_dap = require("mason-nvim-dap")
-
-      mason_dap.setup({
-        ensure_installed = ensure_installed,
-        handlers = {
-          function(config)
-            mason_dap.default_setup(config)
-          end,
-        },
-      })
     end,
   },
   {

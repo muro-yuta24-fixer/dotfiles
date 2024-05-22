@@ -1,6 +1,15 @@
 return {
   {
-    "https://codeberg.org/esensar/nvim-dev-container",
+    "nathom/filetype.nvim",
+    lazy = false,
+    enabled = true,
+    opts = {},
+    init = function()
+      vim.g.did_load_filetypes = 1
+    end,
+  },
+  {
+    "esensar/nvim-dev-container",
     dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = {
       "DevcontainerStart",
@@ -81,7 +90,7 @@ return {
   },
   {
     "jghauser/mkdir.nvim",
-    lazy = false,
+    event = "BufWritePre",
   },
   {
     "dstein64/vim-startuptime",

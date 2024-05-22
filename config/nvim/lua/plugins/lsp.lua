@@ -1,17 +1,19 @@
 local mason_icons = require("utils.icons").mason
 
 local ensure_installed = {
-  "lua_ls",
+  lsp = {
+    "lua_ls",
 
-  -- "dockerls",
-  -- "docker_compose_language_service",
+    -- "dockerls",
+    -- "docker_compose_language_service",
 
-  "html",
-  "cssls",
-  "tsserver",
-  "volar",
+    "html",
+    "cssls",
+    "tsserver",
+    "volar",
 
-  "eslint",
+    "eslint",
+  },
 }
 
 local builtins = require("conform-selector.builtins")
@@ -20,6 +22,7 @@ local js_formatters = builtins.javascript.formatters()
 return {
   {
     "neovim/nvim-lspconfig",
+    evnet = "LspAttach",
     dependencies = {
       -- LSP Installer
       "williamboman/mason.nvim",
@@ -28,19 +31,7 @@ return {
       -- Completion from LSP
       "hrsh7th/cmp-nvim-lsp",
     },
-    lazy = false,
     config = function()
-      require("mason").setup({
-        ui = {
-          icons = mason_icons,
-        },
-      })
-
-      require("mason-lspconfig").setup({
-        ensure_installed = ensure_installed,
-        automatic_installation = false,
-      })
-
       local lspconfig = require("lspconfig")
       local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -108,59 +99,74 @@ return {
         callback = function(ev)
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+          -- Customize how diagnostics are displayed
+          vim.diagnostic.config({
+            virtual_text = {
+              prefix = require("utils.icons").prelude.bell,
+              source = "always",
+            },
+            float = {
+              source = "always",
+            },
+            signs = false,
+            underline = true,
+            update_in_insert = true,
+            severity_sort = false,
+          })
+
+          -- Go to definition in a split window
+          local function goto_definition(split_cmd)
+            local util = vim.lsp.util
+            local log = require("vim.lsp.log")
+            local api = vim.api
+
+            -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
+            local handler = function(_, result, ctx)
+              if result == nil or vim.tbl_isempty(result) then
+                local _ = log.info() and log.info(ctx.method, "No location found")
+                return nil
+              end
+
+              if split_cmd then
+                vim.cmd(split_cmd)
+              end
+
+              if vim.tbl_islist(result) then
+                util.jump_to_location(result[1])
+
+                if #result > 1 then
+                  util.set_qflist(util.locations_to_items(result))
+                  api.nvim_command("copen")
+                  api.nvim_command("wincmd p")
+                end
+              else
+                util.jump_to_location(result)
+              end
+            end
+
+            return handler
+          end
+
+          vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
         end,
       })
-
-      -- Customize how diagnostics are displayed
-      vim.diagnostic.config({
-        virtual_text = {
-          prefix = require("utils.icons").prelude.bell,
-          source = "always",
-        },
-        float = {
-          source = "always",
-        },
-        signs = false,
-        underline = true,
-        update_in_insert = true,
-        severity_sort = false,
-      })
-
-      -- Go to definition in a split window
-      local function goto_definition(split_cmd)
-        local util = vim.lsp.util
-        local log = require("vim.lsp.log")
-        local api = vim.api
-
-        -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-        local handler = function(_, result, ctx)
-          if result == nil or vim.tbl_isempty(result) then
-            local _ = log.info() and log.info(ctx.method, "No location found")
-            return nil
-          end
-
-          if split_cmd then
-            vim.cmd(split_cmd)
-          end
-
-          if vim.tbl_islist(result) then
-            util.jump_to_location(result[1])
-
-            if #result > 1 then
-              util.set_qflist(util.locations_to_items(result))
-              api.nvim_command("copen")
-              api.nvim_command("wincmd p")
-            end
-          else
-            util.jump_to_location(result)
-          end
-        end
-
-        return handler
-      end
-
-      vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
     end,
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        icons = mason_icons,
+      },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = ensure_installed.lsp,
+      automatic_installation = false,
+    },
   },
   {
     "antosha417/nvim-lsp-file-operations",
@@ -183,7 +189,8 @@ return {
       { "<leader>ca", "<cmd>Lspsaga code_action<cr>", desc = "Code action" },
       { "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "Goto definition" },
       { "gD", "<cmd>Lspsaga goto_type_definition<cr>", desc = "Goto type definition" },
-      { "<C-j>", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Goto next diagnostics" },
+      { "[e", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Goto next diagnostics" },
+      { "]e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Goto previous diagnostics" },
       { "<leader>e", "<cmd>Lspsaga show_line_diagnostics<cr>", desc = "Show line diagnostics" },
     },
     opts = {
@@ -254,7 +261,7 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- Formatters
@@ -274,7 +281,7 @@ return {
         "flake8",
         "yamllint",
       },
-      auto_update = true,
+      auto_update = false,
       run_on_start = true,
     },
   },
@@ -355,6 +362,11 @@ return {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
+    opts = {},
+  },
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
     opts = {},
   },
 }

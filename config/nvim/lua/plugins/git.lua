@@ -8,7 +8,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
     },
     opts = {},
   },
@@ -56,7 +55,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
       attach_to_untracked = true,
       current_line_blame = true,

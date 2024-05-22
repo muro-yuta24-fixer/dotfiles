@@ -2,15 +2,25 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    lazy = false,
+    event = "BufEnter",
     dependencies = {
-      "RRethy/nvim-treesitter-endwise",
       "nvim-treesitter/nvim-treesitter-context",
     },
     main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = "all",
       highlight = { enable = true },
+      endwise = { enable = true },
+    },
+  },
+  {
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    event = "InsertEnter",
+    main = "nvim-treesitter.configs",
+    opts = {
       endwise = { enable = true },
     },
   },
@@ -62,7 +72,7 @@ return {
   {
     "yioneko/nvim-yati",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    event = "InsertEnter",
     version = "*",
     main = "nvim-treesitter.configs",
     opts = {

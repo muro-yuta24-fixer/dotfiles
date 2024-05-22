@@ -10,36 +10,45 @@ return {
       { ";g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
       { ";b", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { ";d", "<cmd>Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
+      { ";c", "<cmd>Telescope command_history<cr>", desc = "Telescope command history" },
     },
-    opts = {
-      defaults = {
-        mappings = {
-          i = {
-            -- Mappings for insert mode
-            ["<C-g>"] = require("telescope.actions").close,
-          },
-          n = {
-            -- Mappings for normal mode
-            ["q"] = require("telescope.actions").close,
-          },
-        },
-      },
-      pickers = {
-        find_files = {
-          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-        oldfiles = {
-          theme = "dropdown",
-        },
-        buffers = {
+    config = function()
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+
+      telescope.setup({
+        defaults = {
           mappings = {
             i = {
-              ["<C-d>"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+              -- Mappings for insert mode
+              ["<C-g>"] = actions.close,
+            },
+            n = {
+              -- Mappings for normal mode
+              ["q"] = actions.close,
             },
           },
         },
-      },
-    },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
+          oldfiles = {
+            theme = "dropdown",
+          },
+          buffers = {
+            mappings = {
+              i = {
+                ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+              },
+            },
+          },
+          command_history = {
+            theme = "ivy",
+          },
+        },
+      })
+    end,
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
@@ -93,5 +102,14 @@ return {
       local telescope = require("telescope")
       telescope.load_extension("software-licenses")
     end,
+  },
+  {
+    "prochri/telescope-all-recent.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "kkharji/sqlite.lua",
+      "stevearc/dressing.nvim",
+    },
+    opts = {},
   },
 }

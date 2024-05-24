@@ -4,8 +4,8 @@ local ensure_installed = {
   lsp = {
     "lua_ls",
 
-    -- "dockerls",
-    -- "docker_compose_language_service",
+    "dockerls",
+    "docker_compose_language_service",
 
     "html",
     "cssls",

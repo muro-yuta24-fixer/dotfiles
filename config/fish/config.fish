@@ -122,4 +122,4 @@ end
 
 alias pyvenv goto_venv
 
-# source /opt/asdf-vm/asdf.fish
+mise activate fish | source

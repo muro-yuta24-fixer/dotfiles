@@ -1,8 +1,8 @@
 [init]
     defaultBranch = main
 [alias]
-    ; sw = "!git branch | peco | xargs git switch"
     sw = switch
+    so = "!git branch | peco | xargs git switch"
     co = "!git log --oneline | peco | awk '{print $1}' | xargs git checkout"
     ao = "!git status --short | peco | awk '{print $2}' | xargs git add"
     do = "!git status --short | peco | awk '{print $2}' | xargs git diff"
@@ -10,7 +10,7 @@
     al = add --all
     r = restore
     rs = restore --staged
-    l = log --oneline
+    l = log --oneline -10
     br = branch
     ba = branch -a
     cl = clone
@@ -27,6 +27,7 @@
     rb = rebase
     rbc = rebase --continue
 	d = diff
+    cp = cherry-pick
 [user]
     name = muro-yuta24-fixer
     email = muro.yuta24@fixer.co.jp
@@ -38,6 +39,12 @@
     ff = only
 [core]
     editor = nvim
+	fsmonitor = true
+	untrackedCache = true
 
 [ghq]
     root = "~/Development"
+[scalar]
+	repo = /home/yuro/Development/github.com/dotnet/runtime
+[maintenance]
+	repo = /home/yuro/Development/github.com/dotnet/runtime

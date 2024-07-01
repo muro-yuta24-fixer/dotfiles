@@ -87,7 +87,7 @@ end
 if [ -d /mnt/c ]
     alias code "/mnt/c/Users/SuperYuro/Appdata/Local/Programs/Microsoft\ VS\ Code/bin/code"
     alias explorer "/mnt/c/Windows/explorer.exe"
-    alias clip "/mnt/c/Windows/system32/clip.exe"
+    alias clip "iconv -t UTF16 | /mnt/c/Windows/system32/clip.exe"
 end
 
 alias rl 'exec fish'

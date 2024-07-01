@@ -1,5 +1,7 @@
 vim.cmd("autocmd!")
 
+vim.opt.showtabline = 2
+
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -51,3 +53,7 @@ vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 5
 vim.opt.background = "dark"
+
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}

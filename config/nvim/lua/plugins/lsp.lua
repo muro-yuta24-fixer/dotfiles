@@ -12,7 +12,15 @@ local ensure_installed = {
     "tsserver",
     "volar",
 
+    "omnisharp",
+
     "eslint",
+  },
+  tools = {
+    "stylua",
+    "jq",
+    "commitlint",
+    "yamlfmt",
   },
 }
 
@@ -22,7 +30,8 @@ local js_formatters = builtins.javascript.formatters()
 return {
   {
     "neovim/nvim-lspconfig",
-    evnet = "LspAttach",
+    -- evnet = "LspAttach",
+    lazy = false,
     dependencies = {
       -- LSP Installer
       "williamboman/mason.nvim",
@@ -39,13 +48,6 @@ return {
         function(server_name) -- default handler (optional)
           lspconfig[server_name].setup({
             capabilities = cmp_capabilities,
-          })
-        end,
-
-        ["denols"] = function()
-          lspconfig["denols"].setup({
-            capabilities = cmp_capabilities,
-            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
           })
         end,
 
@@ -70,17 +72,6 @@ return {
               },
             },
             capabilities = cmp_capabilities,
-            root_dir = lspconfig.util.root_pattern("package.json"),
-            single_file_support = false,
-            filetypes = {
-              "javascript",
-              "javascriptreact",
-              "javascript.jsx",
-              "typescript",
-              "typescriptreact",
-              "typescript.tsx",
-              "vue",
-            },
           })
         end,
 
@@ -88,6 +79,29 @@ return {
           cmp_capabilities.offsetEncoding = "utf-16"
           lspconfig["clangd"].setup({
             capabilities = cmp_capabilities,
+          })
+        end,
+
+        -- ["lua_ls"] = function()
+        --   -- lazydev.nvim
+        -- end,
+
+        ["omnisharp"] = function()
+          lspconfig["omnisharp"].setup({
+            settings = {
+              FormattingOptions = {
+                EnableEditorConfigSupport = true,
+                OrganizeImports = true,
+              },
+              MsBuild = {
+                LoadProjectsOnDemand = true,
+              },
+              RoslynExtensionsOptions = {
+                EnableAnalyzerSupport = true,
+                EnableImportCompletion = true,
+                AnalyzeOpenDocumentsOnly = false,
+              },
+            },
           })
         end,
       })
@@ -99,56 +113,6 @@ return {
         callback = function(ev)
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-          -- Customize how diagnostics are displayed
-          vim.diagnostic.config({
-            virtual_text = {
-              prefix = require("utils.icons").prelude.bell,
-              source = "always",
-            },
-            float = {
-              source = "always",
-            },
-            signs = false,
-            underline = true,
-            update_in_insert = true,
-            severity_sort = false,
-          })
-
-          -- Go to definition in a split window
-          local function goto_definition(split_cmd)
-            local util = vim.lsp.util
-            local log = require("vim.lsp.log")
-            local api = vim.api
-
-            -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-            local handler = function(_, result, ctx)
-              if result == nil or vim.tbl_isempty(result) then
-                local _ = log.info() and log.info(ctx.method, "No location found")
-                return nil
-              end
-
-              if split_cmd then
-                vim.cmd(split_cmd)
-              end
-
-              if vim.tbl_islist(result) then
-                util.jump_to_location(result[1])
-
-                if #result > 1 then
-                  util.set_qflist(util.locations_to_items(result))
-                  api.nvim_command("copen")
-                  api.nvim_command("wincmd p")
-                end
-              else
-                util.jump_to_location(result)
-              end
-            end
-
-            return handler
-          end
-
-          vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
         end,
       })
     end,
@@ -181,7 +145,6 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
-    cmd = { "Lspsaga" },
     keys = {
       { "<leader>lf", "<cmd>Lspsaga finder<cr>", desc = "Lspsaga finder" },
       { "<leader>rn", "<cmd>Lspsaga rename<cr>", desc = "Lspsaga rename" },
@@ -325,35 +288,26 @@ return {
     },
   },
   {
-    "iabdelkareem/csharp.nvim",
+    "folke/lazydev.nvim",
+    ft = { "lua" },
     dependencies = {
-      "williamboman/mason.nvim",
-      "mfussenegger/nvim-dap",
-      "Tastyep/structlog.nvim",
-    },
-    ft = { "cs" },
-    opts = {
-      lsp = {
-        enable = true,
+      { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+      { -- optional completion source for require statements and module annotations
+        "hrsh7th/nvim-cmp",
+        opts = function(_, opts)
+          opts.sources = opts.sources or {}
+          table.insert(opts.sources, {
+            name = "lazydev",
+            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+          })
+        end,
       },
     },
-  },
-  {
-    "folke/neodev.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-    ft = { "lua" },
-    opts = {},
-    init = function()
-      require("lspconfig")["lua_ls"].setup({
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = "Replace",
-            },
-          },
-        },
-      })
-    end,
+    opts = {
+      library = {
+        "lazy.nvim",
+      },
+    },
   },
   {
     "akinsho/flutter-tools.nvim",
@@ -367,6 +321,7 @@ return {
   {
     "j-hui/fidget.nvim",
     event = "LspAttach",
+    enabled = false,
     opts = {},
   },
 }

@@ -1,13 +1,22 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    config = function()
+    dependencies = { "onsails/lspkind.nvim" },
+    opts = function()
       local cmp = require("cmp")
+      local lspkind = require("lspkind")
 
-      cmp.setup({
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+      return {
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+            return kind
+          end,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -15,7 +24,10 @@ return {
           ["<C-g>"] = cmp.mapping.abort(),
           ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         }),
-      })
+      }
+    end,
+    config = function(_, opts)
+      require("cmp").setup(opts)
     end,
   },
   {
@@ -28,10 +40,10 @@ return {
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
     },
-    config = function()
+    opts = function()
       local cmp = require("cmp")
 
-      cmp.setup({
+      return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
@@ -40,7 +52,10 @@ return {
           { name = "buffer" },
           { name = "path" },
         }),
-      })
+      }
+    end,
+    config = function(_, opts)
+      require("cmp").setup(opts)
     end,
   },
   {

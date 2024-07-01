@@ -18,4 +18,10 @@ return {
     package_pending = "➜",
     package_uninstalled = "✗",
   },
+  neo_tree = {
+    folder_closed = "",
+    folder_open = "",
+    folder_empty = "󰜌",
+    default = "*",
+  },
 }

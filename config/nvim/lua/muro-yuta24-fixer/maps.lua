@@ -27,7 +27,7 @@ vim.keymap.set("n", "sk", "<C-w>k", opts)
 vim.keymap.set("n", "sl", "<C-w>l", opts)
 
 -- Tab
-vim.keymap.set("n", "te", ":tabedit %<CR>", opts)
+-- vim.keymap.set("n", "te", ":tabedit %<CR>", opts)
 vim.keymap.set("n", "<Tab>", "gt")
 vim.keymap.set("n", "<S-Tab>", "gT")
 

@@ -9,6 +9,7 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+    cmd = { "Neotest" },
     keys = {
       {
         "<F6>",

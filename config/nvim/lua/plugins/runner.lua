@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/overseer.nvim",
+    enabled = true,
     cmd = {
       "OverseerOpen",
       "OverseerToggle",

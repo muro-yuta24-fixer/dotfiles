@@ -2,6 +2,7 @@
 config/config/fish/functions
 config/config/fish/fish_variables
 config/config/fish/fish_plugins
+config/config/fish/conf.d/
 
 # Emacs
 config/config/emacs/elpa

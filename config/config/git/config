@@ -1,0 +1,53 @@
+[user]
+    name = Y.Muro
+    email = 165998973+muro-yuta24-fixer@users.noreply.github.com
+[core]
+    bare = true
+    autocrlf = input
+[init]
+    defaultBranch = main
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+[alias]
+    a  = add
+    al = add --all
+    d  = diff
+    ds = diff --staged
+    co = checkout
+    cm  = commit
+    br = branch
+    ba = branch -a
+    sw = switch
+    l  = log --oneline
+    lg = log
+    r  = restore
+    rs = restore --staged
+    cl = clone
+    st = status
+    fh = fetch
+    pl = pull
+    rb = rebase
+    ps = push
+    pu = push -u origin HEAD
+    sh = stash
+    sp = stash pop
+[pull]
+    rebase = false
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[credential "https://github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
+[ghq]
+    root = "~/Development"

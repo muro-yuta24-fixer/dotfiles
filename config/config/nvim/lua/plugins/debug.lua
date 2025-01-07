@@ -24,7 +24,23 @@ return {
       mason_dap.setup({
         ensure_installed = debuggers,
         automatic_installation = false,
-        handlers = nil,
+        handlers = {
+          function(config)
+            -- Automatic setup
+            mason_dap.default_setup(config)
+          end,
+
+          coreclr = function(config)
+            config.configurations = {
+              options = {
+                env = {
+                  ASPNETCORE_ENVIRONMENT = "Development",
+                },
+              },
+            }
+            mason_dap.default_setup(config)
+          end,
+        },
       })
     end,
   },

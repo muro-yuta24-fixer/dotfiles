@@ -6,6 +6,10 @@ local ensure_installed = {
     "docker_compose_language_service",
 
     "csharp_ls",
+    -- "omnisharp",
+
+    "ts_ls",
+    "volar",
   },
   tools = {
     -- Formatters
@@ -50,10 +54,22 @@ return {
         end,
 
         ["ts_ls"] = function()
+          local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
           lspconfig["ts_ls"].setup({
             capabilities = cmp_capabilities,
             root_dir = lspconfig.util.root_pattern("package.json"),
             single_file_support = false,
+            init_options = {
+              plugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = vue_typescript_plugin,
+                  languages = { "vue" },
+                },
+              },
+            },
+            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           })
         end,
 
@@ -278,6 +294,5 @@ return {
   },
   {
     "Decodetalkers/csharpls-extended-lsp.nvim",
-    ft = { "cs" },
   },
 }

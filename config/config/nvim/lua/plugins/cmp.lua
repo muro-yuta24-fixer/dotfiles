@@ -31,8 +31,6 @@ return {
     config = function()
       local cmp = require("cmp")
 
-      cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
-
       cmp.setup({
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -41,8 +39,6 @@ return {
         }, {
           { name = "buffer" },
           { name = "path" },
-        }, {
-          { name = "easy-dotnet" },
         }),
       })
     end,

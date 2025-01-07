@@ -169,6 +169,7 @@ return {
   {
     "petertriho/nvim-scrollbar",
     event = "VeryLazy",
+    enabled = false,
     dependencies = {
       "lewis6991/gitsigns.nvim",
       "kevinhwang91/nvim-hlslens",
@@ -219,7 +220,9 @@ return {
         local fg = palette.bg_sidebar
 
         return {
+          { "", guifg = bg, guibg = editor_bg },
           { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
+          { " ", guifg = bg, guibg = editor_bg },
         }
       end,
     },

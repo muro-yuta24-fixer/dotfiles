@@ -36,6 +36,7 @@
     pu = push -u origin HEAD
     sh = stash
     sp = stash pop
+    clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
 [pull]
     rebase = false
 [filter "lfs"]

@@ -6,7 +6,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "storm",
+      style = "moon",
       styles = {
         comments = { italic = true },
         variables = { italic = true, bold = true },

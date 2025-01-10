@@ -7,3 +7,6 @@ config/config/fish/conf.d
 # Emacs
 config/config/emacs/elpa
 config/config/emacs/custom.el
+
+# Neovim
+config/config/nvim/lazy-lock.json

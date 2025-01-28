@@ -221,6 +221,12 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
 
+        cs = {
+          inherit = false,
+          command = "dotnet",
+          args = { "format", "--include", vim.fn.expand("%") },
+        },
+
         lua = { "stylua" },
 
         html = js_formatters,

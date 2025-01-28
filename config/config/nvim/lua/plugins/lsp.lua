@@ -255,6 +255,22 @@ return {
     },
   },
   {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    event = "VeryLazy",
+    config = function()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.diagnostics.editorconfig_checker,
+        },
+      })
+    end,
+  },
+  {
     "akinsho/flutter-tools.nvim",
     lazy = false,
     dependencies = {

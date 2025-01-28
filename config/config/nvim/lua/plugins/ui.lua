@@ -2,7 +2,7 @@ local icons = require("utils.icons")
 
 return {
   {
-    "folke/tokyonight.nvim",
+    "craftzdog/solarized-osaka.nvim",
     lazy = false,
     priority = 1000,
     opts = {
@@ -14,7 +14,7 @@ return {
         keywords = { bold = true },
       },
     },
-    init = function() vim.cmd("colorscheme tokyonight") end,
+    init = function() vim.cmd("colorscheme solarized-osaka") end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -207,7 +207,8 @@ return {
       },
       render = function(props)
         local devicons = require("nvim-web-devicons")
-        local palette = require("tokyonight.colors").setup()
+        -- local palette = require("tokyonight.colors").setup()
+        local palette = require("solarized-osaka.colors").setup()
 
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         if filename == "" then
@@ -217,7 +218,7 @@ return {
         local modified = vim.bo[props.buf].modified
 
         local bg = palette.cyan
-        local fg = palette.bg_sidebar
+        local fg = palette.bg
 
         return {
           { "", guifg = bg, guibg = editor_bg },

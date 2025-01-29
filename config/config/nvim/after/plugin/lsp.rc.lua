@@ -2,13 +2,14 @@
 vim.diagnostic.config({
   virtual_text = {
     prefix = require("utils.icons").prelude.bell,
-    source = "always",
+    source = true,
+    virt_text_pos = "eol",
   },
   float = {
-    source = "always",
+    source = true,
   },
-  signs = false,
+  signs = true,
   underline = true,
   update_in_insert = true,
-  severity_sort = false,
+  severity_sort = true,
 })

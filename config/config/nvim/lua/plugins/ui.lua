@@ -156,14 +156,36 @@ return {
     },
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
-    opts = {},
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      local palette = require("solarized-osaka.colors").setup()
+
+      local regular = palette.violet
+      local error = palette.error
+
+      return {
+        chunk = {
+          enable = true,
+          style = {
+            regular,
+            error,
+          },
+          use_treesitter = true,
+          error_sign = true,
+          delay = 0,
+        },
+        line_num = {
+          enable = true,
+          style = regular,
+          use_treesitter = true,
+        },
+      }
+    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
-    event = "BufRead",
+    event = { "BufReadPre", "BufNewFile" },
     opts = { "*" },
   },
   {
@@ -268,6 +290,14 @@ return {
       },
       disable_netrw = false,
       hijack_netrw = true,
+    },
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinLeave" },
+    opts = {
+      --
     },
   },
 }

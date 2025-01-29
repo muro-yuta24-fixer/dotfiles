@@ -19,8 +19,8 @@ alias lg="lazygit"
 
 if type xsel >/dev/null 2>&1 ; then
     alias copy="xsel --input --clipboard"
-elif [ -e "/mnt/c/Program Files/Neovim/bin/win32yank.exe" ]; then
-    alias copy="'/mnt/c/Program Files/Neovim/bin/win32yank.exe' -i --crlf"
+elif [ -e "/mnt/c/Users/室雄太/AppData/Local/Microsoft/WinGet/Links/win32yank.exe" ]; then
+    alias copy="'/mnt/c/Users/室雄太/AppData/Local/Microsoft/WinGet/Links/win32yank.exe' -i --crlf"
 fi
 
 alias rl="exec zsh"

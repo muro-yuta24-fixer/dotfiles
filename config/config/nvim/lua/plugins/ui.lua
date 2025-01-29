@@ -6,11 +6,10 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "moon",
       styles = {
         comments = { italic = true },
-        variables = { italic = true, bold = true },
-        functions = { italic = true, bold = true },
+        variables = { bold = true },
+        functions = { italic = true },
         keywords = { bold = true },
       },
     },
@@ -114,7 +113,7 @@ return {
         show_close_icons = false,
         show_tab_indicators = false,
         show_duplicate_prefix = false,
-        separator_style = "slant",
+        separator_style = "thin",
         always_show_bufferline = true,
         sort_by = "tabs",
       },
@@ -210,10 +209,6 @@ return {
   {
     "b0o/incline.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "folke/tokyonight.nvim",
-    },
     opts = {
       hide = {
         cursorline = true,
@@ -229,7 +224,6 @@ return {
       },
       render = function(props)
         local devicons = require("nvim-web-devicons")
-        -- local palette = require("tokyonight.colors").setup()
         local palette = require("solarized-osaka.colors").setup()
 
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
@@ -243,16 +237,15 @@ return {
         local fg = palette.bg
 
         return {
-          { "", guifg = bg, guibg = editor_bg },
+          { "", guifg = bg },
           { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-          { " ", guifg = bg, guibg = editor_bg },
+          { " ", guifg = bg },
         }
       end,
     },
   },
   {
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
     opts = {},
   },
@@ -280,7 +273,6 @@ return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       { "<C-f>", "<cmd>NvimTreeToggle<cr>", desc = "Open file tree" },
     },

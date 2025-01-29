@@ -35,9 +35,6 @@ return {
       -- LSP Installer
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-
-      -- Completion from LSP
-      "hrsh7th/cmp-nvim-lsp",
     },
     lazy = false,
     config = function()
@@ -123,10 +120,6 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
     cmd = { "Lspsaga" },
     keys = {
       { "<leader>lf", "<cmd>Lspsaga finder<cr>", desc = "Lspsaga finder" },
@@ -173,8 +166,8 @@ return {
         },
       },
       symbol_in_winbar = {
-        enable = true,
         separator = "  ",
+        enable = false,
         show_file = true,
       },
       diagnostics = {
@@ -188,9 +181,6 @@ return {
   {
     "folke/trouble.nvim",
     event = "LspAttach",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
     keys = {
       { "<leader>tr", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Show workspace diagnostics" },
     },
@@ -206,7 +196,7 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       ensure_installed = ensure_installed.tools,
       auto_update = false,

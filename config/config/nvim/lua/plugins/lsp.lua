@@ -10,6 +10,8 @@ local ensure_installed = {
 
     "ts_ls",
     "volar",
+
+    "pyright",
   },
   tools = {
     -- Formatters
@@ -31,31 +33,30 @@ local browser = require("utils.exec").browser
 return {
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     dependencies = {
-      -- LSP Installer
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-    lazy = false,
     config = function()
-      local lspconfig = require("lspconfig")
-
       local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-      cmp_capabilities.offsetEncoding = "utf-16"
+      cmp_capabilities.offsetEncoding = { "utf-8" }
+
+      vim.lsp.config("*", {
+        capabilities = cmp_capabilities,
+      })
 
       require("mason-lspconfig").setup_handlers({
         function(server_name) -- default handler (optional)
-          lspconfig[server_name].setup({
-            capabilities = cmp_capabilities,
-          })
+          vim.lsp.enable(server_name)
         end,
 
         ["ts_ls"] = function()
           local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
-          lspconfig["ts_ls"].setup({
-            capabilities = cmp_capabilities,
-            root_dir = lspconfig.util.root_pattern("package.json"),
+          vim.lsp.config("ts_ls", {
+            -- root_dir = lspconfig.util.root_pattern("package.json"),
+            root_markers = { "package.json" },
             single_file_support = false,
             init_options = {
               plugins = {
@@ -68,42 +69,47 @@ return {
             },
             filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           })
-        end,
 
-        ["clangd"] = function()
-          lspconfig["clangd"].setup({
-            capabilities = cmp_capabilities,
-          })
+          vim.lsp.enable("ts_ls")
         end,
 
         ["csharp_ls"] = function()
-          lspconfig["csharp_ls"].setup({
+          vim.lsp.config("csharp_ls", {
             handlers = {
               ["textDocument/definition"] = require("csharpls_extended").handler,
               ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
             },
           })
+          vim.lsp.enable("csharp_ls")
         end,
       })
 
-      lspconfig["denols"].setup({
-        capabilities = cmp_capabilities,
-        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      vim.lsp.config("denols", {
+        root_markers = { "deno.json", "deno.jsonc" },
       })
+      vim.lsp.enable("denols")
 
-      lspconfig["gleam"].setup({
-        capabilities = cmp_capabilities,
-      })
+      vim.lsp.enable("gleam")
 
-      -- Use LspAttach autocommand to only map the following keys
-      -- after the language server attaches to the current buffer
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = function(ev)
-          -- Enable completion triggered by <c-x><c-o>
-          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-        end,
-      })
+      -- -- Use LspAttach autocommand to only map the following keys
+      -- -- after the language server attaches to the current buffer
+      -- vim.api.nvim_create_autocmd("LspAttach", {
+      --   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+      --   callback = function(ev)
+      --     local opts = { noremap = true, silent = true }
+      --     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.references, { desc = "LSP references" })
+      --     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP rename" })
+      --     vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP hover" })
+      --     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
+      --     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP goto definition" })
+      --     vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { desc = "LSP goto type definition" })
+      --     vim.keymap.set("n", "<C-j>", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+      --     vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+      --
+      --     -- Enable completion triggered by <c-x><c-o>
+      --     -- vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+      --   end,
+      -- })
     end,
   },
   {
@@ -114,7 +120,16 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = ensure_installed.lsp,
-      automatic_installation = false,
+      automatic_installation = true,
+    },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    event = "VeryLazy",
+    opts = {
+      auto_update = true,
+      run_on_start = true,
     },
   },
   {
@@ -195,15 +210,6 @@ return {
     },
   },
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    event = "VeryLazy",
-    opts = {
-      ensure_installed = ensure_installed.tools,
-      auto_update = false,
-      run_on_start = true,
-    },
-  },
-  {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     opts = {
@@ -245,20 +251,29 @@ return {
     },
   },
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    event = "VeryLazy",
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.editorconfig_checker,
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    priority = 1000,
+    opts = {
+      preset = "classic",
+      options = {
+        show_sources = {
+          enabled = true,
+          if_many = true,
         },
-      })
-    end,
+        throttle = 0,
+        multilines = {
+          enabled = true,
+          always_show = true,
+        },
+        show_all_diags_on_cursorline = true,
+        enable_on_insert = true,
+        break_line = {
+          enabled = false,
+          after = 30,
+        },
+      },
+    },
   },
   {
     "akinsho/flutter-tools.nvim",

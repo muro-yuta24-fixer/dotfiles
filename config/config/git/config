@@ -4,6 +4,7 @@
 [core]
     bare = true
     autocrlf = input
+    pager = delta
 [init]
     defaultBranch = main
 [color]
@@ -52,3 +53,23 @@
     helper = !/usr/bin/gh auth git-credential
 [ghq]
     root = "~/.ghq"
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    minus-style                   = syntax "#3f2d3d"
+    minus-non-emph-style          = syntax "#3f2d3d"
+    minus-emph-style              = syntax "#763842"
+    minus-empty-line-marker-style = syntax "#3f2d3d"
+    line-numbers-minus-style      = "#914c54"
+    plus-style                    = syntax "#283b4d"
+    plus-non-emph-style           = syntax "#283b4d"
+    plus-emph-style               = syntax "#316172"
+    plus-empty-line-marker-style  = syntax "#283b4d"
+    line-numbers-plus-style       = "#449dab"
+    line-numbers-zero-style       = "#3b4261"
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = zdiff3
+[push]
+	autoSetupRemote = true

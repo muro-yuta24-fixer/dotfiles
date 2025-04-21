@@ -16,7 +16,6 @@ set -l purple 9d7cd8
 set -l cyan 7dcfff
 set -l pink bb9af7
 
-
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
 set -g fish_color_command $cyan
@@ -46,8 +45,8 @@ set -g fish_pager_color_selected_background --background=$selection
 
 # Alias settings
 if type eza >/dev/null 2>&1
-    alias ls 'eza --icons'
-    alias lt 'eza --icons --tree'
+    alias ls 'eza --icons=always'
+    alias lt 'eza --icons=always --tree'
 else if type lsd >/dev/null 2>&1
     alias ls lsd
     alias lt 'lsd --tree'
@@ -93,7 +92,8 @@ end
 if [ -d /mnt/c ]
     alias code "/mnt/c/Users/室雄太/Appdata/Local/Programs/Microsoft\ VS\ Code/bin/code"
     alias explorer "/mnt/c/Windows/explorer.exe"
-    alias clip "/mnt/c/Windows/system32/clip.exe"
+    # alias clip "/mnt/c/Windows/system32/clip.exe"
+    alias clip "/mnt/c/Users/室雄太/AppData/Local/Microsoft/WinGet/Links/win32yank.exe"
 end
 
 alias rl 'exec fish'
@@ -130,6 +130,6 @@ end
 
 alias pyvenv goto_venv
 
-[ ! $VIRTUAL_ENV ] && mise activate fish | source
+# [ ! $VIRTUAL_ENV ] && mise activate fish | source
 
 starship init fish | source

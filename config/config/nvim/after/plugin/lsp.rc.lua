@@ -1,10 +1,11 @@
 -- Customize how diagnostics are displayed
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = require("utils.icons").prelude.bell,
-    source = true,
-    virt_text_pos = "eol",
-  },
+  -- virtual_text = {
+  --   prefix = require("utils.icons").prelude.bell,
+  --   source = true,
+  --   virt_text_pos = "eol",
+  -- },
+  virtual_text = false,
   float = {
     source = true,
   },

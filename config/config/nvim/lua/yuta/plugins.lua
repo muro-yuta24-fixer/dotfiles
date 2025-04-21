@@ -15,6 +15,13 @@ local opts = {
   defaults = {
     lazy = true,
   },
+  checker = {
+    -- automatically check for plugin updates
+    enabled = true,
+    notify = true, -- get a notification when new updates are found
+    frequency = 3600, -- check for updates every hour
+    check_pinned = false, -- check for pinned packages that can't be updated
+  },
   performance = {
     cache = {
       enabled = true,

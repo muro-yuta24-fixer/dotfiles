@@ -2,10 +2,11 @@ local icons = require("utils.icons")
 
 return {
   {
-    "craftzdog/solarized-osaka.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {
+      style = "storm",
       styles = {
         comments = { italic = true },
         variables = { bold = true },
@@ -13,7 +14,7 @@ return {
         keywords = { bold = true },
       },
     },
-    init = function() vim.cmd("colorscheme solarized-osaka") end,
+    init = function() vim.cmd("colorscheme tokyonight") end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -22,8 +23,6 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         ignore_focus = {},
         always_divide_middle = true,
@@ -113,7 +112,7 @@ return {
         show_close_icons = false,
         show_tab_indicators = false,
         show_duplicate_prefix = false,
-        separator_style = "thin",
+        separator_style = "slant",
         always_show_bufferline = true,
         sort_by = "tabs",
       },
@@ -158,9 +157,9 @@ return {
     "shellRaining/hlchunk.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
-      local palette = require("solarized-osaka.colors").setup()
+      local palette = require("tokyonight.colors").setup()
 
-      local regular = palette.violet
+      local regular = palette.cyan
       local error = palette.error
 
       return {
@@ -224,7 +223,7 @@ return {
       },
       render = function(props)
         local devicons = require("nvim-web-devicons")
-        local palette = require("solarized-osaka.colors").setup()
+        local palette = require("tokyonight.colors").setup()
 
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         if filename == "" then
@@ -237,9 +236,9 @@ return {
         local fg = palette.bg
 
         return {
-          { "", guifg = bg },
+          -- { "", guifg = bg },
           { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-          { " ", guifg = bg },
+          -- { " ", guifg = bg },
         }
       end,
     },

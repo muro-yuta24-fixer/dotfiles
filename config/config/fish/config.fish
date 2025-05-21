@@ -2,47 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# TokyoNight Color Palette
-set -l foreground c0caf5
-set -l selection 2e3c64
-set -l comment 565f89
-set -l red f7768e
-
-set -l orange ff9e64
-set -l yellow e0af68
-set -l green 9ece6a
-
-set -l purple 9d7cd8
-set -l cyan 7dcfff
-set -l pink bb9af7
-
-# Syntax Highlighting Colors
-set -g fish_color_normal $foreground
-set -g fish_color_command $cyan
-set -g fish_color_keyword $pink
-set -g fish_color_quote $yellow
-
-set -g fish_color_redirection $foreground
-set -g fish_color_end $orange
-set -g fish_color_option $pink
-set -g fish_color_error $red
-
-set -g fish_color_param $purple
-set -g fish_color_comment $comment
-set -g fish_color_selection --background=$selection
-set -g fish_color_search_match --background=$selection
-set -g fish_color_operator $green
-set -g fish_color_escape $pink
-set -g fish_color_autosuggestion $comment
-
-# Completion Pager Colors
-
-set -g fish_pager_color_progress $comment
-set -g fish_pager_color_prefix $cyan
-set -g fish_pager_color_completion $foreground
-set -g fish_pager_color_description $comment
-set -g fish_pager_color_selected_background --background=$selection
-
 # Alias settings
 if type eza >/dev/null 2>&1
     alias ls 'eza --icons=always'
@@ -130,6 +89,11 @@ end
 
 alias pyvenv goto_venv
 
-# [ ! $VIRTUAL_ENV ] && mise activate fish | source
-
 starship init fish | source
+
+# Added by `rbenv init` on Tue May 20 02:52:25 PM JST 2025
+# status --is-interactive; and rbenv init - --no-rehash fish | source
+# status --is-interactive; and nodenv init - --no-rehash fish | source
+
+rbenv init - --no-rehash fish | source
+nodenv init - --no-rehash fish | source

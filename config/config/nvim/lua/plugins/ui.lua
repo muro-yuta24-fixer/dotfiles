@@ -2,19 +2,74 @@ local icons = require("utils.icons")
 
 return {
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     opts = {
-      style = "storm",
+      flavour = "latte",
       styles = {
-        comments = { italic = true },
-        variables = { bold = true },
-        functions = { italic = true },
-        keywords = { bold = true },
+        comments = { "italic" },
+        conditionals = {},
+        functions = { "bold", "italic" },
+        keywords = { "bold" },
+        strings = {},
+        variables = { "italic" },
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+      },
+      integrations = {
+        aerial = true,
+        fidget = true,
+        gitsigns = true,
+        hop = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
+        },
+        lsp_saga = true,
+        mason = true,
+        neogit = true,
+        neotest = true,
+        noice = true,
+        cmp = true,
+        dap = true,
+        dap_ui = true,
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+          },
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+            ok = { "undercurl" },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
+        notify = true,
+        treesitter_context = true,
+        treesitter = true,
+        overseer = true,
+        telescope = {
+          enabled = true,
+        },
+        lsp_trouble = true,
+        which_key = true,
       },
     },
-    init = function() vim.cmd("colorscheme tokyonight") end,
+    init = function() vim.cmd("colorscheme catppuccin") end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -23,6 +78,8 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         ignore_focus = {},
         always_divide_middle = true,
@@ -84,39 +141,35 @@ return {
     version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VimEnter",
-    opts = {
-      options = {
-        mode = "tabs",
-        themable = true,
-        numbers = "buffer_id",
-        indicator = {
-          style = "icon",
-        },
-        buffer_close_icon = "󰅖",
-        modified_icon = "●",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
-        diagnostics = "nvim_lsp",
-        offsets = {
-          {
-            filetype = "NvimTree",
-            text = "NvimTree",
-            text_align = "center",
-            separator = true,
+    opts = function()
+      return {
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+        options = {
+          mode = "tabs",
+          themable = true,
+          numbers = "buffer_id",
+          indicator = {
+            style = "icon",
           },
+          buffer_close_icon = "󰅖",
+          modified_icon = "●",
+          close_icon = "",
+          left_trunc_marker = "",
+          right_trunc_marker = "",
+          diagnostics = "nvim_lsp",
+          offsets = {},
+          color_icons = true,
+          show_buffer_icons = true,
+          show_buffer_close_icons = false,
+          show_close_icons = false,
+          show_tab_indicators = false,
+          show_duplicate_prefix = false,
+          separator_style = "slant",
+          always_show_bufferline = true,
+          sort_by = "tabs",
         },
-        color_icons = true,
-        show_buffer_icons = true,
-        show_buffer_close_icons = false,
-        show_close_icons = false,
-        show_tab_indicators = false,
-        show_duplicate_prefix = false,
-        separator_style = "slant",
-        always_show_bufferline = true,
-        sort_by = "tabs",
-      },
-    },
+      }
+    end,
   },
   {
     "folke/noice.nvim",
@@ -126,7 +179,6 @@ return {
       {
         "rcarriga/nvim-notify",
         opts = {
-          -- background_colour = "#2e3440",
           timeout = 1000,
         },
       },
@@ -134,7 +186,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -154,51 +206,9 @@ return {
     },
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = function()
-      local palette = require("tokyonight.colors").setup()
-
-      local regular = palette.cyan
-      local error = palette.error
-
-      return {
-        chunk = {
-          enable = true,
-          style = {
-            regular,
-            error,
-          },
-          use_treesitter = true,
-          error_sign = true,
-          delay = 0,
-        },
-        line_num = {
-          enable = true,
-          style = regular,
-          use_treesitter = true,
-        },
-      }
-    end,
-  },
-  {
     "norcalli/nvim-colorizer.lua",
     event = { "BufReadPre", "BufNewFile" },
     opts = { "*" },
-  },
-  {
-    "petertriho/nvim-scrollbar",
-    event = "VeryLazy",
-    enabled = false,
-    dependencies = {
-      "lewis6991/gitsigns.nvim",
-      "kevinhwang91/nvim-hlslens",
-    },
-    config = function()
-      require("scrollbar.handlers.gitsigns").setup()
-      require("scrollbar.handlers.search").setup()
-      require("scrollbar").setup()
-    end,
   },
   {
     "m-demare/hlargs.nvim",
@@ -223,7 +233,7 @@ return {
       },
       render = function(props)
         local devicons = require("nvim-web-devicons")
-        local palette = require("tokyonight.colors").setup()
+        local palette = require("catppuccin.palettes").get_palette()
 
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         if filename == "" then
@@ -232,16 +242,24 @@ return {
         local ft_icon, _ = devicons.get_icon_color(filename)
         local modified = vim.bo[props.buf].modified
 
-        local bg = palette.cyan
-        local fg = palette.bg
+        local bg = palette.blue
+        local fg = palette.base
 
         return {
-          -- { "", guifg = bg },
+          { "", guifg = bg },
           { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-          -- { " ", guifg = bg },
+          { "", guifg = bg },
         }
       end,
     },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "UIEnter",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
   {
     "folke/todo-comments.nvim",
@@ -267,28 +285,5 @@ return {
       },
     },
     config = function(_, opts) require("illuminate").configure(opts) end,
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    keys = {
-      { "<C-f>", "<cmd>NvimTreeToggle<cr>", desc = "Open file tree" },
-    },
-    opts = {
-      filters = {
-        dotfiles = true,
-      },
-      disable_netrw = false,
-      hijack_netrw = true,
-    },
-  },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    config = true,
-    event = { "WinLeave" },
-    opts = {
-      --
-    },
   },
 }

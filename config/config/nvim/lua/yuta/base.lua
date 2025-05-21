@@ -7,8 +7,6 @@ vim.opt.fileencoding = "utf-8"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.mouse = ""
-
 vim.opt.shell = require("utils.exec").shell()
 
 vim.opt.title = true
@@ -52,7 +50,7 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 5
-vim.opt.background = "dark"
+vim.opt.background = "light"
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

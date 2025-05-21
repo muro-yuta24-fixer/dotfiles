@@ -1,7 +1,11 @@
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard:append({ "unnamedplus" })
 
 if vim.fn.has("wsl") then
-  local win32yank_executable = "/mnt/c/Users/室雄太/AppData/Local/Microsoft/WinGet/Links/win32yank.exe"
+  if vim.fn.executable("win32yank") == 0 then
+    return
+  end
+
+  local win32yank_executable = "win32yank"
 
   vim.g.clipboard = {
     name = "win32yank-wsl",
@@ -13,6 +17,6 @@ if vim.fn.has("wsl") then
       ["+"] = win32yank_executable .. " -o --lf",
       ["*"] = win32yank_executable .. " -o --lf",
     },
-    cache_enable = 0,
+    cache_eanbled = 1,
   }
 end

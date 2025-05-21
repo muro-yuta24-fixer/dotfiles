@@ -2,7 +2,7 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = true,
+    opts = {},
   },
   {
     "windwp/nvim-ts-autotag",
@@ -25,7 +25,7 @@ return {
   {
     "numToStr/Comment.nvim",
     lazy = false,
-    config = true,
+    opts = {},
   },
   {
     "smoka7/hop.nvim",

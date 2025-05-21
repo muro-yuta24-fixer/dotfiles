@@ -6,7 +6,8 @@ return {
     lazy = false,
     main = "nvim-treesitter.configs",
     opts = {
-      ensure_installed = "all",
+      ensure_installed = {},
+      auto_install = true,
       highlight = { enable = true },
       yati = {
         enable = true,

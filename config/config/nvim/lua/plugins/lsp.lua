@@ -83,9 +83,9 @@ return {
         },
       })
 
-      configure_lsp("denols", {
-        root_markers = { "deno.json", "deno.jsonc" },
-      })
+      -- configure_lsp("denols", {
+      --   root_markers = { "deno.json", "deno.jsonc" },
+      -- })
 
       configure_lsp("pyright", {
         settings = {

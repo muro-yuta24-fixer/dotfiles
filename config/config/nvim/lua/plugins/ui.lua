@@ -78,8 +78,8 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         ignore_focus = {},
         always_divide_middle = true,
@@ -246,9 +246,7 @@ return {
         local fg = palette.base
 
         return {
-          { "", guifg = bg },
           { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-          { "", guifg = bg },
         }
       end,
     },

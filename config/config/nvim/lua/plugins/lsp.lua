@@ -9,7 +9,7 @@ local ensure_installed = {
     -- "omnisharp",
 
     "ts_ls",
-    "volar",
+    "vue_ls",
 
     "pyright",
   },

@@ -232,31 +232,6 @@ return {
     },
   },
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
-    priority = 1000,
-    opts = {
-      preset = "nerdfont",
-      options = {
-        show_sources = {
-          enabled = true,
-          if_many = true,
-        },
-        throttle = 0,
-        multilines = {
-          enabled = true,
-          always_show = true,
-        },
-        show_all_diags_on_cursorline = true,
-        enable_on_insert = true,
-        break_line = {
-          enabled = false,
-          after = 30,
-        },
-      },
-    },
-  },
-  {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {

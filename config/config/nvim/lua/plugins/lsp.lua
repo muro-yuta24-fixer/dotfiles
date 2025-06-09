@@ -220,7 +220,7 @@ return {
         json = { "jq" },
         jsonc = { "jq" },
         toml = { "taplo" },
-        yaml = { "yamlfmt" },
+        -- yaml = { "yamlfmt" },
 
         fish = { "fish_indent" },
         sh = { "beautysh" },

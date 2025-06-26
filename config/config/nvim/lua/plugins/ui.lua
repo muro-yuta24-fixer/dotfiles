@@ -220,7 +220,7 @@ return {
     event = "VeryLazy",
     opts = {
       hide = {
-        cursorline = true,
+        cursorline = false,
         focused_win = false,
         only_win = false,
       },
@@ -242,7 +242,7 @@ return {
         local ft_icon, _ = devicons.get_icon_color(filename)
         local modified = vim.bo[props.buf].modified
 
-        local bg = palette.blue
+        local bg = props.focused and palette.flamingo or palette.blue
         local fg = palette.base
 
         return {

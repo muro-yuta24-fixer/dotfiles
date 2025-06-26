@@ -91,9 +91,4 @@ alias pyvenv goto_venv
 
 starship init fish | source
 
-# Added by `rbenv init` on Tue May 20 02:52:25 PM JST 2025
-# status --is-interactive; and rbenv init - --no-rehash fish | source
-# status --is-interactive; and nodenv init - --no-rehash fish | source
-
-rbenv init - --no-rehash fish | source
-nodenv init - --no-rehash fish | source
+proto activate fish | source

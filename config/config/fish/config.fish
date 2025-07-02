@@ -91,4 +91,4 @@ alias pyvenv goto_venv
 
 starship init fish | source
 
-proto activate fish | source
+mise activate fish | source

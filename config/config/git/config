@@ -82,6 +82,9 @@
 		bold blue => syntax "#bbcff5", \
 		bold cyan => syntax "#b4def1", \
 		bold yellow => syntax "#ebd9bf"
+
+    line-numbers = true
+    side-by-side = true
 [interactive]
     diffFilter = delta --color-only
 [merge]

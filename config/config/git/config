@@ -1,93 +1,54 @@
 [user]
-    name = Y.Muro
-    email = 165998973+muro-yuta24-fixer@users.noreply.github.com
+	name = Y.Muro
+	email = 165998973+muro-yuta24-fixer@users.noreply.github.com
 [core]
-    bare = true
-    autocrlf = input
-    pager = delta
+	bare = true
+	autocrlf = input
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [color]
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    grep = auto
-    ui = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
+	ui = auto
 [alias]
-    a  = add
-    al = add --all
-    d  = diff
-    ds = diff --staged
-    co = checkout
-    cm  = commit
-    br = branch
-    ba = branch -a
-    sw = switch
-    l  = log --oneline
-    lg = log
-    r  = restore
-    rs = restore --staged
-    cl = clone
-    st = status
-    fh = fetch
-    pl = pull
-    rb = rebase
-    ps = push
-    pu = push -u origin HEAD
-    sh = stash
-    sp = stash pop
-    clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
+	a  = add
+	al = add --all
+	d  = diff
+	ds = diff --staged
+	co = checkout
+	cm  = commit
+	br = branch
+	ba = branch -a
+	sw = switch
+	l  = log --oneline
+	lg = log
+	r  = restore
+	rs = restore --staged
+	cl = clone
+	st = status
+	fh = fetch
+	pl = pull
+	rb = rebase
+	ps = push
+	pu = push -u origin HEAD
+	sh = stash
+	sp = stash pop
+	clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
 [pull]
-    rebase = false
+	rebase = false
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [credential "https://github.com"]
-    helper = 
-    helper = !/usr/bin/gh auth git-credential
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-    helper = 
-    helper = !/usr/bin/gh auth git-credential
-[ghq]
-    root = "~/.ghq"
-[delta]
-    navigate = true  # use n and N to move between diff sections
-	blame-palette = "#eff1f5 #e6e9ef #dce0e8 #ccd0da #bcc0cc"
-	commit-decoration-style = "#9ca0b0" bold box ul
-	light = true
-	file-decoration-style = "#9ca0b0"
-	file-style = "#4c4f69"
-	hunk-header-decoration-style = "#9ca0b0" box ul
-	hunk-header-file-style = bold
-	hunk-header-line-number-style = bold "#6c6f85"
-	hunk-header-style = file line-number syntax
-	line-numbers-left-style = "#9ca0b0"
-	line-numbers-minus-style = bold "#d20f39"
-	line-numbers-plus-style = bold "#40a02b"
-	line-numbers-right-style = "#9ca0b0"
-	line-numbers-zero-style = "#9ca0b0"
-	# 25% red 75% base
-	minus-emph-style = bold syntax "#e8b9c6"
-	# 10% red 90% base
-	minus-style = syntax "#ecdae2"
-	# 25% green 75% base
-	plus-emph-style = bold syntax "#c3ddc3"
-	# 10% green 90% base
-	plus-style = syntax "#dee8e0"
-	map-styles = \
-		bold purple => syntax "#d5c3f4", \
-		bold blue => syntax "#bbcff5", \
-		bold cyan => syntax "#b4def1", \
-		bold yellow => syntax "#ebd9bf"
-
-    line-numbers = true
-    side-by-side = true
-[interactive]
-    diffFilter = delta --color-only
-[merge]
-    conflictstyle = zdiff3
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
 [push]
 	autoSetupRemote = true

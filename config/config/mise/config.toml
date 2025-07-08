@@ -1,2 +1,5 @@
 [settings]
 disable_tools = ["python"]
+
+[tools]
+usage = "latest"

@@ -4,6 +4,7 @@
 [core]
 	bare = true
 	autocrlf = input
+	editor = nvim
 [init]
 	defaultBranch = main
 [color]

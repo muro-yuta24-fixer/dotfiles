@@ -58,7 +58,7 @@ end
 alias rl 'exec fish'
 
 alias cv "cd (ghq root)"
-alias gl "cd (ghq root)/(ghq list | peco)"
+alias gl "cd (ghq root)/(ghq list | fzf)"
 # alias cv "cd ~/Development"
 # alias ghl "cd ~/Development/(ls ~/Development | peco)"
 
@@ -91,4 +91,4 @@ alias pyvenv goto_venv
 
 starship init fish | source
 
-mise activate fish | source
+# mise activate fish | source

@@ -5,7 +5,7 @@ local ensure_installed = {
     "dockerls",
     "docker_compose_language_service",
 
-    "csharp_ls",
+    -- "csharp_ls",
     -- "omnisharp",
 
     "ts_ls",

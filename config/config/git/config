@@ -5,6 +5,7 @@
     bare = true
     autocrlf = input
     pager = delta
+	editor = nvim
 [init]
     defaultBranch = main
 [color]

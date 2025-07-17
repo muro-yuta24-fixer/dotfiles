@@ -26,10 +26,6 @@ return {
         fidget = true,
         gitsigns = true,
         hop = true,
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = true,
-        },
         lsp_saga = true,
         mason = true,
         neogit = true,
@@ -78,8 +74,10 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        -- component_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         ignore_focus = {},
         always_divide_middle = true,
@@ -253,11 +251,30 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     event = "UIEnter",
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
     opts = {},
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      return {
+        chunk = {
+          enable = true,
+          style = {},
+          duration = 0,
+          delay = 0,
+        },
+        line_num = {
+          enable = true,
+          use_treesitter = true,
+        },
+      }
+    end,
   },
   {
     "folke/todo-comments.nvim",

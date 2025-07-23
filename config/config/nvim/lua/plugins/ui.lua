@@ -252,12 +252,34 @@ return {
     },
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "UIEnter",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      local colors = require("catppuccin.palettes").get_palette()
+
+      local style = {
+        colors.blue,
+        colors.red,
+      }
+
+      return {
+        chunk = {
+          enable = true,
+          style = style,
+          proiroty = 15,
+          use_treesitter = true,
+          error_sign = true,
+          duration = 0,
+          delay = 0,
+        },
+        line_num = {
+          enable = true,
+          style = style,
+          priority = 10,
+          use_treesitter = true,
+        },
+      }
+    end,
   },
   {
     "folke/todo-comments.nvim",

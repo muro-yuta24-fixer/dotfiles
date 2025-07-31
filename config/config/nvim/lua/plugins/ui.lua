@@ -23,7 +23,7 @@ return {
       },
       integrations = {
         aerial = true,
-        fidget = true,
+        fidget = false,
         gitsigns = true,
         hop = true,
         lsp_saga = true,
@@ -182,7 +182,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = false,
+          enabled = true,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {

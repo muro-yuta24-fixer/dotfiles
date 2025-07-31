@@ -58,7 +58,7 @@ end
 alias rl 'exec fish'
 
 alias cv "cd (ghq root)"
-alias gl "cd (ghq root)/(ghq list | fzf)"
+alias gl "cd (ghq root)/(ghq list | fzf --layout reverse)"
 # alias cv "cd ~/Development"
 # alias ghl "cd ~/Development/(ls ~/Development | peco)"
 

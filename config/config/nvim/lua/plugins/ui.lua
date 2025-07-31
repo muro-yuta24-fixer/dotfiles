@@ -7,7 +7,8 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "latte",
+      flavour = "mocha",
+      transparent_background = true,
       styles = {
         comments = { "italic" },
         conditionals = {},
@@ -23,7 +24,7 @@ return {
       },
       integrations = {
         aerial = true,
-        fidget = true,
+        fidget = false,
         gitsigns = true,
         hop = true,
         lsp_saga = true,
@@ -74,9 +75,7 @@ return {
       options = {
         icons_enabled = true,
         theme = "auto",
-        -- component_separators = { left = "", right = "" },
-        -- section_separators = { left = "", right = "" },
-        component_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         ignore_focus = {},
@@ -98,13 +97,13 @@ return {
           {
             "branch",
           },
-        },
-        lualine_c = {
           {
             "diff",
             colored = true,
             symbols = icons.diff,
           },
+        },
+        lualine_c = {
           {
             "filename",
             file_status = false,
@@ -162,8 +161,8 @@ return {
           show_close_icons = false,
           show_tab_indicators = false,
           show_duplicate_prefix = false,
-          separator_style = "slant",
-          always_show_bufferline = true,
+          separator_style = "thin",
+          always_show_bufferline = false,
           sort_by = "tabs",
         },
       }
@@ -184,7 +183,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = false,
+          enabled = true,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -250,13 +249,34 @@ return {
     },
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
-    event = "UIEnter",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      local colors = require("catppuccin.palettes").get_palette()
+
+      local style = {
+        colors.blue,
+        colors.red,
+      }
+
+      return {
+        chunk = {
+          enable = true,
+          style = style,
+          proiroty = 15,
+          use_treesitter = true,
+          error_sign = true,
+          duration = 0,
+          delay = 0,
+        },
+        line_num = {
+          enable = true,
+          style = style,
+          priority = 10,
+          use_treesitter = true,
+        },
+      }
+    end,
   },
   {
     "shellRaining/hlchunk.nvim",

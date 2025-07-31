@@ -8,6 +8,7 @@ return {
     priority = 1000,
     opts = {
       flavour = "mocha",
+      transparent_background = true,
       styles = {
         comments = { "italic" },
         conditionals = {},
@@ -100,13 +101,13 @@ return {
           {
             "branch",
           },
-        },
-        lualine_c = {
           {
             "diff",
             colored = true,
             symbols = icons.diff,
           },
+        },
+        lualine_c = {
           {
             "filename",
             file_status = false,
@@ -164,8 +165,8 @@ return {
           show_close_icons = false,
           show_tab_indicators = false,
           show_duplicate_prefix = false,
-          separator_style = "slant",
-          always_show_bufferline = true,
+          separator_style = "thin",
+          always_show_bufferline = false,
           sort_by = "tabs",
         },
       }

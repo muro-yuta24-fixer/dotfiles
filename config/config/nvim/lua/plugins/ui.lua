@@ -279,24 +279,6 @@ return {
     end,
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = function()
-      return {
-        chunk = {
-          enable = true,
-          style = {},
-          duration = 0,
-          delay = 0,
-        },
-        line_num = {
-          enable = true,
-          use_treesitter = true,
-        },
-      }
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
     opts = {},

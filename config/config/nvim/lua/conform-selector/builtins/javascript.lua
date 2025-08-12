@@ -31,7 +31,9 @@ M.formatters = function()
   local formatters = {}
 
   if rc_file_exists(prettier_rc_files) then
-    table.insert(formatters, "prettier")
+    -- table.insert(formatters, "prettier")
+    -- prettierが遅いのでDaemonを試す
+    table.insert(formatters, "prettierd")
   elseif rc_file_exists(biome_rc_files) then
     -- BiomeとPrettierがconflictしないようにする
     table.insert(formatters, "biome")

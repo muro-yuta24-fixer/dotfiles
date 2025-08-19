@@ -53,6 +53,7 @@ return {
           "ts_ls",
           "csharp_ls",
           "pyright",
+          "gleam",
         },
       },
     },
@@ -97,6 +98,8 @@ return {
           },
         },
       })
+
+      configure_lsp("gleam", {})
     end,
   },
   {

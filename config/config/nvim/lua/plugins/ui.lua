@@ -7,8 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
-      transparent_background = true,
+      flavour = "latte",
       styles = {
         comments = { "italic" },
         conditionals = {},
@@ -24,9 +23,13 @@ return {
       },
       integrations = {
         aerial = true,
-        fidget = false,
+        fidget = true,
         gitsigns = true,
         hop = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = false,
+        },
         lsp_saga = true,
         mason = true,
         neogit = true,
@@ -140,7 +143,7 @@ return {
     event = "VimEnter",
     opts = function()
       return {
-        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+        highlights = require("catppuccin.groups.integrations.bufferline").get_theme(),
         options = {
           mode = "tabs",
           themable = true,
@@ -161,7 +164,7 @@ return {
           show_close_icons = false,
           show_tab_indicators = false,
           show_duplicate_prefix = false,
-          separator_style = "thin",
+          separator_style = "slant",
           always_show_bufferline = false,
           sort_by = "tabs",
         },
@@ -183,7 +186,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -249,34 +252,12 @@ return {
     },
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = function()
-      local colors = require("catppuccin.palettes").get_palette()
-
-      local style = {
-        colors.blue,
-        colors.red,
-      }
-
-      return {
-        chunk = {
-          enable = true,
-          style = style,
-          proiroty = 15,
-          use_treesitter = true,
-          error_sign = true,
-          duration = 0,
-          delay = 0,
-        },
-        line_num = {
-          enable = true,
-          style = style,
-          priority = 10,
-          use_treesitter = true,
-        },
-      }
-    end,
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
   {
     "folke/todo-comments.nvim",

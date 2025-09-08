@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "latte",
+      flavour = "mocha",
       styles = {
         comments = { "italic" },
         conditionals = {},

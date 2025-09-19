@@ -1,6 +1,6 @@
 return {
   {
-    "saghen/blink.cmp",
+    "Saghen/blink.cmp",
     lazy = false,
     version = "1.*",
     ---@module 'blink.cmp'
@@ -17,6 +17,7 @@ return {
           markdown = { "path" },
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
           gitcommit = { "gitmoji", "path" },
+          sagarename = {},
         },
         providers = {
           lazydev = {
@@ -84,12 +85,27 @@ return {
         },
         documentation = {
           auto_show = true,
+          auto_show_delay_ms = 100,
           window = {
             border = "rounded",
           },
         },
+        trigger = {
+          show_on_insert_on_trigger_character = true,
+        },
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = false,
+          },
+        },
+        ghost_text = {
+          enabled = true,
+          show_with_menu = true,
+        },
       },
       signature = {
+        enabled = true,
         window = {
           border = "rounded",
         },
@@ -104,6 +120,5 @@ return {
   },
   {
     "Dynge/gitmoji.nvim",
-    opts = {},
   },
 }

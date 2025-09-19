@@ -31,7 +31,7 @@ return {
     "smoka7/hop.nvim",
     version = "*",
     keys = {
-      { "<leader><leader>", "<cmd>HopWord<cr>", desc = "Hop word", mode = { "n", "v" } },
+      { "<c-space>", "<cmd>HopWord<cr>", desc = "Hop word", mode = { "n", "v" } },
     },
     opts = {},
   },

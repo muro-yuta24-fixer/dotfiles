@@ -8,7 +8,7 @@ local ensure_installed = {
     -- "csharp_ls",
     -- "omnisharp",
 
-    "ts_ls",
+    "vtsls",
     "vue_ls",
 
     "pyright",
@@ -60,21 +60,22 @@ return {
     config = function(_, opts)
       require("mason-lspconfig").setup(opts)
 
-      local vue_typescript_plugin = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin")
+      local vue_typescript_plugin = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
 
-      configure_lsp("ts_ls", {
-        root_markers = { "package.json" },
-        single_file_support = false,
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = vue_typescript_plugin,
-              languages = { "vue" },
+      configure_lsp("vtsls", {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = vue_typescript_plugin,
+                  languages = { "vue" },
+                },
+              },
             },
           },
         },
-        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
       })
 
       configure_lsp("csharp_ls", {
@@ -84,16 +85,11 @@ return {
         },
       })
 
-      -- configure_lsp("denols", {
-      --   root_markers = { "deno.json", "deno.jsonc" },
-      -- })
-
       configure_lsp("pyright", {
         settings = {
           python = {
             analysis = {
               typeCheckingMode = "strict",
-              -- typeCheckingMode = "standard",
             },
           },
         },

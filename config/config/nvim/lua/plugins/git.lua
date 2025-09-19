@@ -1,18 +1,5 @@
 return {
   {
-    "NeogitOrg/neogit",
-    cmd = { "Neogit" },
-    keys = {
-      { "<leader>ng", "<cmd>Neogit kind=tab<cr>", desc = "Launch neogit" },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    opts = {},
-  },
-  {
     "akinsho/git-conflict.nvim",
     cmd = {
       "GitConflictRefresh",
@@ -41,27 +28,5 @@ return {
         use_focus = true,
       },
     },
-  },
-  {
-    "Dynge/gitmoji.nvim",
-    ft = { "gitcommit", "oct", "NeogitCommit" },
-    opts = {
-      filetypes = { "gitcommit", "oct", "NeogitCommit" },
-      completion = {
-        append_space = true,
-        complete_as = "emoji",
-      },
-    },
-    config = function(_, opts)
-      require("gitmoji").setup(opts)
-
-      local cmp = require("cmp")
-
-      cmp.setup.filetype({ "gitcommit", "oct", "NeogitCommitMessage" }, {
-        sources = cmp.config.sources({
-          { name = "gitmoji" },
-        }),
-      })
-    end,
   },
 }

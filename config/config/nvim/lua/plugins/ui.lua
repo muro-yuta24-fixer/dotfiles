@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
+      flavour = "latte",
       styles = {
         comments = { "italic" },
         conditionals = {},
@@ -124,13 +124,15 @@ return {
             update_in_insert = true,
             always_visible = true,
           },
-          {
-            "overseer",
-          },
         },
         lualine_y = {
           "encoding",
           "fileformat",
+          {
+            "filetype",
+            colored = false,
+            icon_only = false,
+          },
         },
         lualine_z = { "progress", "location" },
       },

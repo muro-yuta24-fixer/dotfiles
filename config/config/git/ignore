@@ -1,2 +1,4 @@
 00yuta-*.sh
 .env
+
+**/.claude/settings.local.json

@@ -230,8 +230,8 @@ return {
         astro = js_formatters,
         vue = js_formatters,
 
-        json = { "jq" },
-        jsonc = { "jq" },
+        -- json = { "jq" },
+        -- jsonc = { "jq" },
         toml = { "taplo" },
         -- yaml = { "yamlfmt" },
 

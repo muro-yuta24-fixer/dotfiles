@@ -5,7 +5,7 @@
     bare = true
     autocrlf = input
     pager = delta
-	editor = nvim
+    editor = code --wait
 [init]
     defaultBranch = main
 [color]

@@ -1,6 +1,6 @@
 gui:
   mouseEvents: false
-  nerdFontsVersion: "3"
+  nerdFontsVersion: ""
 theme:
   activeBorderColor:
     - '#1e66f5'

@@ -1,57 +1,96 @@
 [user]
-    name = Y.Muro
-    email = 165998973+muro-yuta24-fixer@users.noreply.github.com
+	name = Y.Muro
+	email = 165998973+muro-yuta24-fixer@users.noreply.github.com
 [core]
-    bare = true
-    autocrlf = input
+	bare = true
+	autocrlf = input
 	editor = code --wait
+	pager = delta
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [color]
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    grep = auto
-    ui = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
+	ui = auto
 [alias]
-    a  = add
-    al = add --all
-    d  = diff
-    ds = diff --staged
-    co = checkout
-    cm  = commit
-    br = branch
-    ba = branch -a
-    sw = switch
-    l  = log --oneline
-    lg = log
-    r  = restore
-    rs = restore --staged
-    cl = clone
-    st = status
-    fh = fetch
-    pl = pull
-    rb = rebase
-    ps = push
-    pu = push -u origin HEAD
-    sh = stash
-    sp = stash pop
-    clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
+	a  = add
+	al = add --all
+	d  = diff
+	ds = diff --staged
+	co = checkout
+	cm  = commit
+	br = branch
+	ba = branch -a
+	sw = switch
+	l  = log --oneline
+	lg = log
+	r  = restore
+	rs = restore --staged
+	cl = clone
+	st = status
+	fh = fetch
+	pl = pull
+	rb = rebase
+	ps = push
+	pu = push -u origin HEAD
+	sh = stash
+	sp = stash pop
+	clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
 	rv = revert
 [pull]
-    rebase = false
+	rebase = false
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [credential "https://github.com"]
-    helper = 
-    helper = !/usr/bin/gh auth git-credential
+	helper = 
+	helper = !/home/yuta/.nix-profile/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-    helper = 
-    helper = !/usr/bin/gh auth git-credential
+	helper = 
+	helper = !/home/yuta/.nix-profile/bin/gh auth git-credential
 [push]
 	autoSetupRemote = true
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictStyle = zdiff3
+[delta]
+	blame-palette = "#eff1f5 #e6e9ef #dce0e8 #ccd0da #bcc0cc"
+	commit-decoration-style = "#9ca0b0" bold box ul
+	light = true
+	file-decoration-style = "#9ca0b0"
+	file-style = "#4c4f69"
+	hunk-header-decoration-style = "#9ca0b0" box ul
+	hunk-header-file-style = bold
+	hunk-header-line-number-style = bold "#6c6f85"
+	hunk-header-style = file line-number syntax
+	line-numbers-left-style = "#9ca0b0"
+	line-numbers-minus-style = bold "#d20f39"
+	line-numbers-plus-style = bold "#40a02b"
+	line-numbers-right-style = "#9ca0b0"
+	line-numbers-zero-style = "#9ca0b0"
+	# 35% red 65% base
+	minus-emph-style = bold syntax "#e5a2b3"
+	# 20% red 80% base
+	minus-style = syntax "#e9c4cf"
+	# 35% green 65% base
+	plus-emph-style = bold syntax "#b2d5ae"
+	# 20% green 80% base
+	plus-style = syntax "#cce1cd"
+	map-styles = \
+		bold purple => syntax "#cbb1f2", \
+		bold blue => syntax "#a6c1f5", \
+		bold cyan => syntax "#9dd7ef", \
+		bold yellow => syntax "#eacfa9"
+	# Should match the name of the bat theme
+	syntax-theme = Catppuccin Latte
+
+	navigate = true
+  side-by-side = true
+  line-numbers = true

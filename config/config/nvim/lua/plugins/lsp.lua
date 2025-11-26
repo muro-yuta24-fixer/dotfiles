@@ -11,7 +11,7 @@ local ensure_installed = {
     "vtsls",
     "vue_ls",
 
-    "pyright",
+    "basedpyright",
   },
   tools = {
     -- Formatters
@@ -52,7 +52,7 @@ return {
           "denols",
           "ts_ls",
           "csharp_ls",
-          "pyright",
+          "basedpyright",
           "gleam",
         },
       },
@@ -85,7 +85,7 @@ return {
         },
       })
 
-      configure_lsp("pyright", {
+      configure_lsp("basedpyright", {
         settings = {
           python = {
             analysis = {

@@ -4,7 +4,7 @@
 [core]
 	bare = true
 	autocrlf = input
-	editor = code --wait
+	editor = nvim
 	pager = delta
 [init]
 	defaultBranch = main
@@ -94,3 +94,6 @@
 	navigate = true
   side-by-side = true
   line-numbers = true
+
+[ghq]
+root = "~/.ghq"

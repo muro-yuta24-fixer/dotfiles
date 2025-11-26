@@ -32,8 +32,9 @@ if status is-interactive
     alias tm tmux
     alias dp 'docker compose'
 
-    alias psh 'poetry shell'
-    alias prt 'poetry run tmux'
+    abbr gpc 'gh pr create'
+    abbr gpv 'gh pr view -w'
+    abbr gpe 'gh pr edit'
 
     if type acpi >/dev/null 2>&1
         alias bi 'acpi -bi'
@@ -90,5 +91,9 @@ if status is-interactive
 
     starship init fish | source
 
-    ~/.nodenv/bin/nodenv init - fish | source
+    # ~/.nodenv/bin/nodenv init - fish | source
+
+    fish_config theme choose 'Catppuccin Latte'
+
+    set -x FZF_DEFAULT_OPTS "--color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 --color=selected-bg:#BCC0CC --color=border:#9CA0B0,label:#4C4F69"
 end

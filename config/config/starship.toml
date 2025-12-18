@@ -75,7 +75,7 @@ crust = "#11111b"
 [directory]
 style = "blue"
 truncation_length = 100
-truncate_to_repo = false
+truncate_to_repo = true
 
 [character]
 success_symbol = "[❯](purple)"

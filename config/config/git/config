@@ -25,7 +25,7 @@
 	br = branch
 	ba = branch -a
 	sw = switch
-	l  = log --oneline
+	l = log --oneline
 	lg = log
 	r  = restore
 	rs = restore --staged
@@ -41,6 +41,7 @@
 	clean-branch = "!git branch | grep -v '$(git branch --show-current)' | grep -v 'develop' | grep -v 'master' | grep -v 'main' | xargs git branch -D"
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
 	rv = revert
+	wt = worktree
 [pull]
 	rebase = false
 [filter "lfs"]

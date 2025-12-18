@@ -4,15 +4,21 @@ local config = wezterm.config_builder()
 
 config.wsl_domains = {
 	{
-		name = "WSL:Gentoo",
-		distribution = "Gentoo",
-		-- username = "yuta",
-		default_cwd = "~/",
+		name = "WSL:Arch",
+		distribution = "archlinux",
+		username = "yuta",
+		default_cwd = "~",
 		default_prog = { "fish", "--login", "--interactive" },
+	},
+	{
+		name = "WSL:NixOS",
+		distribution = "NixOS",
+		username = "nixos",
+		default_cwd = "~",
 	},
 }
 
-config.default_domain = "WSL:Gentoo"
+config.default_domain = "WSL:Arch"
 
 config.use_ime = true
 
@@ -20,8 +26,7 @@ config.initial_cols = 160
 config.initial_rows = 40
 
 config.font = wezterm.font_with_fallback({
-	-- "PlemolJP Console NF"
-	"PlemolJP Console",
+	"PlemolJP Console NF",
 })
 config.font_size = 13
 
@@ -40,6 +45,11 @@ config.disable_default_key_bindings = true
 config.integrated_title_button_style = "Windows"
 
 config.keys = {
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action({ SendString = "\x1b\r" }),
+	},
 	-- コピー (Windows/Linux)
 	{
 		key = "c",

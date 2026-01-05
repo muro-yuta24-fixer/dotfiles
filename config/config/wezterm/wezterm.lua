@@ -28,7 +28,7 @@ config.initial_rows = 40
 config.font = wezterm.font_with_fallback({
 	"PlemolJP Console NF",
 })
-config.font_size = 13
+config.font_size = 12
 
 config.color_scheme = "Catppuccin Latte"
 
@@ -38,6 +38,20 @@ config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = false
+
+-- タブバーの設定
+config.window_frame = {
+	font = wezterm.font({ family = "PlemolJP", weight = "Bold" }),
+	font_size = 12.0,
+	active_titlebar_bg = "#eff1f5",
+	inactive_titlebar_bg = "#dce0e8",
+}
+
+config.colors = {
+	tab_bar = {
+		inactive_tab_edge = "#6c6f85",
+	},
+}
 
 -- すべてのデフォルトキーバインディングを無効化
 config.disable_default_key_bindings = true

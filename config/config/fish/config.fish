@@ -36,6 +36,8 @@ if status is-interactive
     abbr gpv 'gh pr view -w'
     abbr gpe 'gh pr edit'
 
+    abbr da "direnv allow"
+
     if type acpi >/dev/null 2>&1
         alias bi 'acpi -bi'
     end

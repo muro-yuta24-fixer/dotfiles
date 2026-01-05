@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    tag = "v0.2.0",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { ";f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
@@ -9,35 +9,37 @@ return {
       { ";b", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { ";c", "<cmd>Telescope command_history<cr>", desc = "Telescope command history" },
     },
-    opts = {
-      defaults = {
-        mappings = {
-          i = {
-            -- Mappings for insert mode
-            ["<C-g>"] = require("telescope.actions").close,
-          },
-          n = {
-            -- Mappings for normal mode
-            ["q"] = require("telescope.actions").close,
-          },
-        },
-      },
-      pickers = {
-        find_files = {
-          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-        oldfiles = {
-          theme = "dropdown",
-        },
-        buffers = {
+    opts = function()
+      return {
+        defaults = {
           mappings = {
             i = {
-              ["<C-d>"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+              -- Mappings for insert mode
+              ["<C-g>"] = require("telescope.actions").close,
+            },
+            n = {
+              -- Mappings for normal mode
+              ["q"] = require("telescope.actions").close,
             },
           },
         },
-      },
-    },
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
+          oldfiles = {
+            theme = "dropdown",
+          },
+          buffers = {
+            mappings = {
+              i = {
+                ["<C-d>"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+              },
+            },
+          },
+        },
+      }
+    end,
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",

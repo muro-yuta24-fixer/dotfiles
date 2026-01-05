@@ -98,3 +98,5 @@
 
 [ghq]
 root = "~/.ghq"
+[worktree]
+	guessRemote = true

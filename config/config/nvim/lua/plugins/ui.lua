@@ -1,5 +1,3 @@
-local icons = require("utils.icons")
-
 return {
   {
     "catppuccin/nvim",
@@ -21,122 +19,31 @@ return {
         types = {},
         operators = {},
       },
-      integrations = {
-        aerial = true,
-        fidget = true,
-        gitsigns = true,
-        hop = true,
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = false,
-        },
-        lsp_saga = true,
-        mason = true,
-        neogit = true,
-        neotest = true,
-        noice = true,
-        cmp = true,
-        dap = true,
-        dap_ui = true,
-        native_lsp = {
-          enabled = true,
-          virtual_text = {
-            errors = { "italic" },
-            hints = { "italic" },
-            warnings = { "italic" },
-            information = { "italic" },
-            ok = { "italic" },
-          },
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-            ok = { "undercurl" },
-          },
-          inlay_hints = {
-            background = true,
-          },
-        },
-        notify = true,
-        treesitter_context = true,
-        treesitter = true,
-        overseer = true,
-        telescope = {
-          enabled = true,
-        },
-        lsp_trouble = true,
-        which_key = true,
-      },
+      auto_integrations = true,
     },
     init = function() vim.cmd("colorscheme catppuccin") end,
   },
   {
-    "nvim-lualine/lualine.nvim",
-    event = "VimEnter",
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {},
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
+    "mvllow/modes.nvim",
+    tag = "v0.2.1",
+    lazy = false,
+    opts = function()
+      local palette = require("catppuccin.palettes").get_palette()
+
+      return {
+        colors = {
+          bg = "", -- Optional bg param, defaults to Normal hl group
+          copy = palette.yellow,
+          delete = palette.red,
+          change = palette.red, -- Optional param, defaults to delete
+          format = palette.flamingo,
+          insert = palette.blue,
+          replace = palette.teal,
+          select = palette.mauve, -- Optional param, defaults to visual
+          visual = palette.mauve,
         },
-      },
-      sections = {
-        lualine_a = {
-          {
-            "mode",
-          },
-        },
-        lualine_b = {
-          {
-            "branch",
-          },
-          {
-            "diff",
-            colored = true,
-            symbols = icons.diff,
-          },
-        },
-        lualine_c = {
-          {
-            "filename",
-            file_status = false,
-            newfile_status = false,
-            path = 1,
-            -- symbols = {},
-          },
-        },
-        lualine_x = {
-          {
-            "diagnostics",
-            sources = { "nvim_diagnostic", "nvim_lsp" },
-            symbols = icons.diagnostics,
-            colored = true,
-            update_in_insert = true,
-            always_visible = true,
-          },
-        },
-        lualine_y = {
-          "encoding",
-          "fileformat",
-          {
-            "filetype",
-            colored = false,
-            icon_only = false,
-          },
-        },
-        lualine_z = { "progress", "location" },
-      },
-    },
+      }
+    end,
   },
   {
     "akinsho/bufferline.nvim",
@@ -216,42 +123,6 @@ return {
     "m-demare/hlargs.nvim",
     event = "VeryLazy",
     config = true,
-  },
-  {
-    "b0o/incline.nvim",
-    event = "VeryLazy",
-    opts = {
-      hide = {
-        cursorline = false,
-        focused_win = false,
-        only_win = false,
-      },
-      window = {
-        padding = 0,
-        margin = { horizontal = 1, vertical = 1 },
-        overlap = {
-          winbar = true,
-        },
-      },
-      render = function(props)
-        local devicons = require("nvim-web-devicons")
-        local palette = require("catppuccin.palettes").get_palette()
-
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        if filename == "" then
-          filename = "[No Name]"
-        end
-        local ft_icon, _ = devicons.get_icon_color(filename)
-        local modified = vim.bo[props.buf].modified
-
-        local bg = props.focused and palette.flamingo or palette.blue
-        local fg = palette.base
-
-        return {
-          { " ", ft_icon, " ", filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-        }
-      end,
-    },
   },
   {
     "lukas-reineke/indent-blankline.nvim",

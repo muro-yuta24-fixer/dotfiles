@@ -14,3 +14,5 @@ setopt extendedglob
 bindkey -e
 
 alias ls='ls --color=auto'
+
+eval "$(direnv hook zsh)"

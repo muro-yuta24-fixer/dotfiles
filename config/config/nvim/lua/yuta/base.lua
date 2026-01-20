@@ -54,3 +54,7 @@ vim.opt.background = "light"
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- clear statusline
+vim.opt.statusline = "─"
+vim.opt.fillchars:append({ stl = "─", stlnc = "─" })

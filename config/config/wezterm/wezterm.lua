@@ -10,12 +10,6 @@ config.wsl_domains = {
 		default_cwd = "~",
 		default_prog = { "fish", "--login", "--interactive" },
 	},
-	{
-		name = "WSL:NixOS",
-		distribution = "NixOS",
-		username = "nixos",
-		default_cwd = "~",
-	},
 }
 
 config.default_domain = "WSL:Arch"
@@ -28,30 +22,62 @@ config.initial_rows = 40
 config.font = wezterm.font_with_fallback({
 	"PlemolJP Console NF",
 })
-config.font_size = 12
+config.font_size = 13.0
 
-config.color_scheme = "Catppuccin Latte"
+config.color_scheme = "Catppuccin Mocha"
 
-config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 
 config.use_fancy_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = false
+config.tab_max_width = 64
+config.show_new_tab_button_in_tab_bar = false
+config.show_close_tab_button_in_tabs = false
 
--- タブバーの設定
 config.window_frame = {
-	font = wezterm.font({ family = "PlemolJP", weight = "Bold" }),
-	font_size = 12.0,
-	active_titlebar_bg = "#eff1f5",
-	inactive_titlebar_bg = "#dce0e8",
+	font = wezterm.font({ family = "PlemolJP Console NF", weight = "Bold" }),
+	font_size = 13.0,
+	inactive_titlebar_bg = "#1e1e2e",
+	active_titlebar_bg = "#1e1e2e",
+}
+
+config.window_background_gradient = {
+	colors = { "#1e1e2e" },
 }
 
 config.colors = {
 	tab_bar = {
-		inactive_tab_edge = "#6c6f85",
+		inactive_tab_edge = "none",
 	},
 }
+
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_left_half_circle_thick
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local background = "#cdd6f4"
+	local foreground = "#1e1e2e"
+	local edge_background = "none"
+	if tab.is_active then
+		background = "#89b4fa"
+		foreground = "#1e1e2e"
+	end
+	local edge_foreground = background
+	local title = " " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. " "
+	return {
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = SOLID_LEFT_ARROW },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = title },
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = SOLID_RIGHT_ARROW },
+	}
+end)
 
 -- すべてのデフォルトキーバインディングを無効化
 config.disable_default_key_bindings = true

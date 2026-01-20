@@ -44,8 +44,8 @@ return {
       local ft_icon, ft_color = devicons.get_icon_color(filename)
       local modified = vim.bo[props.buf].modified
 
-      local bg = props.focused and ft_color or palette.base
-      local fg = props.focused and helpers.contrast_color(bg) or palette.text
+      local bg = props.focused and palette.maroon or palette.base
+      local fg = props.focused and palette.base or palette.text
 
       local diagnostic_bg = palette.base
 

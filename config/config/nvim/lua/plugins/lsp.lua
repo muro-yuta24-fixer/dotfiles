@@ -35,7 +35,12 @@ local configure_lsp = require("utils.lsp-config-wrapper").configure_lsp
 return {
   {
     "mason-org/mason.nvim",
-    opts = {},
+    opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
+    },
   },
   {
     "mason-org/mason-lspconfig.nvim",
@@ -51,7 +56,6 @@ return {
         exclude = {
           "denols",
           "ts_ls",
-          "csharp_ls",
           "basedpyright",
           "gleam",
         },
@@ -78,12 +82,12 @@ return {
         },
       })
 
-      configure_lsp("csharp_ls", {
-        handlers = {
-          ["textDocument/definition"] = require("csharpls_extended").handler,
-          ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-        },
-      })
+      -- configure_lsp("csharp_ls", {
+      --   handlers = {
+      --     ["textDocument/definition"] = require("csharpls_extended").handler,
+      --     ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+      --   },
+      -- })
 
       configure_lsp("basedpyright", {
         settings = {
@@ -269,5 +273,14 @@ return {
   },
   {
     "Decodetalkers/csharpls-extended-lsp.nvim",
+  },
+  {
+    "seblyng/roslyn.nvim",
+    ft = { "cs" },
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
   },
 }

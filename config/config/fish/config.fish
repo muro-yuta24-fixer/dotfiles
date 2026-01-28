@@ -18,6 +18,10 @@ if status is-interactive
         alias cat batcat
     end
 
+    if type podman >/dev/null 2>&1
+        abbr docker podman
+    end
+
     alias l 'ls -1a'
     alias ll 'ls -lh'
     alias la 'ls -lha'
@@ -29,7 +33,7 @@ if status is-interactive
     alias g git
     alias v nvim
     alias vt 'nvim -c :terminal'
-    alias tm tmux
+    alias tm launch-tmux
     alias dp 'docker compose'
 
     abbr gpc 'gh pr create'
@@ -65,7 +69,7 @@ if status is-interactive
     alias pyvenv goto-venv
 
     starship init fish | source
-
+    mise activate fish | source
     direnv hook fish | source
 
     fish_config theme choose 'Catppuccin Mocha'

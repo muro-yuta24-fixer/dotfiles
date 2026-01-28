@@ -5,4 +5,4 @@ filetype plugin on
 filetype indent on
 syntax enable
 
-set background=light
+set background=dark

@@ -1,2 +1,26 @@
 [settings]
 disable_tools = ["python"]
+
+[settings.cargo]
+binstall = false
+
+[tools]
+"cargo:lsd" = "latest"
+"cargo:ripgrep" = "latest"
+"github:pnpm/pnpm" = "latest"
+"pipx:aws/aws-cli" = "latest"
+rust = "latest"
+usage = "latest"
+"cargo:sd" = "latest"
+"cargo:bat" = "latest"
+"cargo:du-dust" = "latest"
+"cargo:fd-find" = "latest"
+"github:astral-sh/uv" = "latest"
+"github:neovim/neovim" = "latest"
+"github:tree-sitter/tree-sitter" = "latest"
+"cargo:git-delta" = "latest"
+go = "latest"
+"go:github.com/jesseduffield/lazygit" = "latest"
+"go:github.com/x-motemen/ghq" = "latest"
+fzf = "latest"
+"cargo:starship" = "latest"

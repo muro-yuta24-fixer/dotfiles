@@ -1,6 +1,19 @@
 gui:
   mouseEvents: false
   nerdFontsVersion: ""
+commitLength:
+  show: true
+showRandomTip: false
+showIcons: true
+showFileIcons: true
+border: single
+git:
+  mainBranches:
+    - master
+    - main
+    - develop
+  parseEmoji: true
+
 theme:
   activeBorderColor:
     - '#1e66f5'
@@ -24,15 +37,3 @@ theme:
 
 authorColors:
   '*': '#7287fd'
-  commitLength:
-    show: true
-  showRandomTip: false
-  showIcons: true
-  showFileIcons: true
-  border: single
-git:
-  mainBranches:
-    - master
-    - main
-    - develop
-  parseEmoji: true

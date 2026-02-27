@@ -178,7 +178,7 @@ return {
           },
         },
         symbol_in_winbar = {
-          separator = "  ",
+          separator = "  ",
           enable = true,
           show_file = true,
         },

@@ -21,6 +21,9 @@
       # Split window horizontal
       bind v split-window -v
 
+      set-option -g set-titles on
+      set-option -g set-titles-string "#T"
+
       set -g mode-style "fg=blue,bg=#ccd0da"
 
       set -g message-style "fg=blue,bg=#ccd0da"
@@ -40,14 +43,14 @@
       set -g status-left-style NONE
       set -g status-right-style NONE
 
-      set -g status-left "#[fg=#eff1f5,bg=#1e66f5,bold] #h #[fg=#1e66f5,bg=#eff1f5,nobold,nounderscore,noitalics]"
-      set -g status-right "#[fg=#1e66f5,bg=#eff1f5,nobold,nounderscore,noitalics]#[fg=#eff1f5,bg=#1e66f5,bold] #S "
+      set -g status-left "#[fg=#eff1f5,bg=#1e66f5,bold] #h #[fg=#1e66f5,bg=#eff1f5,nobold,nounderscore,noitalics]"
+      set -g status-right "#[fg=#1e66f5,bg=#eff1f5,nobold,nounderscore,noitalics]#[fg=#eff1f5,bg=#1e66f5,bold] #S "
 
       setw -g window-status-activity-style "underscore,fg=#9ca0b0,bg=#eff1f5"
       setw -g window-status-separator ""
       setw -g window-status-style "NONE,fg=#9ca0b0"
-      setw -g window-status-format "#[fg=#eff1f5,bg=#eff1f5,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#eff1f5,bg=#eff1f5,nobold,nounderscore,noitalics]"
-      setw -g window-status-current-format "#[fg=#eff1f5,bg=#ccd0da,nobold,nounderscore,noitalics]#[fg=#1e66f5,bg=#ccd0da,bold] #I  #W #F #[fg=#ccd0da,bg=#eff1f5,nobold,nounderscore,noitalics]"
+      setw -g window-status-format "#[fg=#eff1f5,bg=#eff1f5,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#eff1f5,bg=#eff1f5,nobold,nounderscore,noitalics]"
+      setw -g window-status-current-format "#[fg=#eff1f5,bg=#ccd0da,nobold,nounderscore,noitalics]#[fg=#1e66f5,bg=#ccd0da,bold] #I  #W #F #[fg=#ccd0da,bg=#eff1f5,nobold,nounderscore,noitalics]"
     '';
   };
 }

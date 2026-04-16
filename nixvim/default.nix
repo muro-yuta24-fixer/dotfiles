@@ -2,7 +2,7 @@
 {
   imports = [
     ./lsp.nix
-    ./plugins.nix
+    ./plugins
   ];
 
   programs.nixvim = {

@@ -1,0 +1,112 @@
+{ lib, pkgs, ... }:
+{
+  imports = [
+    ./blink-cmp.nix
+    ./bufferline.nix
+    ./lualine.nix
+    ./telescope.nix
+  ];
+
+  programs.nixvim = {
+    plugins = {
+      aerial = {
+        enable = true;
+      };
+      colorizer = {
+        enable = true;
+      };
+      comment = {
+        enable = true;
+      };
+      direnv = {
+        enable = true;
+        settings = {
+          direnv_auto = 1;
+          direnv_silent_load = 1;
+        };
+      };
+      git-conflict = {
+        enable = true;
+        settings = {
+          default_command = true;
+          default_mappings = false;
+        };
+      };
+      gitsigns = {
+        enable = true;
+      };
+      indent-blankline = {
+        enable = true;
+      };
+      lsp = {
+        enable = true;
+      };
+      lsp-format = {
+        enable = true;
+      };
+      neogit = {
+        enable = true;
+        lazyLoad = {
+          enable = true;
+          settings = {
+            cmd = "Neogit";
+            keys = [
+              {
+                __unkeyed-1 = "<leader>ng";
+                __unkeyed-3 = "<cmd>Neogit kind=tab<cr>";
+                desc = "Launch neogit";
+              }
+            ];
+          };
+        };
+      };
+      nix = {
+        enable = true;
+      };
+      noice = {
+        enable = true;
+        settings = {
+          presets = {
+            bottom_search = true;
+            command_palette = true;
+            long_message_to_split = true;
+            inc_rename = true;
+            lsp_doc_border = true;
+          };
+          lsp = {
+            hover.enabled = true;
+            message.enabled = true;
+            progress.enabled = true;
+            signature.enabled = false;
+          };
+          messages = {
+            enabled = true;
+          };
+        };
+      };
+      nvim-autopairs = {
+        enable = true;
+      };
+      todo-comments = {
+        enable = true;
+      };
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight = {
+            enable = true;
+          };
+          indent = {
+            enable = true;
+          };
+        };
+      };
+      treesitter-context = {
+        enable = true;
+      };
+      which-key = {
+        enable = true;
+      };
+    };
+  };
+}

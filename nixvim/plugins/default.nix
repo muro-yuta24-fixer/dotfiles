@@ -4,6 +4,7 @@
     ./blink-cmp.nix
     ./bufferline.nix
     ./lualine.nix
+    ./lspsaga.nix
     ./notify.nix
     ./telescope.nix
   ];

@@ -1,319 +1,6 @@
-# nixvim.nix
 { lib, pkgs, ... }:
 {
   programs.nixvim = {
-    enable = true;
-    enableMan = true;
-
-    dependencies = {
-      direnv.enable = true;
-      fd.enable = true;
-      fzf.enable = true;
-      git.enable = true;
-      nodejs.enable = true;
-      ripgrep.enable = true;
-      tree-sitter.enable = true;
-    };
-
-    opts = {
-      encoding = "utf-8";
-      fileencoding = "utf-8";
-      number = true;
-      relativenumber = true;
-      hlsearch = true;
-      backup = false;
-      cmdheight = 0;
-      laststatus = 0;
-      expandtab = true;
-      smarttab = true;
-      breakindent = true;
-      shiftwidth = 2;
-      tabstop = 2;
-      autoindent = true;
-      smartindent = true;
-      wrap = true;
-      backspace = "start,eol,indent";
-      cursorline = true;
-      termguicolors = true;
-      winblend = 0;
-      wildoptions = "pum";
-      pumblend = 5;
-      background = "light";
-      statusline = "─";
-    };
-
-    globals = {
-      mapleader = " ";
-    };
-
-    keymaps = [
-      # スペースのデフォルト動作を無効化
-      {
-        mode = [
-          "n"
-          "v"
-        ];
-        key = "<Space>";
-        action = "<NOP>";
-        options.silent = true;
-      }
-      # Emacs-like cursor in insert mode
-      {
-        mode = "i";
-        key = "<C-f>";
-        action = "<Right>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<C-b>";
-        action = "<Left>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<C-p>";
-        action = "<Up>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<C-n>";
-        action = "<Down>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<C-a>";
-        action = "<Home>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<C-e>";
-        action = "<End>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<A-f>";
-        action = "<C-Right>";
-        options.silent = true;
-      }
-      {
-        mode = "i";
-        key = "<A-b>";
-        action = "<C-Left>";
-        options.silent = true;
-      }
-
-      # Split
-      {
-        mode = "n";
-        key = "ss";
-        action = ":split<CR>";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "sv";
-        action = ":vsplit<CR>";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-
-      # Move windows
-      {
-        mode = "n";
-        key = "sh";
-        action = "<C-w>h";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "sj";
-        action = "<C-w>j";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "sk";
-        action = "<C-w>k";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "sl";
-        action = "<C-w>l";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-
-      # Tab
-      {
-        mode = "n";
-        key = "te";
-        action = ":tabedit %<CR>";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<Tab>";
-        action = "gt";
-      }
-      {
-        mode = "n";
-        key = "<S-Tab>";
-        action = "gT";
-      }
-
-      # Redo
-      {
-        mode = "n";
-        key = "U";
-        action = "<C-r>";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-
-      # Don't yank with x
-      {
-        mode = "n";
-        key = "x";
-        action = "\"_x";
-      }
-
-      # Save with q
-      {
-        mode = "n";
-        key = "q";
-        action = ":w<CR>";
-        options = {
-          silent = true;
-          noremap = true;
-        };
-      }
-
-      # Terminal escape
-      {
-        mode = "t";
-        key = "<Esc>";
-        action = "<C-\\><C-n>";
-      }
-    ];
-
-    performance = {
-      byteCompileLua = {
-        enable = true;
-      };
-    };
-
-    colorschemes.catppuccin = {
-      enable = true;
-      settings = {
-        disable_underline = true;
-      };
-    };
-
-    lsp = {
-      inlayHints = {
-        enable = true;
-      };
-      servers = {
-        basedpyright = {
-          enable = true;
-          activate = true;
-        };
-        biome = {
-          enable = true;
-          activate = true;
-        };
-        docker_compose_language_service = {
-          enable = true;
-          activate = true;
-        };
-        docker_language_server = {
-          enable = true;
-          activate = true;
-        };
-        eslint = {
-          enable = true;
-          activate = true;
-        };
-        nixd = {
-          enable = true;
-          activate = true;
-        };
-        roslyn_ls = {
-          enable = true;
-          activate = true;
-        };
-        ruff = {
-          enable = true;
-          activate = true;
-        };
-        rust_analyzer = {
-          enable = true;
-          activate = true;
-        };
-        tailwindcss = {
-          enable = true;
-          activate = true;
-        };
-        ts_ls = {
-          enable = true;
-          activate = true;
-        };
-      };
-      keymaps = [
-        {
-          key = "gd";
-          lspBufAction = "definition";
-        }
-        {
-          key = "gD";
-          lspBufAction = "references";
-        }
-        {
-          key = "gt";
-          lspBufAction = "type_definition";
-        }
-        {
-          key = "gi";
-          lspBufAction = "implementation";
-        }
-        {
-          key = "K";
-          lspBufAction = "hover";
-        }
-        {
-          key = "<leader>rn";
-          lspBufAction = "rename";
-        }
-      ];
-    };
-
     plugins = {
       aerial = {
         enable = true;
@@ -394,9 +81,9 @@
             };
             buffer_close_icon = "󰅖";
             modified_icon = "●";
-            close_icon = "";
-            left_trunc_marker = "";
-            right_trunc_marker = "";
+            close_icon = "";
+            left_trunc_marker = "";
+            right_trunc_marker = "";
             diagnostics = "nvim_lsp";
             offsets = { };
             color_icons = true;
@@ -450,12 +137,12 @@
             icons_enabled = true;
             theme = "auto";
             component_separators = {
-              left = "";
-              right = "";
+              left = "";
+              right = "";
             };
             section_separators = {
-              left = "";
-              right = "";
+              left = "";
+              right = "";
             };
             always_divide_middle = false;
             globalstatus = true;
@@ -494,10 +181,10 @@
                   "nvim_lsp"
                 ];
                 symbols = {
-                  error = " "; # nf-oct-bug
-                  warn = " "; # nf-oct-alert
-                  info = " "; # nf-oct-info
-                  hint = " "; # nf-oct-light_bulb
+                  error = " "; # nf-oct-bug
+                  warn = " "; # nf-oct-alert
+                  info = " "; # nf-oct-info
+                  hint = " "; # nf-oct-light_bulb
                 };
                 colored = true;
                 update_in_insert = true;
@@ -538,11 +225,11 @@
         enable = true;
         settings = {
           presets = {
-            bottom_search = true; # use a classic bottom cmdline for search
-            command_palette = true; # position the cmdline and popupmenu together
-            long_message_to_split = true; # long messages will be sent to a split
-            inc_rename = true; # enables an input dialog for inc-rename.nvim
-            lsp_doc_border = true; # add a border to hover docs and signature help
+            bottom_search = true;
+            command_palette = true;
+            long_message_to_split = true;
+            inc_rename = true;
+            lsp_doc_border = true;
           };
           lsp = {
             hover.enabled = true;
@@ -609,13 +296,11 @@
           defaults = {
             mappings = {
               i = {
-                # Mappings for insert mode
                 "<C-g>" = {
                   __raw = "require('telescope.actions').close";
                 };
               };
               n = {
-                # Mappings for normal mode
                 "q" = {
                   __raw = "require('telescope.actions').close";
                 };

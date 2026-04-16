@@ -35,30 +35,52 @@
       nixvim,
       ...
     }:
+    let
+      homeModules = [
+        catppuccin.homeModules.catppuccin
+        nixvim.homeModules.nixvim
+        ./home
+        ./nixvim
+      ];
+    in
     {
-      nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-wsl.nixosModules.default
-          home-manager.nixosModules.home-manager
+      nixosConfigurations = {
+        nixos-wsl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.default
+            home-manager.nixosModules.home-manager
+            ./system
+            ./hosts/nixos-wsl
+            {
+              nixpkgs.overlays = [ nix-claude-code.overlays.default ];
 
-          ./configuration.nix
-          # ./hardware-configuration.nix
-          ./ffmpeg.nix
-          {
-            nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.nixos = {
+                imports = homeModules ++ [
+                  ./home/desktop.nix
+                ];
+              };
+            }
+          ];
+        };
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.nixos = {
-              imports = [
-                catppuccin.homeModules.catppuccin
-                nixvim.homeModules.nixvim
-                ./home.nix
-                ./nixvim.nix
-              ];
-            };
-          }
-        ];
+        server = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            home-manager.nixosModules.home-manager
+            ./system
+            ./hosts/server
+            {
+              nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.nixos = {
+                imports = homeModules;
+              };
+            }
+          ];
+        };
       };
     };
 }

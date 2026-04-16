@@ -1,0 +1,28 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+{
+  imports = [
+    ./ffmpeg.nix
+  ];
+
+  networking.hostName = "nixos-wsl";
+
+  wsl.enable = true;
+  wsl.defaultUser = "nixos";
+
+  environment.systemPackages = with pkgs; [
+    docker-buildx
+    directx-headers
+  ];
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  users.users.nixos.extraGroups = [ "docker" ];
+}

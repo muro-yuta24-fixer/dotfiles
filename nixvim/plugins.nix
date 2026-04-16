@@ -180,12 +180,12 @@
                   "nvim_diagnostic"
                   "nvim_lsp"
                 ];
-                symbols = {
-                  error = " "; # nf-oct-bug
-                  warn = " "; # nf-oct-alert
-                  info = " "; # nf-oct-info
-                  hint = " "; # nf-oct-light_bulb
-                };
+                # symbols = {
+                #   error = " "; # nf-oct-bug
+                #   warn = " "; # nf-oct-alert
+                #   info = " "; # nf-oct-info
+                #   hint = " "; # nf-oct-light_bulb
+                # };
                 colored = true;
                 update_in_insert = true;
                 always_visible = true;

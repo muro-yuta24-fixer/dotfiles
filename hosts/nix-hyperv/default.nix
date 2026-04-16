@@ -6,23 +6,20 @@
 }:
 
 {
-  # VMにデプロイする際は hardware-configuration.nix を生成して追加する
-  # nixos-generate-config で生成可能
-  # imports = [
-  #   ./hardware-configuration.nix
-  # ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = "nix-hyperv";
-
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-  };
-
-  fileSystems."/" = {
-    device = "/dev/sda1";
-    fsType = "ext4";
-  };
 
   services.openssh = {
     enable = true;

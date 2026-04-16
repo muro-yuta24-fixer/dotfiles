@@ -16,6 +16,7 @@
       git.enable = true;
       nodejs.enable = true;
       ripgrep.enable = true;
+      rust-analyzer.enable = true;
       tree-sitter.enable = true;
     };
 

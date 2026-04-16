@@ -27,6 +27,16 @@
           direnv_silent_load = 1;
         };
       };
+      fidget = {
+        enable = true;
+        settings = {
+          notification = {
+            window = {
+              winblend = 0;
+            };
+          };
+        };
+      };
       git-conflict = {
         enable = true;
         settings = {

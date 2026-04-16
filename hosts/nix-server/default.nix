@@ -12,7 +12,7 @@
   #   ./hardware-configuration.nix
   # ];
 
-  networking.hostName = "server";
+  networking.hostName = "nix-server";
 
   boot.loader.grub = {
     enable = true;

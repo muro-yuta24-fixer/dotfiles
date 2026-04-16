@@ -65,12 +65,12 @@
           ];
         };
 
-        server = nixpkgs.lib.nixosSystem {
+        nix-server = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             home-manager.nixosModules.home-manager
             ./system
-            ./hosts/server
+            ./hosts/nix-server
             {
               nixpkgs.overlays = [ nix-claude-code.overlays.default ];
 

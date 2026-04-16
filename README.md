@@ -12,7 +12,7 @@ flake.nix                   # フレークのエントリポイント
 │   ├── nixos-wsl/          # WSL用ホスト設定
 │   │   ├── default.nix
 │   │   └── ffmpeg.nix
-│   └── server/             # サーバー用ホスト設定
+│   └── nix-server/         # サーバー用ホスト設定
 │       └── default.nix
 ├── home/                   # home-manager設定
 │   ├── default.nix         # 共通設定 (shell, git, cli, tmux, claude等)
@@ -27,7 +27,7 @@ flake.nix                   # フレークのエントリポイント
 利用可能なホスト:
 
 - `nixos-wsl` — WSL2上のNixOS (デスクトップツール込み)
-- `server` — 仮想マシン等で動かすサーバー用の最小構成
+- `nix-server` — 仮想マシン等で動かすサーバー用の最小構成
 
 ## NixOS-WSLへの導入
 
@@ -63,7 +63,7 @@ wsl --shutdown
 wsl -d NixOS
 ```
 
-## Serverへの導入
+## nix-serverへの導入
 
 仮想マシン上で動かすシンプルなサーバー向けの手順。
 
@@ -76,12 +76,12 @@ wsl -d NixOS
 VMに合わせたディスク/ブートローダー設定が必要なので、インストール時に生成される `/etc/nixos/hardware-configuration.nix` をこのリポジトリに取り込む。
 
 ```sh
-sudo nixos-generate-config --show-hardware-config > hosts/server/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > hosts/nix-server/hardware-configuration.nix
 ```
 
-### 3. hosts/server/default.nixの調整
+### 3. hosts/nix-server/default.nixの調整
 
-`hosts/server/default.nix` は暫定で `boot.loader.grub` と `fileSystems."/"` を定義しているので、以下の手順で置き換える:
+`hosts/nix-server/default.nix` は暫定で `boot.loader.grub` と `fileSystems."/"` を定義しているので、以下の手順で置き換える:
 
 1. 仮のブロック (`boot.loader.grub` と `fileSystems."/"`) を削除
 2. `imports` のコメントアウトを外して `./hardware-configuration.nix` を有効化
@@ -92,7 +92,7 @@ sudo nixos-generate-config --show-hardware-config > hosts/server/hardware-config
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "server";
+  networking.hostName = "nix-server";
 
   services.openssh = {
     enable = true;
@@ -112,7 +112,7 @@ SSHキー認証のみを許可する設定になっているので、事前に `
 nix-shell -p git
 git clone https://github.com/muro-yuta24-fixer/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-sudo nixos-rebuild switch --flake .#server
+sudo nixos-rebuild switch --flake .#nix-server
 ```
 
 ## よく使うコマンド

@@ -6,7 +6,7 @@
     setupLspCapabilities = true;
     settings = {
       keymap = {
-        preset = "default";
+        preset = "super-tab";
       };
       appearance = {
         nerd_font_variant = "normal";

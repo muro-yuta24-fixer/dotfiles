@@ -78,6 +78,9 @@
       nvim-autopairs = {
         enable = true;
       };
+      rainbow-delimiters = {
+        enable = true;
+      };
       todo-comments = {
         enable = true;
       };

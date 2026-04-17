@@ -51,7 +51,32 @@
           activate = true;
         };
       };
-      keymaps = [ ];
+      keymaps = [
+        {
+          key = "gd";
+          lspBufAction = "definition";
+        }
+        {
+          key = "gD";
+          lspBufAction = "references";
+        }
+        {
+          key = "gt";
+          lspBufAction = "type_definition";
+        }
+        {
+          key = "gi";
+          lspBufAction = "implementation";
+        }
+        {
+          key = "K";
+          lspBufAction = "hover";
+        }
+        {
+          key = "<leader>rn";
+          lspBufAction = "rename";
+        }
+      ];
     };
   };
 }

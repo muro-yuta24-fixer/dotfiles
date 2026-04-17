@@ -13,12 +13,12 @@
           lsp_doc_border = true;
         };
         lsp = {
-          hover.enabled = false;
-          message.enabled = false;
-          progress.enabled = false;
+          hover.enabled = true;
+          message.enabled = true;
+          progress.enabled = true;
           signature = {
-            enabled = false;
-            auto_open.enabled = false;
+            enabled = true;
+            auto_open.enabled = true;
           };
         };
         messages = {

@@ -26,16 +26,6 @@
           direnv_silent_load = 1;
         };
       };
-      fidget = {
-        enable = true;
-        settings = {
-          notification = {
-            window = {
-              winblend = 0;
-            };
-          };
-        };
-      };
       git-conflict = {
         enable = true;
         settings = {
@@ -57,19 +47,6 @@
       };
       neogit = {
         enable = true;
-        lazyLoad = {
-          enable = true;
-          settings = {
-            cmd = "Neogit";
-            keys = [
-              {
-                __unkeyed-1 = "<leader>ng";
-                __unkeyed-3 = "<cmd>Neogit kind=tab<cr>";
-                desc = "Launch neogit";
-              }
-            ];
-          };
-        };
       };
       nix = {
         enable = true;
@@ -97,7 +74,7 @@
           };
         };
       };
-      treesitter-context = {
+      ts-autotag = {
         enable = true;
       };
       web-devicons = {

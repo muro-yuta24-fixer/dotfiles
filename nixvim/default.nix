@@ -237,7 +237,9 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        disable_underline = true;
+        integrations = {
+          notify = true;
+        };
       };
     };
   };

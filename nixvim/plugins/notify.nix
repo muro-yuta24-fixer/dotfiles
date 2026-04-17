@@ -28,7 +28,9 @@
     };
     notify = {
       enable = true;
-      settings = { };
+      settings = {
+        background_colour = "#eff1f5";
+      };
     };
   };
 }

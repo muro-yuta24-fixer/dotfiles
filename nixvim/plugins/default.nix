@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./blink-cmp.nix
+    ./cmp.nix
     ./bufferline.nix
     ./lualine.nix
     ./lspsaga.nix

@@ -8,6 +8,7 @@
 {
   imports = [
     ./ffmpeg.nix
+    ./ollama.nix
   ];
 
   networking.hostName = "nixos-wsl";

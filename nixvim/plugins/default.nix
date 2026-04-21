@@ -57,9 +57,6 @@
       rainbow-delimiters = {
         enable = true;
       };
-      render-markdown = {
-        enable = true;
-      };
       todo-comments = {
         enable = true;
       };

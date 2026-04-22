@@ -53,6 +53,11 @@ in
       md = "mkdir";
       g = "git";
       v = "nvim";
+      gpv = "gh pr view -w";
+      gco = "gh pr checkout";
+      tm = "launch-tmux";
+      gl = "ghq-tmux";
+      da = "direnv allow";
     };
     syntaxHighlighting = {
       enable = true;
@@ -61,11 +66,6 @@ in
       enable = true;
       abbreviations = {
         dp = "docker compose";
-        gpv = "gh pr view -w";
-        gco = "gh pr checkout";
-        tm = "launch-tmux";
-        gl = "ghq-tmux";
-        da = "direnv allow";
       };
     };
   };

@@ -17,6 +17,9 @@
   wsl.defaultUser = "nixos";
 
   environment.systemPackages = with pkgs; [
+    lsof
+    nettools
+
     docker-compose
     docker-buildx
     directx-headers

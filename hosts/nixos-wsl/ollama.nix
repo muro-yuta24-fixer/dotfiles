@@ -7,7 +7,12 @@ let
   };
 in
 {
-  environment.systemPackages = [
-    unstable.ollama-cpu
-  ];
+  services.ollama = {
+    enable = true;
+    package = unstable.ollama-cpu;
+    openFirewall = true;
+    environmentVariables = {
+      OLLAMA_KEEP_ALIVE = "0";
+    };
+  };
 }

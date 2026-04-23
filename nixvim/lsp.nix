@@ -30,6 +30,10 @@
           enable = true;
           activate = true;
         };
+        oxlint = {
+          enable = true;
+          activate = true;
+        };
         roslyn_ls = {
           enable = true;
           activate = true;

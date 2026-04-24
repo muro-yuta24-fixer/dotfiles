@@ -12,5 +12,6 @@
     tmux.enable = true;
     lazygit.enable = true;
     nvim.enable = true;
+    alacritty.enable = true;
   };
 }

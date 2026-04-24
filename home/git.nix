@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  browser = "/mnt/c/Program\\ Files\\ \\(x86\\)/Microsoft/Edge/Application/msedge.exe";
-in
-
 {
   programs.git = {
     enable = true;
@@ -84,7 +80,6 @@ in
       git_protocol = "https";
       editor = "nvim";
       prompt = "enabled";
-      browser = browser;
     };
   };
 

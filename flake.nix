@@ -8,6 +8,11 @@
       url = "github:nix-community/NixOS-WSL/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +36,8 @@
       nixpkgs,
       nixpkgs-unstable,
       nixos-wsl,
+      nix-darwin,
+      nix-homebrew,
       home-manager,
       catppuccin,
       nix-claude-code,
@@ -62,6 +69,7 @@
               home-manager.users.nixos = {
                 imports = homeModules ++ [
                   ./home/desktop.nix
+                  ./home/wsl.nix
                 ];
               };
             }
@@ -80,6 +88,30 @@
               home-manager.useGlobalPkgs = true;
               home-manager.users.nixos = {
                 imports = homeModules;
+              };
+            }
+          ];
+        };
+      };
+
+      darwinConfigurations = {
+        yuta-macbook = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit nixpkgs-unstable; };
+          system = "aarch64-darwin";
+          modules = [
+            home-manager.darwinModules.home-manager
+            nix-homebrew.darwinModules.nix-homebrew
+            ./darwin
+            ./hosts/yuta-macbook
+            {
+              nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.yuta = {
+                imports = homeModules ++ [
+                  ./home/darwin.nix
+                ];
               };
             }
           ];

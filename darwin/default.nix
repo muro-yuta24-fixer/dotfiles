@@ -1,0 +1,30 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+{
+  imports = [ ../system/common.nix ];
+
+  system.stateVersion = 6;
+
+  system.primaryUser = "yuta";
+
+  nix.enable = true;
+
+  programs.zsh.enable = true;
+
+  users.users.yuta = {
+    name = "yuta";
+    home = "/Users/yuta";
+    shell = pkgs.zsh;
+  };
+
+  environment.systemPackages = with pkgs; [
+    wget
+    curl
+    vim
+  ];
+}

@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  browser = "/mnt/c/Program\\ Files\\ \\(x86\\)/Microsoft/Edge/Application/msedge.exe";
-in
-
 {
   programs.zsh = {
     enable = true;
@@ -45,8 +41,7 @@ in
       '';
     };
     sessionVariables = {
-      BROWSER = browser;
-      EDITOR = "vim";
+      EDITOR = "nvim";
     };
     shellAliases = {
       c = "cd";

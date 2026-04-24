@@ -11,6 +11,10 @@
     ./ollama.nix
   ];
 
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 0;
+  };
+
   networking.hostName = "nixos-wsl";
 
   wsl.enable = true;

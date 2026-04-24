@@ -12,6 +12,10 @@
     historyLimit = 100000000;
     focusEvents = true;
     extraConfig = ''
+      set -g allow-passthrough on
+      set -s extended-keys on
+      set -as terminal-features 'xterm*:extkeys'
+
       # Truecolor settings
       set -ag terminal-overrides ",xterm-256color:RGB"
 

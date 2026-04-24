@@ -24,6 +24,8 @@
     shell = pkgs.zsh;
   };
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

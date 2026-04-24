@@ -27,4 +27,8 @@
     curl
     vim
   ];
+
+  fonts.packages = with pkgs; [
+    plemoljp-nf
+  ];
 }

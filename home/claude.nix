@@ -20,10 +20,10 @@
         "microsoft-docs@claude-plugins-official" = true;
       };
       language = "Japanese";
-      autoUpdatesChannel = "stable";
       env = {
         EDITOR = "nvim";
         VISUAL = "nvim";
+        CLAUDE_CODE_NO_FLICKER = "1";
       };
     };
   };

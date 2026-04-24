@@ -1,22 +1,29 @@
 # dotfiles
 
-NixOSでシステムとhome-managerを管理するための設定ファイル群。
+NixOS / nix-darwinでシステムとhome-managerを管理するための設定ファイル群。
 
 ## 構成
 
 ```
 flake.nix                   # フレークのエントリポイント
 ├── system/
-│   └── default.nix         # 全ホスト共通のシステム設定
+│   ├── common.nix          # NixOS/Darwin共通のNix本体設定 (lix, flakes, allowUnfree)
+│   └── default.nix         # NixOS専用のシステム設定
+├── darwin/
+│   └── default.nix         # nix-darwin共通のシステム設定
 ├── hosts/
 │   ├── nixos-wsl/          # WSL用ホスト設定
 │   │   ├── default.nix
 │   │   └── ffmpeg.nix
-│   └── nix-hyperv/         # サーバー用ホスト設定
+│   ├── nix-hyperv/         # サーバー用ホスト設定
+│   │   └── default.nix
+│   └── yuta-macbook/       # M3 MacBook Air用ホスト設定 (nix-homebrew含む)
 │       └── default.nix
 ├── home/                   # home-manager設定
 │   ├── default.nix         # 共通設定 (shell, git, cli, tmux, claude等)
 │   ├── desktop.nix         # デスクトップ専用 (google-chrome, yt-dlp)
+│   ├── wsl.nix             # WSL専用 (EdgeをBROWSERに設定)
+│   ├── darwin.nix          # Darwin専用 (Alacrittyなど)
 │   └── ...
 └── nixvim/                 # Neovim設定
     ├── default.nix
@@ -28,6 +35,7 @@ flake.nix                   # フレークのエントリポイント
 
 - `nixos-wsl` — WSL2上のNixOS (デスクトップツール込み)
 - `nix-hyperv` — 仮想マシン等で動かすサーバー用の最小構成
+- `yuta-macbook` — M3 MacBook Air (nix-darwin + nix-homebrew)
 
 ## NixOS-WSLへの導入
 
@@ -115,23 +123,83 @@ cd ~/dotfiles
 sudo nixos-rebuild switch --flake .#nix-hyperv
 ```
 
+## yuta-macbook (nix-darwin) への導入
+
+M3 MacBook Air など Apple Silicon のMacにnix-darwinをセットアップする手順。
+
+### 1. 事前準備
+
+macOSの初期セットアップ後、ローカルユーザー `yuta` でログインした状態から始める。Command Line Toolsを入れておく。
+
+```sh
+xcode-select --install
+```
+
+### 2. Nixのインストール
+
+[Determinate Systems Nix Installer](https://install.determinate.systems/) を使うとdaemon構成 + flakes有効化済みで導入できる。
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+インストール完了後、新しいシェルを開き直す。
+
+### 3. リポジトリをクローン
+
+```sh
+nix run nixpkgs#git -- clone https://github.com/muro-yuta24-fixer/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+```
+
+### 4. 初回の設定適用
+
+nix-darwinは初回だけ `nix run` 経由で切り替える。
+
+```sh
+nix run nix-darwin/nix-darwin-25.11 -- switch --flake .#yuta-macbook
+```
+
+2回目以降は `darwin-rebuild` が使える。
+
+```sh
+darwin-rebuild switch --flake .#yuta-macbook
+```
+
+### 5. Homebrew連携について
+
+`nix-homebrew` が有効化されているため、初回switchでHomebrew自体は自動インストールされる。Cask/Formulaは `hosts/yuta-macbook/default.nix` の `homebrew.casks` `homebrew.brews` に宣言的に追加してswitchし直す。
+
+### 6. Lixのdaemonについて
+
+初回switch後、Nix daemonが旧バージョンのまま動作していることがある。その場合は以下でdaemonを再起動する。
+
+```sh
+sudo launchctl kickstart -k system/org.nixos.nix-daemon
+```
+
 ## よく使うコマンド
 
 ```sh
-# 設定の検証 (ビルドできるかだけ確認)
+# 設定の検証 (評価エラーの確認)
 nix flake check
 
 # フレーク入力の更新
 nix flake update
 
-# 設定を適用
+# NixOSの設定を適用
 sudo nixos-rebuild switch --flake .#<host>
 
-# 一時的に試す (再起動で元に戻る)
+# NixOSで一時的に試す (再起動で元に戻る)
 sudo nixos-rebuild test --flake .#<host>
+
+# Darwinの設定を適用
+darwin-rebuild switch --flake .#<host>
 ```
 
 ## 新しいホストの追加
+
+### NixOSホスト
 
 1. `hosts/<hostname>/default.nix` を作成し、ホスト固有の設定を記述
 2. `flake.nix` の `nixosConfigurations` に追加
@@ -149,6 +217,33 @@ sudo nixos-rebuild test --flake .#<host>
       home-manager.useGlobalPkgs = true;
       home-manager.users.nixos = {
         imports = homeModules;  # デスクトップ用途なら ++ [ ./home/desktop.nix ]
+      };
+    }
+  ];
+};
+```
+
+### Darwinホスト
+
+1. `hosts/<hostname>/default.nix` を作成し、ホスト固有の設定 (hostname, nix-homebrew, homebrew, system.defaults等) を記述
+2. `flake.nix` の `darwinConfigurations` に追加
+
+```nix
+<hostname> = nix-darwin.lib.darwinSystem {
+  specialArgs = { inherit nixpkgs-unstable; };
+  system = "aarch64-darwin";
+  modules = [
+    home-manager.darwinModules.home-manager
+    nix-homebrew.darwinModules.nix-homebrew
+    ./darwin
+    ./hosts/<hostname>
+    {
+      nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.<user> = {
+        imports = homeModules ++ [ ./home/darwin.nix ];
       };
     }
   ];

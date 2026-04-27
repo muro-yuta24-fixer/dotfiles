@@ -9,6 +9,9 @@
     enable = true;
     enableMan = true;
 
+    # TODO: Darwinでのdirenvのビルドエラー回避
+    nixpkgs.useGlobalPackages = true;
+
     dependencies = {
       direnv.enable = true;
       fd.enable = true;

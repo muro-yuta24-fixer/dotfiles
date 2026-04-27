@@ -22,6 +22,12 @@
     shell = pkgs.zsh;
   };
 
+  nixpkgs.overlays = [
+    (_: prev: {
+      direnv = prev.direnv.overrideAttrs (_: { doCheck = false; });
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     wget
     curl

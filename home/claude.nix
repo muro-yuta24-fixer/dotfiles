@@ -20,6 +20,7 @@
         "microsoft-docs@claude-plugins-official" = true;
       };
       language = "Japanese";
+      theme = "light";
       env = {
         EDITOR = "nvim";
         VISUAL = "nvim";

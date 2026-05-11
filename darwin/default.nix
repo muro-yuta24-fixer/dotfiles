@@ -36,6 +36,10 @@
     vim
   ];
 
+  environment.systemPath = [
+    "/opt/podman/bin"
+  ];
+
   fonts.packages = with pkgs; [
     plemoljp-nf
   ];

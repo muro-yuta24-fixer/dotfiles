@@ -35,6 +35,7 @@
       personality = "pragmatic";
       features = {
         undo = true;
+        remote_connections = true;
       };
     };
   };

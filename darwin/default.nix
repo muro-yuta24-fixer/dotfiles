@@ -34,10 +34,10 @@
     wget
     curl
     vim
-  ];
 
-  environment.systemPath = [
-    "/opt/podman/bin"
+    podman
+    podman-compose
+    vfkit
   ];
 
   fonts.packages = with pkgs; [

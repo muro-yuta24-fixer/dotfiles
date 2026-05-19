@@ -13,4 +13,9 @@
       };
     };
   };
+
+  xdg.configFile."containers/containers.conf".text = ''
+    [machine]
+    provider = "applehv"
+  '';
 }

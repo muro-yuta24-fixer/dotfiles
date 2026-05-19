@@ -53,6 +53,7 @@
       tm = "launch-tmux";
       gl = "ghq-tmux";
       da = "direnv allow";
+      docker = "podman";
     };
     syntaxHighlighting = {
       enable = true;

@@ -6,6 +6,10 @@
 }:
 
 {
+  imports = [
+    ./ffmpeg.nix
+  ];
+
   networking.hostName = "yuta-macbook";
   networking.computerName = "yuta-macbook";
 

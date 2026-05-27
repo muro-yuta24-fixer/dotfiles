@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       font = {
-        size = 13;
+        size = 12;
         normal.family = "PlemolJP Console NF";
         bold.family = "PlemolJP Console NF";
         italic.family = "PlemolJP Console NF";

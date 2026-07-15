@@ -14,14 +14,14 @@
           enable = true;
           activate = true;
         };
-        docker_compose_language_service = {
-          enable = true;
-          activate = true;
-        };
-        docker_language_server = {
-          enable = true;
-          activate = true;
-        };
+        # docker_compose_language_service = {
+        #   enable = true;
+        #   activate = true;
+        # };
+        # docker_language_server = {
+        #   enable = true;
+        #   activate = true;
+        # };
         eslint = {
           enable = true;
           activate = true;

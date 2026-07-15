@@ -1,6 +1,0 @@
-require("yuta.base")
-require("yuta.maps")
-require("yuta.plugins")
-require("yuta.autocmd")
-require("yuta.command")
-require("yuta.clipboard")

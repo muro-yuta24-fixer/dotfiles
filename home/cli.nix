@@ -60,10 +60,10 @@
 
   programs.btop = {
     enable = true;
+    package = null;
     settings = {
       update_ms = 100;
       mem_graphs = false;
-      show_disks = false;
     };
   };
 

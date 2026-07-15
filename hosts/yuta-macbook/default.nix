@@ -27,7 +27,9 @@
       autoUpdate = true;
       cleanup = "zap";
     };
-    brews = [ ];
+    brews = [
+      "btop"
+    ];
     casks = [ ];
     masApps = { };
   };

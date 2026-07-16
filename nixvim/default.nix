@@ -31,7 +31,6 @@
       hlsearch = true;
       backup = false;
       cmdheight = 0;
-      laststatus = 0;
       expandtab = true;
       smarttab = true;
       breakindent = true;
@@ -47,7 +46,10 @@
       wildoptions = "pum";
       pumblend = 5;
       background = "light";
-      statusline = "─";
+    };
+
+    clipboard = {
+      register = "unnamedplus";
     };
 
     globals = {

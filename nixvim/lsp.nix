@@ -6,6 +6,13 @@
         enable = true;
       };
       servers = {
+        # 全サーバ共通の設定。neovim が vim.tbl_deep_extend で各サーバにマージする。
+        # blink-cmp の capabilities を全 LSP に伝播させる。
+        "*" = {
+          config = {
+            capabilities.__raw = ''require("blink-cmp").get_lsp_capabilities()'';
+          };
+        };
         basedpyright = {
           enable = true;
           activate = true;

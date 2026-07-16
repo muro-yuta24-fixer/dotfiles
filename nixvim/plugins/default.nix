@@ -39,7 +39,7 @@
       indent-blankline = {
         enable = true;
       };
-      lsp = {
+      lspconfig = {
         enable = true;
       };
       lsp-format = {

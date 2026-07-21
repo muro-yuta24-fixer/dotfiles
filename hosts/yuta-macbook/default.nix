@@ -11,8 +11,8 @@
     ./ffmpeg.nix
   ];
 
-  networking.hostName = "yuta-macbook";
-  networking.computerName = "yuta-macbook";
+  networking.hostName = "ymuro-macbook";
+  networking.computerName = "ymuro-macbook";
 
   nix-homebrew = {
     enable = true;

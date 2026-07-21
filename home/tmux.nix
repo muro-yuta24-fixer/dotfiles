@@ -28,6 +28,8 @@
       set-option -g set-titles on
       set-option -g set-titles-string "#T"
 
+      set -g pane-border-status top
+
       set -g mode-style "fg=blue,bg=#ccd0da"
 
       set -g message-style "fg=blue,bg=#ccd0da"

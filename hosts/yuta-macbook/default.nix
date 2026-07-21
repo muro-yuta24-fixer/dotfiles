@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ./database.nix
     ./ffmpeg.nix
   ];
 

@@ -47,13 +47,14 @@
   };
 
   programs.mise = {
-    enable = true;
+    # enable = true;
+    enable = false;
     enableZshIntegration = true;
   };
 
   programs.direnv = {
     enable = true;
-    mise.enable = true;
+    # mise.enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };

@@ -46,6 +46,9 @@
       init = {
         defaultBranch = "main";
       };
+      worktree = {
+        guessRemote = true;
+      };
       ghq = {
         root = "~/.ghq";
       };

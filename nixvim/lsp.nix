@@ -41,6 +41,10 @@
           enable = true;
           activate = true;
         };
+        oxfmt = {
+          enable = true;
+          activate = true;
+        };
         roslyn_ls = {
           enable = true;
           activate = true;

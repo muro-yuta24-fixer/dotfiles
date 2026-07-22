@@ -18,4 +18,6 @@
     [machine]
     provider = "applehv"
   '';
+
+  xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
 }

@@ -27,6 +27,9 @@
         CLAUDE_CODE_NO_FLICKER = "1";
       };
     };
+    skills = {
+      herdr = ./skills/herdr.md;
+    };
   };
 
   programs.codex = {

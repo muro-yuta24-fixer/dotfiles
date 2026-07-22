@@ -30,6 +30,7 @@
     };
     brews = [
       "btop"
+      "herdr"
     ];
     casks = [ ];
     masApps = { };

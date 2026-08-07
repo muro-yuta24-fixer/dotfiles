@@ -32,7 +32,9 @@
       "btop"
       "herdr"
     ];
-    casks = [ ];
+    casks = [
+      "dbeaver-community"
+    ];
     masApps = { };
   };
 

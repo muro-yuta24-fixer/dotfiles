@@ -11,6 +11,12 @@
         italic.family = "PlemolJP Console NF";
         bold_italic.family = "PlemolJP Console NF";
       };
+      window = {
+        dimensions = {
+          columns = 160;
+          lines = 40;
+        };
+      };
     };
   };
 

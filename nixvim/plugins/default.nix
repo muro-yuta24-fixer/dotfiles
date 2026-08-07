@@ -27,7 +27,7 @@
         };
       };
       git-conflict = {
-        enable = true;
+        enable = false;
         settings = {
           default_command = true;
           default_mappings = false;

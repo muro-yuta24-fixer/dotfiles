@@ -29,6 +29,7 @@
       set-option -g set-titles-string "#T"
 
       set -g pane-border-status top
+      set -g pane-border-format " #T "
 
       set -g mode-style "fg=blue,bg=#ccd0da"
 

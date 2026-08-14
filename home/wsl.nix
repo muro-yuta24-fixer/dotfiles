@@ -5,6 +5,10 @@ let
 in
 
 {
+  imports = [
+    ./herdr.nix
+  ];
+
   home.sessionVariables.BROWSER = browser;
 
   programs.zsh.sessionVariables.BROWSER = browser;

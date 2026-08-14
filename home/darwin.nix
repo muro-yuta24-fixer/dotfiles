@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./herdr.nix
+  ];
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -24,6 +28,4 @@
     [machine]
     provider = "applehv"
   '';
-
-  xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
 }

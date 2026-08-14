@@ -29,7 +29,6 @@
     };
     brews = [
       "btop"
-      "herdr"
     ];
     casks = [
       "dbeaver-community"

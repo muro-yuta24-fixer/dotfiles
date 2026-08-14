@@ -31,6 +31,9 @@
     nixvim = {
       url = "github:nix-community/nixvim/nixos-26.05";
     };
+    herdr = {
+      url = "github:herdrdev/herdr";
+    };
   };
 
   outputs =
@@ -45,6 +48,7 @@
       catppuccin,
       nix-claude-code,
       nixvim,
+      herdr,
       ...
     }:
     let
@@ -66,7 +70,10 @@
             ./system
             ./hosts/nixos-wsl
             {
-              nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+              nixpkgs.overlays = [
+                nix-claude-code.overlays.default
+                (final: prev: { herdr = herdr.packages.${prev.stdenv.hostPlatform.system}.herdr; })
+              ];
 
               home-manager.useGlobalPkgs = true;
               home-manager.users.nixos = {
@@ -107,7 +114,10 @@
             ./darwin
             ./hosts/yuta-macbook
             {
-              nixpkgs.overlays = [ nix-claude-code.overlays.default ];
+              nixpkgs.overlays = [
+                nix-claude-code.overlays.default
+                (final: prev: { herdr = herdr.packages.${prev.stdenv.hostPlatform.system}.herdr; })
+              ];
 
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

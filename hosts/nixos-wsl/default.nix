@@ -27,6 +27,8 @@
     docker-compose
     docker-buildx
     directx-headers
+
+    btop
   ];
 
   virtualisation.docker = {

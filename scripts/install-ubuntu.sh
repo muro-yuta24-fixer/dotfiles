@@ -1,5 +1,13 @@
 #!/bin/bash
 
+######################
+# Install Fish shell #
+######################
+
+sudo add-apt-repository ppa:fish-shell/release-4
+sudo apt update
+sudo apt install -y fish
+
 ################
 # Install mise #
 ################

@@ -6,3 +6,4 @@
 /config/config/herdr/herdr-server.log
 /config/config/herdr/release-notes.json
 /config/config/herdr/session.json
+/config/config/mise/config.local.toml

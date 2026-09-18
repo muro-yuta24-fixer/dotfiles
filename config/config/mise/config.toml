@@ -1,5 +1,4 @@
 [tools]
-"cargo:alacritty" = "latest"
 "cargo:bat" = "latest"
 "cargo:du-dust" = "latest"
 "cargo:fd-find" = "latest"

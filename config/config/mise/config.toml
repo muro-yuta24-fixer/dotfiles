@@ -15,6 +15,7 @@
 go = "latest"
 "go:github.com/jesseduffield/lazygit" = "latest"
 node = "lts"
+"npm:@anthropic-ai/claude-code" = "latest"
 "pypi:yt-dlp" = "latest"
 python = "latest"
 rust = "latest"

@@ -8,7 +8,6 @@
 {
   imports = [
     ./ffmpeg.nix
-    ./ollama.nix
   ];
 
   boot.kernel.sysctl = {

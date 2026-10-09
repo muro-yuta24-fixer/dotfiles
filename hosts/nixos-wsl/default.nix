@@ -16,8 +16,13 @@
 
   networking.hostName = "nixos-wsl";
 
-  wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl = {
+    enable = true;
+    defaultUser = "nixos";
+    interop = {
+      includePath = false;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     lsof

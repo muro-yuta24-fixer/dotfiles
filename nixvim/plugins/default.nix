@@ -3,6 +3,7 @@
   imports = [
     ./cmp.nix
     ./bufferline.nix
+    ./dap.nix
     ./lualine.nix
     ./notify.nix
     ./telescope.nix

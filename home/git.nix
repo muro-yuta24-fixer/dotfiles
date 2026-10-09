@@ -63,6 +63,11 @@
     ];
   };
 
+  programs.git-worktree-switcher = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.delta = {
     enable = true;
     enableGitIntegration = true;

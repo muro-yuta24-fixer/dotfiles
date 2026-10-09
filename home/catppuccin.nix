@@ -13,5 +13,7 @@
     lazygit.enable = true;
     nvim.enable = true;
     alacritty.enable = true;
+    gh-dash.enable = true;
+    gitui.enable = true;
   };
 }

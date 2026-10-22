@@ -9,6 +9,7 @@ lines = 40
 decorations_theme_variant = "Light"
 
 [font.normal]
+# family = "HackGen Console NF"
 family = "PlemolJP Console NF"
 style = "Text"
 
@@ -16,7 +17,7 @@ style = "Text"
 style = "Text Italic"
 
 [font]
-size = 12.5
+size = 12
 
 [colors.primary]
 background = "#eff1f5"

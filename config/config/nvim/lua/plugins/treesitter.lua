@@ -2,6 +2,7 @@ return {
   {
     "romus204/tree-sitter-manager.nvim",
     lazy = false,
+    enabled = false,
     opts = {
       auto_install = true,
       ensure_installed = "all",
@@ -11,19 +12,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
-    enabled = false,
     opts = {},
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    enabled = false,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "VeryLazy",
     opts = {},
   },
   {
     "stevearc/aerial.nvim",
-    enabled = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",

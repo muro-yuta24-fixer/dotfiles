@@ -1,8 +1,14 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "v0.2.0",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    version = "*",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
     keys = {
       { ";f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
       { ";g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
@@ -10,7 +16,17 @@ return {
       { ";c", "<cmd>Telescope command_history<cr>", desc = "Telescope command history" },
     },
     opts = function()
+      local actions = require("telescope.actions")
+
       return {
+        extensions = {
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+          },
+        },
         defaults = {
           mappings = {
             i = {
@@ -33,7 +49,7 @@ return {
           buffers = {
             mappings = {
               i = {
-                ["<C-d>"] = require("telescope.actions").delete_buffer + require("telescope.actions").move_to_top,
+                ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
               },
             },
           },

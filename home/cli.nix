@@ -71,4 +71,8 @@
   programs.pandoc = {
     enable = true;
   };
+
+  programs.jq = {
+    enable = true;
+  };
 }

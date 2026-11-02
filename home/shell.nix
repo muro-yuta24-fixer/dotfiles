@@ -28,6 +28,17 @@
           tmux new-session -A -s "$1"
         fi
       '';
+      # ghq-tmux = ''
+      #   local repository="$(ghq root)/$(ghq list | fzf --layout=reverse)"
+      #
+      #   if [[ -z "$repository" || "$repository" == "$(ghq root)/" ]]; then
+      #     return 0
+      #   fi
+      #
+      #   local session_name="''${repository##*/}"
+      #
+      #   tmux new-session -A -s "$session_name" -c "$repository"
+      # '';
       ghq-tmux = ''
         local repository="$(ghq root)/$(ghq list | fzf --layout=reverse)"
 
@@ -35,9 +46,7 @@
           return 0
         fi
 
-        local session_name="''${repository##*/}"
-
-        tmux new-session -A -s "$session_name" -c "$repository"
+        cd $repository
       '';
     };
     sessionVariables = {

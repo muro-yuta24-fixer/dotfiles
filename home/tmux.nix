@@ -20,10 +20,10 @@
       set -ag terminal-overrides ",xterm-256color:RGB"
 
       # Split window vertical
-      bind h split-window -h
+      bind v split-window -h
 
       # Split window horizontal
-      bind v split-window -v
+      bind - split-window -v
 
       set-option -g set-titles on
       set-option -g set-titles-string "#T"

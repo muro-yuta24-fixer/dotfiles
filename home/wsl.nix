@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  browser = "/mnt/c/Program\\ Files\\ \\(x86\\)/Microsoft/Edge/Application/msedge.exe";
+  browser = "/mnt/c/Users/室雄太/AppData/Local/Vivaldi/Application/vivaldi.exe";
 in
 
 {

@@ -17,7 +17,9 @@
         "claude-code-setup@claude-plugins-official" = true;
         "feature-dev@claude-plugins-official" = true;
         "gopls-lsp@claude-plugins-official" = true;
-        "microsoft-docs@claude-plugins-official" = true;
+        "claude-md-management@claude-plugins-official" = true;
+        "security-guidance@claude-plugins-official" = true;
+        "claude-security@claude-plugins-official" = true;
       };
       language = "Japanese";
       theme = "light";

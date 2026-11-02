@@ -8,6 +8,7 @@
 {
   imports = [
     ./ffmpeg.nix
+    ./database.nix
   ];
 
   boot.kernel.sysctl = {

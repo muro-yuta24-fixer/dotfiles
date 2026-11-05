@@ -2,8 +2,12 @@ vim.lsp.inlay_hint.enable(true)
 
 -- Diagnostics display
 vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = { current_line = true },
+  virtual_text = {
+    current_line = true,
+    source = true,
+    hl_mode = "blend",
+  },
+  virtual_lines = false,
   float = { source = "if_many", border = "rounded" },
   severity_sort = true,
 })

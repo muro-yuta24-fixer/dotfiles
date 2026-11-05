@@ -212,17 +212,6 @@ return {
     },
   },
   {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-    },
-  },
-  {
     "folke/lazydev.nvim",
     ft = { "lua" },
     opts = {

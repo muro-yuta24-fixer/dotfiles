@@ -45,6 +45,8 @@ if status is-interactive
 
     abbr da "direnv allow"
 
+    abbr hwcb "herdr worktree create --branch"
+
     if type acpi >/dev/null 2>&1
         alias bi 'acpi -bi'
     end

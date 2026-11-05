@@ -45,6 +45,7 @@
 	rv = revert
 	wt = worktree
   mg = merge --no-edit
+	reset-local = reset --hard origin/HEAD
 [pull]
 	rebase = false
 [filter "lfs"]

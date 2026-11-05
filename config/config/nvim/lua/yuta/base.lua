@@ -17,6 +17,7 @@ vim.opt.cmdheight = 0
 vim.opt.laststatus = 0
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
+vim.opt.updatetime = 200 -- CursorHold delay (used for LSP document highlight)
 vim.opt.backupskip = "/etc/*,/usr/bin/*,/usr/share/*,/usr/src/*"
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true

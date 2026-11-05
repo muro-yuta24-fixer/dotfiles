@@ -115,16 +115,6 @@ return {
     },
   },
   {
-    "norcalli/nvim-colorizer.lua",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = { "*" },
-  },
-  {
-    "m-demare/hlargs.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "VeryLazy",
     main = "ibl",
@@ -145,16 +135,5 @@ return {
       vim.o.timeoutlen = 300
     end,
     opts = {},
-  },
-  {
-    "RRethy/vim-illuminate",
-    event = "BufRead",
-    opts = {
-      providers = {
-        "lsp",
-        "treesitter",
-      },
-    },
-    config = function(_, opts) require("illuminate").configure(opts) end,
   },
 }

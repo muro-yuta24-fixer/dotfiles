@@ -82,13 +82,6 @@ return {
         },
       })
 
-      -- configure_lsp("csharp_ls", {
-      --   handlers = {
-      --     ["textDocument/definition"] = require("csharpls_extended").handler,
-      --     ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-      --   },
-      -- })
-
       configure_lsp("basedpyright", {
         settings = {
           python = {
@@ -109,20 +102,6 @@ return {
     opts = {
       auto_update = true,
       run_on_start = true,
-    },
-  },
-  {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
-    priority = 1000, -- needs to be loaded in first
-    opts = {
-      preset = "classic",
-      options = {
-        show_source = {
-          enabled = true,
-          if_many = true,
-        },
-      },
     },
   },
   {
@@ -192,22 +171,6 @@ return {
     end,
   },
   {
-    "folke/trouble.nvim",
-    event = "LspAttach",
-    keys = {
-      { "<leader>tr", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Show workspace diagnostics" },
-    },
-    opts = {
-      position = "bottom",
-      height = 20,
-      action_keys = {
-        close = { "q", "<esc>" },
-        cancel = {},
-      },
-      use_diagnostics_signs = true,
-    },
-  },
-  {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     opts = {
@@ -262,17 +225,12 @@ return {
   {
     "folke/lazydev.nvim",
     ft = { "lua" },
-    dependencies = {
-      { "Bilal2453/luvit-meta", lazy = true },
-    },
     opts = {
       library = {
         "lazy.nvim",
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
-  },
-  {
-    "Decodetalkers/csharpls-extended-lsp.nvim",
   },
   {
     "seblyng/roslyn.nvim",

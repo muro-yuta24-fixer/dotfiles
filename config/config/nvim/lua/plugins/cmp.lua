@@ -129,9 +129,6 @@ return {
     },
   },
   {
-    "onsails/lspkind.nvim",
-  },
-  {
     "Dynge/gitmoji.nvim",
   },
 }

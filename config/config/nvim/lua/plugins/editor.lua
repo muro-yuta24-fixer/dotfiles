@@ -23,11 +23,6 @@ return {
     config = true,
   },
   {
-    "numToStr/Comment.nvim",
-    lazy = false,
-    opts = {},
-  },
-  {
     "smoka7/hop.nvim",
     version = "*",
     keys = {

@@ -122,15 +122,10 @@ local function request_symbols(bufnr)
 end
 
 --- (line, character) <= (line, character)
-local function pos_le(a_line, a_char, b_line, b_char)
-  return a_line < b_line or (a_line == b_line and a_char <= b_char)
-end
+local function pos_le(a_line, a_char, b_line, b_char) return a_line < b_line or (a_line == b_line and a_char <= b_char) end
 
 ---@param range lsp.Range
-local function range_contains(range, line, char)
-  return pos_le(range.start.line, range.start.character, line, char)
-      and pos_le(line, char, range["end"].line, range["end"].character)
-end
+local function range_contains(range, line, char) return pos_le(range.start.line, range.start.character, line, char) and pos_le(line, char, range["end"].line, range["end"].character) end
 
 --- Symbols enclosing the cursor, outermost first.
 ---@param symbols lsp.DocumentSymbol[]|lsp.SymbolInformation[]
@@ -237,8 +232,7 @@ local function lsp()
   end
   if #items > 0 then
     table.sort(items)
-    return ("%%#StatusLineLspProgress#%s %s"):format(spinner[spinner_index], items[1])
-        .. (#items > 1 and (" +" .. (#items - 1)) or "")
+    return ("%%#StatusLineLspProgress#%s %s"):format(spinner[spinner_index], items[1]) .. (#items > 1 and (" +" .. (#items - 1)) or "")
   end
 
   -- Otherwise list attached clients
@@ -259,11 +253,7 @@ function M.render()
       table.insert(left, part)
     end
   end
-  return " "
-      .. table.concat(left, "%#StatusLineSep#" .. sep)
-      .. "%<%="
-      .. lsp()
-      .. " "
+  return " " .. table.concat(left, "%#StatusLineSep#" .. sep) .. "%<%=" .. lsp() .. " "
 end
 
 local function start_spinner()

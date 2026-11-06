@@ -12,7 +12,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 ui2.enable({
   msg = {
-    -- cmdheight=0: show messages and vim.notify() in the ephemeral message window
     targets = "msg",
     msg = {
       timeout = 3000,

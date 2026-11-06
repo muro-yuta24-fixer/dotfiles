@@ -14,7 +14,7 @@ vim.opt.hlsearch = true
 vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 0
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.updatetime = 200 -- CursorHold delay (used for LSP document highlight)
@@ -55,7 +55,3 @@ vim.opt.background = "light"
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- clear statusline
-vim.opt.statusline = "─"
-vim.opt.fillchars:append({ stl = "─", stlnc = "─" })

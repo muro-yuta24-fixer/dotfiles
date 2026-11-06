@@ -7,7 +7,7 @@ vim.opt.fileencoding = "utf-8"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.shell = require("utils.exec").shell()
+vim.opt.shell = "fish"
 
 vim.opt.title = true
 vim.opt.hlsearch = true

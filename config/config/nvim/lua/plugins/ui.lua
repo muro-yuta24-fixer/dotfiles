@@ -24,28 +24,6 @@ return {
     init = function() vim.cmd("colorscheme catppuccin-nvim") end,
   },
   {
-    "mvllow/modes.nvim",
-    tag = "v0.2.1",
-    lazy = false,
-    opts = function()
-      local palette = require("catppuccin.palettes").get_palette()
-
-      return {
-        colors = {
-          bg = "", -- Optional bg param, defaults to Normal hl group
-          copy = palette.yellow,
-          delete = palette.red,
-          change = palette.red, -- Optional param, defaults to delete
-          format = palette.flamingo,
-          insert = palette.blue,
-          replace = palette.teal,
-          select = palette.mauve, -- Optional param, defaults to visual
-          visual = palette.mauve,
-        },
-      }
-    end,
-  },
-  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },

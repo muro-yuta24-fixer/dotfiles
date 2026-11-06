@@ -17,7 +17,6 @@ return {
           markdown = { "path" },
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
           gitcommit = { "gitmoji", "path" },
-          sagarename = {},
         },
         providers = {
           lazydev = {

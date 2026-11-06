@@ -45,3 +45,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
   end,
 })
+
+-- LSP keymaps (replaces lspsaga.nvim)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
+  callback = function(ev)
+    local function map(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { buffer = ev.buf, desc = desc }) end
+
+    map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover doc")
+    map("gd", vim.lsp.buf.definition, "Goto definition")
+    map("gD", vim.lsp.buf.type_definition, "Goto type definition")
+    map("<leader>rn", vim.lsp.buf.rename, "Rename")
+    map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+    map("<leader>e", function() vim.diagnostic.open_float() end, "Show line diagnostics")
+    map("<C-j>", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Goto next diagnostics")
+  end,
+})

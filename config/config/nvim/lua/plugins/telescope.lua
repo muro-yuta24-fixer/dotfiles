@@ -14,6 +14,8 @@ return {
       { ";g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
       { ";b", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { ";c", "<cmd>Telescope command_history<cr>", desc = "Telescope command history" },
+      { "<leader>lf", "<cmd>Telescope lsp_references<cr>", desc = "LSP references" },
+      { "<leader>li", "<cmd>Telescope lsp_implementations<cr>", desc = "LSP implementations" },
     },
     opts = function()
       local actions = require("telescope.actions")

@@ -55,8 +55,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover doc")
     map("gd", vim.lsp.buf.definition, "Goto definition")
     map("gD", vim.lsp.buf.type_definition, "Goto type definition")
-    map("<leader>rn", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+    vim.keymap.set(
+      "n",
+      "<leader>rn",
+      function() return ":IncRename " .. vim.fn.expand("<cword>") end,
+      { buffer = ev.buf, expr = true, desc = "Rename" }
+    )
     map("<leader>e", function() vim.diagnostic.open_float() end, "Show line diagnostics")
     map("<C-j>", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Goto next diagnostics")
   end,

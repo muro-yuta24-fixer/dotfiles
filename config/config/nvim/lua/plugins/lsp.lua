@@ -103,6 +103,30 @@ return {
     },
   },
   {
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    opts = {
+      -- Save every buffer touched by the rename (like lspsaga's auto_save)
+      post_hook = function(result)
+        local uris = {}
+        for uri in pairs(result.changes or {}) do
+          uris[uri] = true
+        end
+        for _, change in ipairs(result.documentChanges or {}) do
+          if change.textDocument then
+            uris[change.textDocument.uri] = true
+          end
+        end
+        for uri in pairs(uris) do
+          local buf = vim.uri_to_bufnr(uri)
+          if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified then
+            vim.api.nvim_buf_call(buf, function() vim.cmd("silent update") end)
+          end
+        end
+      end,
+    },
+  },
+  {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     opts = {

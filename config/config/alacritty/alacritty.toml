@@ -1,5 +1,5 @@
 [terminal]
-shell = "/usr/bin/fish"
+shell = "/usr/bin/zsh"
 
 [window.dimensions]
 columns = 160

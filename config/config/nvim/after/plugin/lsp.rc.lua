@@ -55,20 +55,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover doc")
     map("gd", vim.lsp.buf.definition, "Goto definition")
     map("gD", vim.lsp.buf.type_definition, "Goto type definition")
-    -- Live preview rename (inc-rename.nvim); the command line starts with the current word
-    vim.keymap.set(
-      "n",
-      "<leader>rn",
-      function() return ":IncRename " .. vim.fn.expand("<cword>") end,
-      { buffer = ev.buf, expr = true, desc = "Rename" }
-    )
-    -- Code action picker with diff preview (actions-preview.nvim)
-    vim.keymap.set(
-      { "n", "x" },
-      "<leader>ca",
-      function() require("actions-preview").code_actions() end,
-      { buffer = ev.buf, desc = "Code action" }
-    )
+    map("<leader>rn", vim.lsp.buf.rename, "Rename")
+    vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code action" })
     map("<leader>e", function() vim.diagnostic.open_float() end, "Show line diagnostics")
     map("<C-j>", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Goto next diagnostics")
   end,

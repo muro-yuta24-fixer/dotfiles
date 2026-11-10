@@ -103,63 +103,6 @@ return {
     },
   },
   {
-    -- Code action picker with diff preview
-    "aznhe21/actions-preview.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = function()
-      local hl = require("actions-preview.highlight")
-
-      -- delta with the git config colors, but unified (not side-by-side) for the small preview
-      local delta = hl.delta([[env "GIT_CONFIG_PARAMETERS='delta.side-by-side=false'" delta --paging=never]])
-      delta.is_available = function() return vim.fn.executable("delta") == 1 end
-
-      -- Own nui backend: preview pane only when the action has a diff (lua/utils/actions-preview-compact.lua)
-      package.loaded["actions-preview.backend.compact"] = require("utils.actions-preview-compact")
-
-      return {
-        backend = { "compact" },
-        highlight_command = { delta },
-        compact = {
-          border = "single",
-          width = 0.6, -- of editor columns
-          min_width = 60,
-          max_list_height = 8,
-          preview_height = 0.35, -- of editor lines
-          keymap = {
-            focus_next = { "j", "<Down>", "<Tab>", "<C-n>" },
-            focus_prev = { "k", "<Up>", "<S-Tab>", "<C-p>" },
-            close = { "<Esc>", "<C-c>", "q" },
-            submit = { "<CR>", "<Space>" },
-          },
-        },
-      }
-    end,
-  },
-  {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    opts = {
-      -- Save every buffer touched by the rename (like lspsaga's auto_save)
-      post_hook = function(result)
-        local uris = {}
-        for uri in pairs(result.changes or {}) do
-          uris[uri] = true
-        end
-        for _, change in ipairs(result.documentChanges or {}) do
-          if change.textDocument then
-            uris[change.textDocument.uri] = true
-          end
-        end
-        for uri in pairs(uris) do
-          local buf = vim.uri_to_bufnr(uri)
-          if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified then
-            vim.api.nvim_buf_call(buf, function() vim.cmd("silent update") end)
-          end
-        end
-      end,
-    },
-  },
-  {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     opts = {

@@ -1,3 +1,12 @@
+local later = require("utils.defer").later
+
+-- which-key
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
+later(function() require("which-key").setup({}) end)
+
+-- incline: floating filename per window
 local function get_diagnostic_label(props)
   local icons = require("utils.icons").diagnostics
   local label = {}
@@ -14,7 +23,7 @@ local function get_diagnostic_label(props)
   return label
 end
 
-require("utils.defer").later(function()
+later(function()
   require("incline").setup({
     hide = {
       cursorline = true,

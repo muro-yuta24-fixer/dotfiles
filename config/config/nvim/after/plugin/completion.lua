@@ -123,3 +123,10 @@ local opts = {
 }
 
 require("blink.cmp").setup(opts)
+
+-- Lua API completion for Neovim config (blink source "lazydev")
+require("lazydev").setup({
+  library = {
+    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+  },
+})

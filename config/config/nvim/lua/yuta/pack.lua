@@ -1,8 +1,6 @@
 -- Plugin manager: vim.pack (built-in, Neovim 0.12+)
 -- Lockfile: nvim-pack-lock.json (config dir)
 
-vim.g.loaded_netrwPlugin = 1
-
 local function gh(repo) return "https://github.com/" .. repo end
 
 -- Build hooks. Must be registered before vim.pack.add() so they also run on install.
@@ -83,18 +81,6 @@ vim.pack.add({
   gh("fredrikaverpil/neotest-golang"),
   gh("Issafalcon/neotest-dotnet"),
 })
-
--- Plugin configs (order matters: colorscheme first, telescope before aerial)
-require("plugins.ui")
-require("plugins.cmp")
-require("plugins.lsp")
-require("plugins.telescope")
-require("plugins.treesitter")
-require("plugins.editor")
-require("plugins.git")
-require("plugins.incline")
-require("plugins.debug")
-require("plugins.test")
 
 -- :PackUpdate [names...]  update plugins (shows a confirmation buffer)
 vim.api.nvim_create_user_command("PackUpdate", function(opts) vim.pack.update(#opts.fargs > 0 and opts.fargs or nil) end, {

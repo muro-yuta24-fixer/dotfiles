@@ -1,13 +1,8 @@
 vim.loader.enable()
 
-require("yuta.base")
+-- Loaded before plugins. Everything else lives in:
+--   plugin/        built-in features (keymaps, autocmds, statusline, LSP keymaps, ...)
+--   after/plugin/  plugin configs (run after the plugins' own plugin/ scripts)
+require("yuta.options")
 require("yuta.ui2")
-require("yuta.maps")
-require("yuta.plugins")
-require("yuta.autocmd")
-require("yuta.modes")
-require("yuta.indent")
-require("yuta.statusline")
-require("yuta.tabline")
-require("yuta.command")
-require("yuta.clipboard")
+require("yuta.pack")

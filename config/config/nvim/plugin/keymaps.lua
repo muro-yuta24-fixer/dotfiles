@@ -2,8 +2,6 @@
 local opts = { silent = true, noremap = true }
 local silents = { silent = true }
 
-vim.g.mapleader = " "
-
 -- cursor manipulation like Emacs
 vim.keymap.set("i", "<C-f>", "<Right>", silents)
 vim.keymap.set("i", "<C-b>", "<Left>", silents)

@@ -1,15 +1,3 @@
--- Pick JS/TS formatters from the project's config files
----@param pattern string[]
----@return boolean
-local function rc_file_exists(pattern)
-  local rc_files = vim.fs.find(pattern, {
-    upward = true,
-    stop = vim.fn.getenv("HOME"),
-    path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
-  })
-  return #rc_files > 0
-end
-
 local prettier_rc_files = {
   ".prettierrc",
   ".prettierrc.json",
@@ -27,6 +15,7 @@ local prettier_rc_files = {
 
 local biome_rc_files = {
   "biome.json",
+  "biome.jsonc",
 }
 
 local tailwind_rc_files = {
@@ -35,26 +24,40 @@ local tailwind_rc_files = {
   "tailwind.config.ts",
 }
 
-local function js_formatters_for_project()
+---Whether one of `names` exists in the buffer's directory or its parents (up to $HOME)
+---@param bufnr integer
+---@param names string[]
+---@return boolean
+local function rc_file_exists(bufnr, names)
+  local found = vim.fs.find(names, {
+    upward = true,
+    stop = vim.env.HOME,
+    path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+  })
+  return #found > 0
+end
+
+---Pick JS/TS formatters from the config files of the buffer's project.
+---Evaluated per buffer on each format, so it follows the project being edited.
+---@param bufnr integer
+---@return string[]
+local function js_formatters(bufnr)
   local formatters = {}
 
-  if rc_file_exists(prettier_rc_files) then
-    -- table.insert(formatters, "prettier")
-    -- prettierが遅いのでDaemonを試す
+  if rc_file_exists(bufnr, prettier_rc_files) then
+    -- prettierが遅いのでDaemonを使う
     table.insert(formatters, "prettierd")
-  elseif rc_file_exists(biome_rc_files) then
+  elseif rc_file_exists(bufnr, biome_rc_files) then
     -- BiomeとPrettierがconflictしないようにする
     table.insert(formatters, "biome")
   end
 
-  if rc_file_exists(tailwind_rc_files) then
+  if rc_file_exists(bufnr, tailwind_rc_files) then
     table.insert(formatters, "rustywind")
   end
 
   return formatters
 end
-
-local js_formatters = js_formatters_for_project()
 
 -- NOTE: not passed to mason-tool-installer yet
 local tools = {
@@ -81,11 +84,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         c = { "clang-format" },
         cpp = { "clang-format" },
 
-        cs = {
-          inherit = false,
-          command = "dotnet",
-          args = { "format", "--include", vim.fn.expand("%") },
-        },
+        -- cs: formatted by roslyn (LSP fallback)
 
         lua = { "stylua" },
 
@@ -108,9 +107,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
         fish = { "fish_indent" },
         sh = { "beautysh" },
       },
+      default_format_opts = {
+        lsp_format = "fallback", -- use LSP when no formatter is configured / available
+      },
       format_on_save = {
         timeout_ms = 10000,
-        lsp_fallback = true,
       },
     })
   end,

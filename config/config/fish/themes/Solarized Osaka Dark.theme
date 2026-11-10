@@ -1,0 +1,31 @@
+# name: 'Solarized Osaka Dark'
+# url: 'https://github.com/craftzdog/solarized-osaka.nvim'
+# preferred_background: 001419
+
+fish_color_normal 839395
+fish_color_command 29a298
+fish_color_param 6d71c4
+fish_color_keyword d23681
+fish_color_quote b28500
+fish_color_redirection 839395
+fish_color_end c94c16
+fish_color_comment 576d74
+fish_color_error db302d
+fish_color_gray 576d74
+fish_color_selection --background=1a6397
+fish_color_search_match --background=1a6397
+fish_color_option 6d71c4
+fish_color_operator 849900
+fish_color_escape d23681
+fish_color_autosuggestion 576d74
+fish_color_cancel db302d
+fish_color_cwd b28500
+fish_color_user 29a298
+fish_color_host 268bd3
+fish_color_host_remote 849900
+fish_color_status db302d
+fish_pager_color_progress 576d74
+fish_pager_color_prefix 29a298
+fish_pager_color_completion 839395
+fish_pager_color_description 576d74
+fish_pager_color_selected_background --background=1a6397

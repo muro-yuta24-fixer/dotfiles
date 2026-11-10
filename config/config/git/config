@@ -73,36 +73,20 @@ root = "~/.ghq"
 	navigate = true
   side-by-side = true
   line-numbers = true
-
-	blame-palette = "#eff1f5 #e6e9ef #dce0e8 #ccd0da #bcc0cc"
-	commit-decoration-style = "#9ca0b0" bold box ul
-	light = true
-	file-decoration-style = "#9ca0b0"
-	file-style = "#4c4f69"
-	hunk-header-decoration-style = "#9ca0b0" box ul
-	hunk-header-file-style = bold
-	hunk-header-line-number-style = bold "#6c6f85"
-	hunk-header-style = file line-number syntax
-	line-numbers-left-style = "#9ca0b0"
-	line-numbers-minus-style = bold "#d20f39"
-	line-numbers-plus-style = bold "#40a02b"
-	line-numbers-right-style = "#9ca0b0"
-	line-numbers-zero-style = "#9ca0b0"
-	# 35% red 65% base
-	minus-emph-style = bold syntax "#e5a2b3"
-	# 20% red 80% base
-	minus-style = syntax "#e9c4cf"
-	# 35% green 65% base
-	plus-emph-style = bold syntax "#b2d5ae"
-	# 20% green 80% base
-	plus-style = syntax "#cce1cd"
-	map-styles = \
-		bold purple => syntax "#cbb1f2", \
-		bold blue => syntax "#a6c1f5", \
-		bold cyan => syntax "#9dd7ef", \
-		bold yellow => syntax "#eacfa9"
+	dark = true
+  minus-style                   = syntax "#380605"
+  minus-non-emph-style          = syntax "#380605"
+  minus-emph-style              = syntax "#570f0e"
+  minus-empty-line-marker-style = syntax "#380605"
+  line-numbers-minus-style      = "#db302d"
+  plus-style                    = syntax "#103a3c"
+  plus-non-emph-style           = syntax "#103a3c"
+  plus-emph-style               = syntax "#2c3300"
+  plus-empty-line-marker-style  = syntax "#103a3c"
+  line-numbers-plus-style       = "#849900"
+  line-numbers-zero-style       = "#576d74"
 	# Should match the name of the bat theme
-	syntax-theme = Catppuccin Latte
+	syntax-theme = Solarized (dark)
 [lfs "customtransfer.xet"]
 	path = git-xet
 	args = transfer

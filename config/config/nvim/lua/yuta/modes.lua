@@ -15,7 +15,7 @@ local function blend(fg, bg)
 end
 
 local function mode_color(mode)
-  local palette = require("catppuccin.palettes").get_palette("frappe")
+  local palette = require("solarized-osaka.colors").setup()
   local first = mode:sub(1, 1)
 
   if mode:sub(1, 2) == "no" then
@@ -29,9 +29,9 @@ local function mode_color(mode)
   elseif first == "i" then
     return palette.blue
   elseif first == "R" then
-    return palette.sky
+    return palette.cyan
   elseif first == "v" or first == "V" or first == "\22" or first == "s" or first == "S" or first == "\19" then
-    return palette.lavender
+    return palette.violet
   end
   return nil
 end

@@ -1,27 +1,22 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "craftzdog/solarized-osaka.nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "latte",
+      transparent = true,
       styles = {
-        comments = { "italic" },
-        conditionals = {},
-        functions = { "bold", "italic" },
-        keywords = { "bold" },
-        strings = {},
-        variables = { "italic" },
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
+        comments = { italic = true },
+        keywords = { bold = true },
+        functions = { bold = true, italic = true },
+        variables = { italic = true },
       },
-      auto_integrations = true,
     },
-    init = function() vim.cmd("colorscheme catppuccin-nvim") end,
+    config = function(_, opts)
+      vim.o.background = "dark"
+      require("solarized-osaka").setup(opts)
+      vim.cmd("colorscheme solarized-osaka")
+    end,
   },
   {
     "folke/todo-comments.nvim",

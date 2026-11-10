@@ -13,20 +13,20 @@ local progress = {}
 local timer = assert(vim.uv.new_timer())
 
 local function set_highlights()
-  local ok, palettes = pcall(require, "catppuccin.palettes")
+  local ok, colors = pcall(require, "solarized-osaka.colors")
   if not ok then
     return
   end
-  local p = palettes.get_palette()
+  local p = colors.setup()
   -- Only fg is set; bg is inherited from StatusLine ('statusline' highlight stacking).
-  vim.api.nvim_set_hl(0, "StatusLineGit", { fg = p.mauve, bold = true })
-  vim.api.nvim_set_hl(0, "StatusLinePath", { fg = p.text })
-  vim.api.nvim_set_hl(0, "StatusLineModified", { fg = p.peach, bold = true })
-  vim.api.nvim_set_hl(0, "StatusLineSep", { fg = p.surface2 })
-  vim.api.nvim_set_hl(0, "StatusLineLsp", { fg = p.subtext0 })
+  vim.api.nvim_set_hl(0, "StatusLineGit", { fg = p.violet, bold = true })
+  vim.api.nvim_set_hl(0, "StatusLinePath", { fg = p.base0 })
+  vim.api.nvim_set_hl(0, "StatusLineModified", { fg = p.orange, bold = true })
+  vim.api.nvim_set_hl(0, "StatusLineSep", { fg = p.base01 })
+  vim.api.nvim_set_hl(0, "StatusLineLsp", { fg = p.base00 })
   vim.api.nvim_set_hl(0, "StatusLineLspProgress", { fg = p.blue })
-  vim.api.nvim_set_hl(0, "StatusLineCrumbSep", { fg = p.overlay1 })
-  vim.api.nvim_set_hl(0, "StatusLineCrumb", { fg = p.subtext1 })
+  vim.api.nvim_set_hl(0, "StatusLineCrumbSep", { fg = p.base01 })
+  vim.api.nvim_set_hl(0, "StatusLineCrumb", { fg = p.fg })
 end
 
 ---@param s string

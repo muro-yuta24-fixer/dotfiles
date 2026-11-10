@@ -73,7 +73,7 @@ if status is-interactive
     alias gl ghq-tmux
     alias pyvenv goto-venv
 
-    fish_config theme choose 'Catppuccin Latte'
+    fish_config theme choose 'Solarized Osaka Dark'
 
-    set -x FZF_DEFAULT_OPTS "--color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 --color=selected-bg:#BCC0CC --color=border:#9CA0B0,label:#4C4F69"
+    set -x FZF_DEFAULT_OPTS "--color=bg+:#002c38,bg:#001419,spinner:#c94c16,hl:#c94c16 --color=fg:#9eabac,header:#c94c16,info:#637981,pointer:#c94c16 --color=marker:#c94c16,fg+:#adb7b7,prompt:#c94c16,hl+:#c94c16 --color=selected-bg:#063540 --color=border:#063540,label:#9eabac,gutter:#001419,scrollbar:#063540,separator:#063540"
 end

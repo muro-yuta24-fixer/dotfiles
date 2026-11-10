@@ -1,6 +1,31 @@
 gui:
   mouseEvents: false
-  nerdFontsVersion: ""
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#c94c16"
+      - "bold"
+    inactiveBorderColor:
+      - "#664c00"
+    searchingActiveBorderColor:
+      - "#c94c16"
+      - "bold"
+    optionsTextColor:
+      - "#268bd3"
+    selectedLineBgColor:
+      - "#1a6397"
+    cherryPickedCommitFgColor:
+      - "#268bd3"
+    cherryPickedCommitBgColor:
+      - "#d23681"
+    markedBaseCommitFgColor:
+      - "#268bd3"
+    markedBaseCommitBgColor:
+      - "#b28500"
+    unstagedChangesColor:
+      - "#f55350"
+    defaultFgColor:
+      - "#839395"
 commitLength:
   show: true
 showRandomTip: false
@@ -13,27 +38,3 @@ git:
     - main
     - develop
   parseEmoji: true
-
-theme:
-  activeBorderColor:
-    - "#1e66f5"
-    - bold
-  inactiveBorderColor:
-    - "#6c6f85"
-  optionsTextColor:
-    - "#1e66f5"
-  selectedLineBgColor:
-    - "#ccd0da"
-  cherryPickedCommitBgColor:
-    - "#bcc0cc"
-  cherryPickedCommitFgColor:
-    - "#1e66f5"
-  unstagedChangesColor:
-    - "#d20f39"
-  defaultFgColor:
-    - "#4c4f69"
-  searchingActiveBorderColor:
-    - "#df8e1d"
-
-authorColors:
-  "*": "#7287fd"

@@ -1,0 +1,6 @@
+local selected
+selected=$(ghq list | fzf --layout=reverse) || return 0
+[[ -z $selected ]] && return 0
+
+local repository="$(ghq root)/$selected"
+tmux new-session -A -s "${repository:t}" -c "$repository"

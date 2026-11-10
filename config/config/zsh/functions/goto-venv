@@ -1,0 +1,17 @@
+local dir
+for dir in .venv venv; do
+    if [[ -e $dir/bin/activate ]]; then
+        # 仮想環境をアクティブにする
+        source "$dir/bin/activate"
+
+        # 新しいシェルインスタンスを開始
+        zsh
+
+        # シェルインスタンスが終了したら仮想環境を終了する
+        deactivate
+        return 0
+    fi
+done
+
+echo "No venv script files are found."
+return 1

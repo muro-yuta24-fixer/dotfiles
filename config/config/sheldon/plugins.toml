@@ -1,0 +1,18 @@
+# `sheldon lock --update` でプラグインを更新する
+shell = "zsh"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+dir = "src"
+apply = ["fpath"]
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
+# 他のウィジェットを定義した後に読み込む必要があるため最後に置く
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"

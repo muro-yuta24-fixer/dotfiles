@@ -10,3 +10,4 @@
 /config/config/herdr/.plugins.lock
 /config/config/herdr/herdr.sock.agent
 /config/config/herdr/session-snapshots
+/config/config/zsh/.zcompdump*

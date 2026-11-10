@@ -1,0 +1,5 @@
+if (( $# == 0 )); then
+    tmux new-session -A -s "${PWD:t}"
+else
+    tmux new-session -A -s "$1"
+fi

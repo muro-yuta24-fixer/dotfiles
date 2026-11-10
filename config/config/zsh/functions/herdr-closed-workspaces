@@ -1,0 +1,12 @@
+# herdrが入っているか確かめる
+if (( ! $+commands[herdr] )); then
+    echo "Herdr not found."
+    return 127
+fi
+# jqが入っているか確かめる
+if (( ! $+commands[jq] )); then
+    echo "jq not found."
+    return 127
+fi
+
+herdr worktree list | jq -r '.result.worktrees[] | select(.open_workspace_id==null) | .path'

@@ -10,5 +10,8 @@ install:
 	ln -sf ../dotfiles/config/config/lazygit ~/.config/
 	ln -sf ../dotfiles/config/config/lsd ~/.config/
 	ln -sf ../dotfiles/config/config/mise ~/.config/
+	ln -sf ../dotfiles/config/config/sheldon ~/.config/
 	ln -sf ../dotfiles/config/config/nvim ~/.config/
 	ln -sf ../dotfiles/config/config/tmux ~/.config/
+	ln -sf ../dotfiles/config/config/zsh ~/.config/
+	ln -sf dotfiles/config/.zshenv ~/.zshenv

@@ -13,7 +13,12 @@ local servers = {
   "basedpyright",
 }
 
-local configure_lsp = require("utils.lsp-config-wrapper").configure_lsp
+---@param name string
+---@param opts vim.lsp.Config
+local function configure_lsp(name, opts)
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
+end
 
 require("mason").setup({
   registries = {

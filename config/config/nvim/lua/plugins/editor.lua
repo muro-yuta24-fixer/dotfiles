@@ -1,33 +1,9 @@
-return {
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
-  },
-  {
-    "windwp/nvim-ts-autotag",
-    ft = {
-      "html",
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-      "svelte",
-      "astro",
-      "vue",
-      "cs",
-    },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = true,
-  },
-  {
-    "smoka7/hop.nvim",
-    version = "*",
-    keys = {
-      { "<c-space>", "<cmd>HopWord<cr>", desc = "Hop word", mode = { "n", "v" } },
-    },
-    opts = {},
-  },
-}
+local later = require("utils.defer").later
+
+later(function()
+  require("nvim-autopairs").setup({})
+  require("nvim-ts-autotag").setup({})
+  require("hop").setup({})
+end)
+
+vim.keymap.set({ "n", "v" }, "<c-space>", "<cmd>HopWord<cr>", { desc = "Hop word" })

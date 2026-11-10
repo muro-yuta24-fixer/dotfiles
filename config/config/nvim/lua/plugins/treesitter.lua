@@ -1,32 +1,12 @@
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    lazy = false,
-    opts = {},
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "stevearc/aerial.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      { "<leader>ar", "<cmd>Telescope aerial<cr>", desc = "Telescope aerial" },
-    },
-    opts = {},
-    config = function(_, opts)
-      require("aerial").setup(opts)
+local later = require("utils.defer").later
 
-      local telescope = require("telescope")
-      telescope.load_extension("aerial")
-    end,
-  },
-}
+require("nvim-treesitter").setup({})
+
+later(function()
+  require("treesitter-context").setup({})
+
+  require("aerial").setup({})
+  require("telescope").load_extension("aerial")
+end)
+
+vim.keymap.set("n", "<leader>ar", "<cmd>Telescope aerial<cr>", { desc = "Telescope aerial" })

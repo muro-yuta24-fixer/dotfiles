@@ -14,11 +14,8 @@ local function get_diagnostic_label(props)
   return label
 end
 
-return {
-  "b0o/incline.nvim",
-  event = "VeryLazy",
-
-  opts = {
+require("utils.defer").later(function()
+  require("incline").setup({
     hide = {
       cursorline = true,
       focused_win = false,
@@ -55,5 +52,5 @@ return {
         { filename, " ", guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
       }
     end,
-  },
-}
+  })
+end)

@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 require("yuta.base")
 require("yuta.ui2")
 require("yuta.maps")

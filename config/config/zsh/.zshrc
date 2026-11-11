@@ -100,7 +100,6 @@ alias g=git
 alias v=nvim
 alias vt='nvim -c :terminal'
 alias tm=launch-tmux
-alias dp='docker compose'
 
 if (( $+commands[acpi] )); then
     alias bi='acpi -bi'
@@ -135,4 +134,6 @@ if (( $+functions[abbr] )); then
     abbr -S -q gpe='gh pr edit'
     abbr -S -q da='direnv allow'
     abbr -S -q hwcb='herdr worktree create --branch'
+    abbr -S -q dp='docker compose'
+    abbr -S -q nd='nix develop --command zsh'
 fi

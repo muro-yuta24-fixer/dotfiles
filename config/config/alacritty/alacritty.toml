@@ -6,7 +6,7 @@ columns = 160
 lines = 40
 
 [window]
-decorations_theme_variant = "Dark"
+decorations_theme_variant = "Light"
 
 [font.normal]
 # family = "HackGen Console NF"
@@ -19,69 +19,68 @@ style = "Text Italic"
 [font]
 size = 12
 
-# Solarized Osaka Dark
 [colors.primary]
-background = "#001419"
-foreground = "#839395"
-dim_foreground = "#576d74"
-bright_foreground = "#9eabac"
+background = "#eff1f5"
+foreground = "#4c4f69"
+dim_foreground = "#8c8fa1"
+bright_foreground = "#4c4f69"
 
 [colors.cursor]
-text = "#001419"
-cursor = "#839395"
+text = "#eff1f5"
+cursor = "#dc8a78"
 
 [colors.vi_mode_cursor]
-text = "#001419"
-cursor = "#268bd3"
+text = "#eff1f5"
+cursor = "#7287fd"
 
 [colors.search.matches]
-foreground = "#001419"
-background = "#637981"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.search.focused_match]
-foreground = "#001419"
-background = "#849900"
+foreground = "#eff1f5"
+background = "#40a02b"
 
 [colors.footer_bar]
-foreground = "#9eabac"
-background = "#063540"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.hints.start]
-foreground = "#001419"
-background = "#b28500"
+foreground = "#eff1f5"
+background = "#df8e1d"
 
 [colors.hints.end]
-foreground = "#001419"
-background = "#637981"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.selection]
-text = "CellForeground"
-background = "#1a6397"
+text = "#eff1f5"
+background = "#dc8a78"
 
 [colors.normal]
-black = "#063540"
-red = "#db302d"
-green = "#849900"
-yellow = "#b28500"
-blue = "#268bd3"
-magenta = "#d23681"
-cyan = "#29a298"
-white = "#9eabac"
+black = "#bcc0cc"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#df8e1d"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"
+white = "#5c5f77"
 
 [colors.bright]
-black = "#576d74"
-red = "#db302d"
-green = "#849900"
-yellow = "#b28500"
-blue = "#268bd3"
-magenta = "#d23681"
-cyan = "#29a298"
-white = "#adb7b7"
+black = "#acb0be"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#df8e1d"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"
+white = "#6c6f85"
 
 [[colors.indexed_colors]]
 index = 16
-color = "#c94c16"
+color = "#fe640b"
 
 [[colors.indexed_colors]]
 index = 17
-color = "#f55350"
+color = "#dc8a78"

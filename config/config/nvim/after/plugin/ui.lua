@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
       render = function(props)
         local helpers = require("incline.helpers")
         local devicons = require("nvim-web-devicons")
-        local palette = require("solarized-osaka.colors").setup()
+        local palette = require("catppuccin.palettes").get_palette()
 
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         if filename == "" then
@@ -59,10 +59,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
         local ft_icon, ft_color = devicons.get_icon_color(filename)
         local modified = vim.bo[props.buf].modified
 
-        local bg = props.focused and palette.magenta or palette.base03
-        local fg = props.focused and palette.base04 or palette.base0
+        local bg = props.focused and palette.maroon or palette.base
+        local fg = props.focused and palette.base or palette.text
 
-        local diagnostic_bg = palette.base03
+        local diagnostic_bg = palette.base
 
         return {
           { get_diagnostic_label(props), guibg = diagnostic_bg },

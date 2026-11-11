@@ -7,15 +7,15 @@ local icon_hl_cache = {}
 
 local function set_highlights()
   icon_hl_cache = {}
-  local ok, colors = pcall(require, "solarized-osaka.colors")
+  local ok, palettes = pcall(require, "catppuccin.palettes")
   if not ok then
     return
   end
-  local p = colors.setup()
+  local p = palettes.get_palette()
   local bg, sel_bg = bg_of("TabLine"), bg_of("TabLineSel")
-  vim.api.nvim_set_hl(0, "TabLineAccent", { fg = p.violet, bg = sel_bg })
-  vim.api.nvim_set_hl(0, "TabLineModified", { fg = p.orange, bg = bg })
-  vim.api.nvim_set_hl(0, "TabLineSelModified", { fg = p.orange, bg = sel_bg })
+  vim.api.nvim_set_hl(0, "TabLineAccent", { fg = p.mauve, bg = sel_bg })
+  vim.api.nvim_set_hl(0, "TabLineModified", { fg = p.peach, bg = bg })
+  vim.api.nvim_set_hl(0, "TabLineSelModified", { fg = p.peach, bg = sel_bg })
 end
 
 --- Devicon color on the selected tab's background

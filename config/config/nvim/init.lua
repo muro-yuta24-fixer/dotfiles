@@ -18,7 +18,7 @@ vim.opt.fileencoding = "utf-8"
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.shell = "fish"
+vim.opt.shell = "zsh"
 
 vim.opt.title = true
 vim.opt.hlsearch = true
@@ -124,7 +124,7 @@ vim.pack.add({
   gh("nvim-tree/nvim-web-devicons"),
 
   -- UI
-  gh("craftzdog/solarized-osaka.nvim"),
+  { src = gh("catppuccin/nvim"), name = "catppuccin" },
   gh("folke/todo-comments.nvim"),
   gh("folke/which-key.nvim"),
   gh("b0o/incline.nvim"),

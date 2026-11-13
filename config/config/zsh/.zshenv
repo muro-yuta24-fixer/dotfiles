@@ -8,3 +8,7 @@ fi
 
 # Ubuntu/Debianの /etc/zsh/zshrc で compinit を実行させない (.zshrc で実行する)
 skip_global_compinit=1
+
+if [[ -d /usr/local/cuda/bin ]]; then
+  export PATH="/usr/local/cuda/bin:$PATH"
+fi

@@ -10,7 +10,7 @@ local servers = {
   "vtsls",
   "vue_ls",
 
-  "basedpyright",
+  "pyrefly",
 }
 
 ---@param name string
@@ -33,7 +33,6 @@ require("mason-lspconfig").setup({
     exclude = {
       "denols",
       "ts_ls",
-      "basedpyright",
       "gleam",
     },
   },
@@ -52,16 +51,6 @@ configure_lsp("vtsls", {
             languages = { "vue" },
           },
         },
-      },
-    },
-  },
-})
-
-configure_lsp("basedpyright", {
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "strict",
       },
     },
   },

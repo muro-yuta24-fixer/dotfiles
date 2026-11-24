@@ -141,5 +141,6 @@ if (( $+functions[abbr] )); then
     abbr -S -q da='direnv allow'
     abbr -S -q hwcb='herdr worktree create --branch'
     abbr -S -q dp='docker compose'
-    abbr -S -q nd='nix develop --command zsh'
+    abbr -S -q ndz='nix develop --command zsh'
+    abbr -S -q ndc='nix develop --command copilot'
 fi
